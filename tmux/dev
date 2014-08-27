@@ -1,5 +1,5 @@
 select-pane -t 0				
-split-window -h -p 20 -c "$pane_current_path"	
+split-window -h -p 21 -c "$pane_current_path"	
 
 select-pane -t 0
 split-window -v -p 20 -c "$pane_current_path"
