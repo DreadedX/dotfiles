@@ -8,7 +8,7 @@ split-window -h -c "$pane_current_path"
 select-pane -t 0
 
 send-keys -t 0 'cd src' C-m
-send-keys -t 0 'nano -F' C-m
+send-keys -t 0 'vim' C-m
 
 send-keys -t 1 'cd src' C-m
 send-keys -t 1 'clear' C-m
