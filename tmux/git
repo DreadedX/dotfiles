@@ -1,0 +1,11 @@
+select-pane -t 0
+split-window -h -p 21 -c "$pane_current_patch"
+select-pane -t 0
+
+send-keys -t 0 'nano -F' C-m
+
+send-keys -t 1 'tmux rename-window "Dev: $(basename)"' C-m
+send-keys -t 1 'clear' C-m
+send-keys -t 1 'git status' C-m
+
+
