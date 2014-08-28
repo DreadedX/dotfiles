@@ -4,7 +4,7 @@ select-pane -t 0
 
 send-keys -t 0 'vim' C-m
 
-send-keys -t 1 'tmux rename-window "Dev: $(basename)"' C-m
+send-keys -t 1 'tmux rename-window "$(basename $PWD)"' C-m
 send-keys -t 1 'clear' C-m
 send-keys -t 1 'git status' C-m
 
