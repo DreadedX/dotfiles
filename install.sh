@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ $EUID != 0 ]; then
+	sudo "$0" "$@"
+	exit $?
+fi
+
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 ln -s ~/.dotfiles/oh-my-zsh ~/.oh-my-zsh
