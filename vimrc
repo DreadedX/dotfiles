@@ -8,3 +8,4 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 
 map <F2> :NERDTreeToggle<cr>
+map <F3> \be

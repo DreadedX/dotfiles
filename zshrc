@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/home/tim/.scripts:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
-export BACKUP="/backup/backups"
+#export BACKUP="/backup/backups"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
