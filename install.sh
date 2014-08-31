@@ -12,8 +12,8 @@ if [ ! -f ~/.gitignore ]; then ln -s ~/.dotfiles/gitignore ~/.gitignore; fi
 
 #install gnome-terminal-colors-solarized
 while true; do
-    read -p "Do you wish to install gnome-terminal-colors-solarized? " yn
-    case $yn in
+    read -p "Do you wish to install gnome-terminal-colors-solarized? " yn1
+    case $yn1 in
         [Yy]* ) sudo apt-get install dconf-cli;
 		git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git
 		cd gnome-terminal-colors-solarized;
@@ -21,27 +21,27 @@ while true; do
 		cd ..;
 		rm -rf gnome-terminal-colors-solarized;
 		break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 while true; do
-    read -p "Do you wish to update all submodules?" yn
-    case $yn in
+    read -p "Do you wish to update all submodules? " yn2
+    case $yn2 in
         [Yy]* ) git submodule update --init --recursive
 		break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 while true; do
-    read -p "Do you wish to compile YCM?" yn
-    case $yn in
+    read -p "Do you wish to compile YCM? " yn3
+    case $yn3 in
         [Yy]* ) ./vim/bundle/YouCompleteMe/install.sh
 		break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
