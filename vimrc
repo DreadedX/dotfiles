@@ -1,6 +1,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+let g:SuperTabDefaultCompletionType = 'context'
 
 set t_Co=256
 set background=dark
