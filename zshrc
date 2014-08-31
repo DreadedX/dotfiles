@@ -75,3 +75,5 @@ export PATH="/home/tim/.scripts:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/lo
 alias attach="tmux a"
 
 DISABLE_AUTO_TITLE=true
+
+export TERM=screen-256color-bce
