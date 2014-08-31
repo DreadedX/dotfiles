@@ -1,7 +1,12 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-let g:SuperTabDefaultCompletionType = 'context'
+let g:EclimCompletionMethod = 'omnifunc'
+
+if !exists('g:neocomplcache_force_omni_patterns')
+	  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.java = '\k\.\k*'
 
 set t_Co=256
 set background=dark
