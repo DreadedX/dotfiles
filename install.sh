@@ -26,6 +26,29 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "Do you wish to update all submodules?" yn
+    case $yn in
+        [Yy]* ) git submodule update --init --recursive
+		break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+while true; do
+    read -p "Do you wish to compile YCM?" yn
+    case $yn in
+        [Yy]* ) ./vim/bundle/YouCompleteMe/install.sh
+		break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+git submodule update --init --recursive
+
+
 if [ ! -f /usr/local/bin/tmux-vim-select-pane ]; then
 	curl -fsSL https://raw.github.com/mislav/dotfiles/1500cd2/bin/tmux-vim-select-pane -o /usr/local/bin/tmux-vim-select-pane;
 	chmod +x /usr/local/bin/tmux-vim-select-pane;
