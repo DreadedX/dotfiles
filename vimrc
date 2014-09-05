@@ -17,3 +17,6 @@ nmap <F8> :TagbarToggle<CR>
 map <F3> \be
 
 setlocal completeopt-=preview
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/

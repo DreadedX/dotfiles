@@ -77,3 +77,7 @@ alias attach="tmux a"
 DISABLE_AUTO_TITLE=true
 
 export TERM=screen-256color-bce
+
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
+fi
