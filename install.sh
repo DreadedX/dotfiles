@@ -1,4 +1,5 @@
 #!/bin/bash
+#TODO: Add eclim/eclipse installer
 if [ $EUID != 0 ]; then
 	sudo "$0" "$@"
 	exit $?
