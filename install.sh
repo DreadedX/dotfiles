@@ -46,6 +46,16 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "Do you wish to install CTags? " yn3
+    case $yn3 in
+        [Yy]* ) sudo apt-get install exuberant-ctags 
+		break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 git submodule update --init --recursive
 
 
