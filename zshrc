@@ -7,7 +7,7 @@ ZSH=~/.dotfiles/oh-my-zsh
 # time that oh-my-zsh is loaded.
 
 ZSH_THEME="../../dx"
-#ZSH_THEME="avit"
+# ZSH_THEME="../../dx2"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -81,3 +81,5 @@ export TERM=screen-256color-bce
 if [ -d "$HOME/.local/bin" ]; then
 	PATH="$HOME/.local/bin:$PATH"
 fi
+
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
