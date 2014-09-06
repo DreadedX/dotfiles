@@ -6,8 +6,8 @@ ZSH=~/.dotfiles/oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 
-ZSH_THEME="../../dx"
-# ZSH_THEME="../../dx2"
+# ZSH_THEME="../../dx"
+ZSH_THEME="../../dx2"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -76,10 +76,11 @@ alias attach="tmux a"
 
 DISABLE_AUTO_TITLE=true
 
-export TERM=screen-256color-bce
+export TERM="screen-256color"
+alias tmux="tmux -2"
 
 if [ -d "$HOME/.local/bin" ]; then
 	PATH="$HOME/.local/bin:$PATH"
 fi
 
-. ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
