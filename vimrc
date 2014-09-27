@@ -6,6 +6,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 set t_Co=256
 set background=dark
 colorscheme solarized
+set number
 
 nnoremap <silent> <M-l> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
