@@ -13,7 +13,7 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 
 map <F2> :NERDTreeToggle<cr>
-nmap <F8> :TagbarToggle<CR>
+nmap <F4> :TagbarToggle<CR>
 map <F3> \be
 
 setlocal completeopt-=preview
