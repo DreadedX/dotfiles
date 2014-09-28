@@ -34,3 +34,6 @@
 [submodule "vim/bundle/vim-interestingwords"]
 	path = vim/bundle/vim-interestingwords
 	url = git@github.com:vasconcelloslf/vim-interestingwords.git
+[submodule "vim/bundle/vim-exchange"]
+	path = vim/bundle/vim-exchange
+	url = git@github.com:tommcdo/vim-exchange.git
