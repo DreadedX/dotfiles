@@ -16,6 +16,7 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 map <F2> :NERDTreeToggle<cr>
 nmap <F4> :TagbarToggle<CR>
 map <F3> \be
+map <F5> \k
 
 setlocal completeopt-=preview
 set laststatus=2
