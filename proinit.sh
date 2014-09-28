@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # Checking if url is specified
 if [ -z "$1" ]; then echo "Please specify url."; exit; fi; 
 
