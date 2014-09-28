@@ -6,4 +6,4 @@ You are free to use and change them to your liking.
 To install these dotfiles clone into _~/.dotfiles_ and run _install.sh_.
 
 ##Extra
-_proinit.sh_can be used to quickly initalize a git repository. 
+_proinit.sh_ can be used to quickly initalize a git repository. 
