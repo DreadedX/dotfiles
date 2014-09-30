@@ -21,6 +21,8 @@ map <F3> \be
 nmap <F4> :TagbarToggle<CR>
 map <F5> \k
 
+map <F9> :!./%<cr>
+
 setlocal completeopt-=preview
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
