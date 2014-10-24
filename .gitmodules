@@ -28,9 +28,6 @@
 [submodule "vim/bundle/vim-blockify"]
 	path = vim/bundle/vim-blockify
 	url = git@github.com:mhinz/vim-blockify.git
-[submodule "vim/bundle/MatchTagAlways"]
-	path = vim/bundle/MatchTagAlways
-	url = git@github.com:Valloric/MatchTagAlways.git
 [submodule "vim/bundle/vim-interestingwords"]
 	path = vim/bundle/vim-interestingwords
 	url = git@github.com:vasconcelloslf/vim-interestingwords.git
@@ -40,3 +37,6 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = git@github.com:tpope/vim-surround.git
