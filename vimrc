@@ -28,3 +28,6 @@ set laststatus=2
 let g:Powerline_symbols = 'fancy'
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 let b:EclimPhpHtmlValidate = 1
+
+set expandtab
+set tabstop=2
