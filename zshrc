@@ -76,6 +76,7 @@ alias attach="tmux a"
 
 DISABLE_AUTO_TITLE=true
 
+export VISUAL=vim
 export TERM="screen-256color"
 alias tmux="tmux -2"
 
