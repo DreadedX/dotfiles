@@ -85,3 +85,5 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # . ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+if [ -z "$TMUX" ]; then tmux; fi
