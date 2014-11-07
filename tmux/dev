@@ -1,7 +1,0 @@
-select-pane -t 0
-split-window -h -p 20 
-split-window -v -p 30 -c "bin"
-select-pane -t 0
-
-send-keys -t 0 'vim' C-m
-send-keys -t 0 ':NERDTreeToggle' C-m
