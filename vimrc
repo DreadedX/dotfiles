@@ -10,8 +10,10 @@ set incsearch
 set hlsearch
 set completeopt-=preview
 set laststatus=2
-set expandtab
+set smartindent
 set tabstop=2
+set shiftwidth=2
+set expandtab
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
