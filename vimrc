@@ -26,8 +26,12 @@ map <F9> :!./%<cr>
 setlocal completeopt-=preview
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 let b:EclimPhpHtmlValidate = 1
 
 set expandtab
 set tabstop=2
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='solarized'
+
