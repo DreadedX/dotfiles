@@ -7,9 +7,6 @@
 [submodule "vim/bundle/vim-tmux-navigator"]
 	path = vim/bundle/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-	url = git@github.com:jlanzarotta/bufexplorer.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
 	url = git@github.com:altercation/vim-colors-solarized
@@ -28,9 +25,6 @@
 [submodule "vim/bundle/vim-blockify"]
 	path = vim/bundle/vim-blockify
 	url = git@github.com:mhinz/vim-blockify.git
-[submodule "vim/bundle/vim-interestingwords"]
-	path = vim/bundle/vim-interestingwords
-	url = git@github.com:vasconcelloslf/vim-interestingwords.git
 [submodule "vim/bundle/vim-exchange"]
 	path = vim/bundle/vim-exchange
 	url = git@github.com:tommcdo/vim-exchange.git
