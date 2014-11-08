@@ -1,7 +1,7 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
-colorscheme solarized
+colorscheme gruvbox
 
 set t_Co=256
 set background=dark
@@ -17,7 +17,7 @@ set expandtab
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 let g:EclimCompletionMethod = 'omnifunc'
 let b:EclimPhpHtmlValidate = 1
 
