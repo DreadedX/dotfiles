@@ -14,6 +14,8 @@ set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set t_ZH=[3m
+set t_ZR=[23m
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
