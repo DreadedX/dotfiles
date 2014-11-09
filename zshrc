@@ -16,6 +16,6 @@ fi
 
 alias tmux="tmux -2"
 alias attach="tmux a"
-if [ -z "$TMUX" ]; then tmux; fi
+if [ -z "$TMUX" ]; then tmux; exit; fi
 
 DISABLE_AUTO_TITLE=true
