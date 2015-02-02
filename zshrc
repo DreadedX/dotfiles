@@ -3,7 +3,7 @@ ZSH_THEME="../../agnoster"
 plugins=(sudo colored-man)
 
 setopt correct
-export VISUAL=vim
+export EDITOR=vim
 export TERM="screen-256color"
 
 source $ZSH/oh-my-zsh.sh
