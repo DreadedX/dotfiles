@@ -1,0 +1,41 @@
+From bcd84755235a583c7017ccdbcb5238c51ea193a0 Mon Sep 17 00:00:00 2001
+From: Dreaded_X <tim.huizinga@gmail.com>
+Date: Thu, 5 Feb 2015 00:27:11 +0100
+Subject: [PATCH] Modified Agnoster theme
+
+---
+ themes/agnoster.zsh-theme | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/themes/agnoster.zsh-theme b/themes/agnoster.zsh-theme
+index 8c7be6e..feff328 100644
+--- a/themes/agnoster.zsh-theme
++++ b/themes/agnoster.zsh-theme
+@@ -61,7 +61,7 @@ prompt_end() {
+ # Context: user@hostname (who am I and where am I)
+ prompt_context() {
+   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
++    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+   fi
+ }
+ 
+@@ -139,7 +139,7 @@ prompt_hg() {
+ 
+ # Dir: current working directory
+ prompt_dir() {
+-  prompt_segment blue black '%~'
++  prompt_segment blue black '%3~'
+ }
+ 
+ # Virtualenv: current working virtualenv
+@@ -176,4 +176,5 @@ build_prompt() {
+   prompt_end
+ }
+ 
+-PROMPT='%{%f%b%k%}$(build_prompt) '
++PROMPT='%{%f%b%k%}$(build_prompt)
++ '
+-- 
+2.2.2
+

@@ -1,6 +1,6 @@
 #oh-my-zsh
 ZSH=~/.dotfiles/oh-my-zsh
-ZSH_THEME="../../agnoster"
+ZSH_THEME="agnoster"
 plugins=(sudo colored-man)
 setopt correct
 source $ZSH/oh-my-zsh.sh
