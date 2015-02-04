@@ -1,0 +1,25 @@
+#!/bin/bash
+# Help function
+function show_help {
+echo "Usage: git-init <url>";
+}
+
+# Checking if url is specified
+if [ -z "$1" ]; then show_help; exit 0; fi; 
+
+# Making README.md
+touch README.md
+echo "#$(basname $PWD)" >> README.md
+
+# Make .gitignore
+touch .gitignore
+printf "*~\n*.swp" >> .gitignore
+
+# Initializing git and making first commit
+git init
+git add .
+git commit -m "Initial commit"
+
+# Set origin and push the first commit
+git remote add origin $1;
+git push -u origin master;

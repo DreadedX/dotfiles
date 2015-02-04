@@ -1,0 +1,6 @@
+#!/bin/bash
+# Remove all downloads older than 2 days
+find /home/tim/Downloads -mtime +2 -exec rm -R {} \;
+
+# Remove all empty folders
+find /home/tim/Download/* -type d -empty -exec rmdir {} \;

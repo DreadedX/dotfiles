@@ -1,0 +1,13 @@
+#!/bin/bash
+# Acquire root
+if [ $EUID != 0 ]; then
+	sudo "$0" "$@"
+	exit $?
+fi
+
+# Set bootnext
+efibootmgr --bootnext 0000    #0000 is windows bootloader
+
+# Reboot
+systemctl reboot
+

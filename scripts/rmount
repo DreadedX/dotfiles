@@ -1,0 +1,23 @@
+#!/bin/bash
+# THIS IS AN OLD SCRIPT
+case "$1" in
+  "mount") case "$2" in
+    "ares") host="root@ares:/mnt/shell/emulated/0"; path="$HOME/Ares"; make="true";; #set mounting variables
+    "dionysos") host="pi@dionysos:/home/pi/"; path="$HOME/Dionysos"; make="true";;
+    "muziek") host="pi@dionysos:/media/usb/Muziek"; path="$HOME/Muziek";;
+* ) echo "Error: That location does not exist."; exit;; #give error if location is unknown.
+  esac;;
+  "umount") case "$2" in
+    "ares") path="$HOME/Ares"; make="true";; #set unmounting variables
+    "dionysos") path="$HOME/Dionysos"; make="true";;
+    "muziek") path="$HOME/Muziek";;
+    * ) echo "Error: That location does not exist." #give error if location is unknown.
+  esac;;
+  * ) echo "Usage: remote [mount/umount] [location]."; exit;; #give usage if arguments are used wrong.
+esac
+
+case "$1" in
+  "mount") echo "Mounting '$2'."; if [ -n "$make" ]; then mkdir "$path"; fi; sshfs -o idmap=user "$host" "$path"; if [ $? -eq 0 ]; then echo "Mount succesful."; else echo "Mount failed."; fi;; #execute mount
+
+  "umount") echo "Unmounting '$2'."; fusermount -u "$path"; if [ $? -eq 0 ]; then echo "Unmount succesful."; else echo "Unmount failed."; exit; fi; if [ -n "$make" ]; then rmdir "$path"; fi;; #exexute unmount
+esac
