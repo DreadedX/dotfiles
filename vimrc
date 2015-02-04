@@ -20,8 +20,8 @@ set t_ZR=[23m
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
-let g:EclimCompletionMethod = 'omnifunc'
-let b:EclimPhpHtmlValidate = 1
+" let g:EclimCompletionMethod = 'omnifunc'
+" let b:EclimPhpHtmlValidate = 1
 
 nnoremap <silent> <M-l> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
@@ -30,5 +30,4 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <F12> :noh<cr>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TagbarToggle<cr>
-map <F12> :Tab<cr>
-map <F9> :!./%<cr>
+map <F5> :!./%<cr>
