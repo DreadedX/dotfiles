@@ -22,9 +22,6 @@
 [submodule "vim/bundle/vim-autoclose"]
 	path = vim/bundle/vim-autoclose
 	url = git@github.com:Townk/vim-autoclose.git
-[submodule "vim/bundle/vim-blockify"]
-	path = vim/bundle/vim-blockify
-	url = git@github.com:mhinz/vim-blockify.git
 [submodule "vim/bundle/vim-exchange"]
 	path = vim/bundle/vim-exchange
 	url = git@github.com:tommcdo/vim-exchange.git
@@ -40,3 +37,6 @@
 [submodule "vim/bundle/gruvbox"]
 	path = vim/bundle/gruvbox
 	url = git@github.com:morhetz/gruvbox.git
+[submodule "vim/bundle/vim-matchparenalways"]
+	path = vim/bundle/vim-matchparenalways
+	url = git@github.com:justinmk/vim-matchparenalways.git
