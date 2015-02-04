@@ -10,6 +10,7 @@ export EDITOR=vim
 export ABSROOT=$HOME/Projects/abs
 export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin/scripts:$PATH"
 
 #setting aliases
 alias rmdep="sudo pacman -Rns $(pacman -Qqtd)"
