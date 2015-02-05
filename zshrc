@@ -15,6 +15,7 @@ export TERM="screen-256color"
 
 #setting aliases
 alias rmdep="sudo pacman -Rns $(pacman -Qqtd)"
+alias cl="clear"
 alias tmux="tmux -2"
 alias attach="tmux a"
 
