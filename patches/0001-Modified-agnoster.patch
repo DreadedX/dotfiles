@@ -1,16 +1,16 @@
-From bcd84755235a583c7017ccdbcb5238c51ea193a0 Mon Sep 17 00:00:00 2001
+From 88a0454e77842c2230574fcbafaf4893d03bfeaa Mon Sep 17 00:00:00 2001
 From: Dreaded_X <tim.huizinga@gmail.com>
-Date: Thu, 5 Feb 2015 00:27:11 +0100
-Subject: [PATCH] Modified Agnoster theme
+Date: Thu, 5 Feb 2015 18:37:58 +0100
+Subject: [PATCH] Modified agnoster
 
 ---
- themes/agnoster.zsh-theme | 7 ++++---
+ oh-my-zsh/themes/agnoster.zsh-theme | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/themes/agnoster.zsh-theme b/themes/agnoster.zsh-theme
+diff --git a/oh-my-zsh/themes/agnoster.zsh-theme b/oh-my-zsh/themes/agnoster.zsh-theme
 index 8c7be6e..feff328 100644
---- a/themes/agnoster.zsh-theme
-+++ b/themes/agnoster.zsh-theme
+--- a/oh-my-zsh/themes/agnoster.zsh-theme
++++ b/oh-my-zsh/themes/agnoster.zsh-theme
 @@ -61,7 +61,7 @@ prompt_end() {
  # Context: user@hostname (who am I and where am I)
  prompt_context() {
