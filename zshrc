@@ -1,7 +1,7 @@
 #oh-my-zsh
 ZSH=~/.dotfiles/oh-my-zsh
 ZSH_THEME="agnoster"
-plugins=(sudo colored-man git)
+plugins=(sudo colored-man git gitignore)
 setopt correct
 source $ZSH/oh-my-zsh.sh
 
