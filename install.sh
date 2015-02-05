@@ -12,8 +12,8 @@ function ask {
   while true; do
     read -p "$1 [Y/n] " yn
     case $yn in
-      * ) $2; break;;
       [Nn]* ) break;;
+      * ) $2; break;;
     esac
   done
 }
@@ -50,6 +50,7 @@ function symlink {
   if [ ! -f ~/.zshrc ]; then ln -s $dotfiles/zshrc ~/.zshrc; fi
   if [ ! -f ~/.vimrc ]; then ln -s $dotfiles/vimrc ~/.vimrc; fi
   if [ ! -f ~/.yaourtrc ]; then ln -s $dotfiles/yaourtrc ~/.yaourtrc; fi
+  if [ ! -f ~/.gitignore ]; then ln -s $dotfiles/.gitignore ~/.gitignore; fi
   if [ ! -d ~/.vim ]; then ln -s $dotfiles/vim ~/.vim; fi
   if [ ! -d ~/.local/bin/scripts ]; then ln -s $dotfiles/scripts ~/.local/bin/scripts; fi
   echo "All symlink have been made"
