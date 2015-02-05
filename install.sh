@@ -25,7 +25,7 @@ function submodule {
 # Apply patches
 function patch {
   cd $dotfiles/oh-my-zsh
-  git am $dotfiles/patches/oh-my-zsh/*.patch
+  git am $dotfiles/patches/oh-my-zsh-patches/*.patch
 }
 
 # Comple YouCompleteMe
