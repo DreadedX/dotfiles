@@ -24,8 +24,8 @@ function submodule {
 }
 # Apply patches
 function patch {
-  cd $dotfiles/oh-my-zsh
-  git am $dotfiles/patches/oh-my-zsh-patches/*.patch
+  cd $dotfiles
+  git am $dotfiles/patches/*.patch
 }
 
 # Comple YouCompleteMe
@@ -62,7 +62,7 @@ cd $dotfiles
 
 # Ask and execute the install script
 ask "Update submodules" submodule
-ask "Patch submodules" patch
+ask "Apply patches" patch
 ask "Compile YCM" ycm
 ask "Install tmux-vim-select-pane" tvpane
 ask "Install fonts" fonts
