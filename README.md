@@ -3,4 +3,8 @@ These are my personal dotfiles.
 You are free to use and change them to your liking.
 
 ##Instal
-To install these dotfiles clone into _~/.dotfiles_ and run _install.sh_.
+````
+git clone https://github.com/DreadedX/dotfiles.git ~/.dotfiles
+cd .dotfiles
+./install.sh ~/.dotfiles
+````
