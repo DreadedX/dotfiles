@@ -1,10 +1,7 @@
 #!/bin/bash
-
-dotfiles="$HOME/$1"
-
 # Show help
 function show_help {
-  echo "Specify directory";
+  echo "Specify existing directory";
 }
 
 # Ask user
@@ -56,7 +53,9 @@ function symlink {
   echo "All symlink have been made"
 }
 
+dotfiles="$1"
 if [ -z "$1" ]; then show_help; exit 0; fi; 
+if [ ! -d $1 ]; then show_help; exit 0; fi;
 
 cd $dotfiles
 
