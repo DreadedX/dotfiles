@@ -28,6 +28,7 @@ nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <F12> :noh<cr>
+nnoremap <F4> :buffers<cr>:buffer<space>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TagbarToggle<cr>
-map <F5> :!./%<cr>
+" map <F5> :!./%<cr>
