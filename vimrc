@@ -20,6 +20,7 @@ set t_ZR=[23m
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
+let g:indentLine_char = '│'
 " let g:EclimCompletionMethod = 'omnifunc'
 " let b:EclimPhpHtmlValidate = 1
 
