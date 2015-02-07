@@ -33,3 +33,8 @@ nnoremap <F4> :buffers<cr>:buffer<space>
 map <F2> :NERDTreeToggle<cr>
 map <F3> :TagbarToggle<cr>
 " map <F5> :!./%<cr>
+
+if !empty(glob("./build.gradle"))
+  map <F5> :!clear && gradle build<cr>
+  map <F6> :!clear && gradle run<cr>
+endif
