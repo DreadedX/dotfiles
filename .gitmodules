@@ -35,3 +35,6 @@
 [submodule "vim/bundle/vim-matchparenalways"]
 	path = vim/bundle/vim-matchparenalways
 	url = git@github.com:justinmk/vim-matchparenalways.git
+[submodule "vim/bundle/vim-gradle"]
+	path = vim/bundle/vim-gradle
+	url = git@github.com:tfnico/vim-gradle.git
