@@ -29,6 +29,8 @@ nnoremap <silent> <M-l> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <S-tab> :bprev<cr>
 nnoremap <silent> <F12> :noh<cr>
 nnoremap <F4> :buffers<cr>:buffer<space>
 map <silent> <F2> :NERDTreeToggle<cr>
@@ -39,3 +41,5 @@ if !empty(glob("./build.gradle"))
   map <F5> :!clear && gradle build<cr>
   map <F6> :!clear && gradle run<cr>
 endif
+
+let g:ctrlp_custom_ignore = '\v[\/](build|bin)$'
