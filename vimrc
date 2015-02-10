@@ -31,8 +31,8 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <F12> :noh<cr>
 nnoremap <F4> :buffers<cr>:buffer<space>
-map <F2> :NERDTreeToggle<cr>
-map <F3> :TagbarToggle<cr>
+map <silent> <F2> :NERDTreeToggle<cr>
+map <silent> <F3> :TagbarToggle<cr>
 " map <F5> :!./%<cr>
 
 if !empty(glob("./build.gradle"))
