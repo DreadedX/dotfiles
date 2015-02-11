@@ -38,8 +38,8 @@ map <silent> <F3> :TagbarToggle<cr>
 " map <F5> :!./%<cr>
 
 if !empty(glob("./build.gradle"))
-  map <F5> :!clear && gradle build<cr>
-  map <F6> :!clear && gradle run<cr>
+  map <F5> :ProjectRefresh<cr>
+  map <F6> :Java<cr>
 endif
 
 let g:ctrlp_custom_ignore = '\v[\/](build|bin)$'
