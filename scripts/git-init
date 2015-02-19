@@ -9,7 +9,7 @@ if [ -z "$1" ]; then show_help; exit 0; fi;
 
 # Making README.md
 touch README.md
-echo "#$(basname $PWD)" >> README.md
+echo "#$(basename $PWD)" >> README.md
 
 # Make .gitignore
 touch .gitignore
