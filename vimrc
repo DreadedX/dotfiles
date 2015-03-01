@@ -37,9 +37,9 @@ map <silent> <F2> :NERDTreeToggle<cr>
 map <silent> <F3> :TagbarToggle<cr>
 " map <F5> :!./%<cr>
 
-if !empty(glob("./build.gradle"))
+" if !empty(glob("./build.gradle"))
   map <F5> :ProjectRefresh<cr>
-  map <F6> :Java<cr>
-endif
+  " map <F6> :Java<cr>
+" endif
 
 let g:ctrlp_custom_ignore = '\v[\/](build|bin)$'
