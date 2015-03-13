@@ -1,46 +1,46 @@
 [submodule "vim/.vim/bundle/nerdtree"]
 	path = vim/.vim/bundle/nerdtree
-	url = git@github.com:scrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/.vim/bundle/vim-tmux-navigator"]
 	path = vim/.vim/bundle/vim-tmux-navigator
-	url = git@github.com:christoomey/vim-tmux-navigator.git
+	url = https://github.com/christoomey/vim-tmux-navigator.git
 [submodule "vim/.vim/bundle/YouCompleteMe"]
 	path = vim/.vim/bundle/YouCompleteMe
-	url = git@github.com:Valloric/YouCompleteMe.git
+	url = https://github.com/Valloric/YouCompleteMe.git
   ignore = dirty
 [submodule "vim/.vim/bundle/tagbar"]
 	path = vim/.vim/bundle/tagbar
-	url = git@github.com:majutsushi/tagbar.git
+	url = https://github.com/majutsushi/tagbar.git
 [submodule "vim/.vim/bundle/tcomment_vim"]
 	path = vim/.vim/bundle/tcomment_vim
-	url = git@github.com:tomtom/tcomment_vim.git
+	url = https://github.com/tomtom/tcomment_vim.git
 [submodule "vim/.vim/bundle/vim-exchange"]
 	path = vim/.vim/bundle/vim-exchange
-	url = git@github.com:tommcdo/vim-exchange.git
+	url = https://github.com/tommcdo/vim-exchange.git
 [submodule "vim/.vim/bundle/tabular"]
 	path = vim/.vim/bundle/tabular
-	url = git@github.com:godlygeek/tabular.git
+	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/.vim/bundle/vim-surround"]
 	path = vim/.vim/bundle/vim-surround
-	url = git@github.com:tpope/vim-surround.git
+	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/.vim/bundle/vim-airline"]
 	path = vim/.vim/bundle/vim-airline
-	url = git@github.com:bling/vim-airline.git
+	url = https://github.com/bling/vim-airline.git
 [submodule "vim/.vim/bundle/gruvbox"]
 	path = vim/.vim/bundle/gruvbox
-	url = git@github.com:morhetz/gruvbox.git
+	url = https://github.com/morhetz/gruvbox.git
 [submodule "vim/.vim/bundle/vim-matchparenalways"]
 	path = vim/.vim/bundle/vim-matchparenalways
-	url = git@github.com:justinmk/vim-matchparenalways.git
+	url = https://github.com/justinmk/vim-matchparenalways.git
 [submodule "vim/.vim/bundle/vim-gradle"]
 	path = vim/.vim/bundle/vim-gradle
-	url = git@github.com:tfnico/vim-gradle.git
+	url = https://github.com/tfnico/vim-gradle.git
 [submodule "vim/.vim/bundle/indentLine"]
 	path = vim/.vim/bundle/indentLine
-	url = git@github.com:Yggdroot/indentLine.git
+	url = https://github.com/Yggdroot/indentLine.git
 [submodule "vim/.vim/bundle/delimitMate"]
 	path = vim/.vim/bundle/delimitMate
-	url = git@github.com:Raimondi/delimitMate.git
+	url = https://github.com/Raimondi/delimitMate.git
 [submodule "vim/.vim/bundle/ctrlp.vim"]
 	path = vim/.vim/bundle/ctrlp.vim
-	url = git@github.com:kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
