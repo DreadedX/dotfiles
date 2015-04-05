@@ -1,0 +1,4 @@
+#!/bin/bash
+yaourt -Syyu --aur
+sudo mkinitcpio -p linux
+sudo mkinitcpio -p linux-custom
