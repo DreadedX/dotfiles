@@ -1,0 +1,22 @@
+.header-bar.default-decoration {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.header-bar.default-decoration .button.titlebutton {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+/* .window-frame:backdrop, */
+/* .window-frame, */
+/* .window-frame.tiled, */
+/* .window-frame.popup{ */
+/* box-shadow:none;} */
+/*  */
+/* .window-frame.tooltip.csd, */
+/* .window-frame.popup.csd, */
+/* .window-frame.popup { */
+/* border-radius:0px; */
+/* box-shadow: none; */
+/* margin: 0px;} */
