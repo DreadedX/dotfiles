@@ -1,7 +1,8 @@
 #oh-my-zsh
 ZSH=~/.dotfiles/oh-my-zsh
 ZSH_THEME="agnoster"
-plugins=(sudo colored-man git gitignore gitfast)
+# plugins=(sudo colored-man git gitignore gitfast)
+plugins=(sudo colored-man git gitignore)
 setopt correct
 source $ZSH/oh-my-zsh.sh
 
@@ -14,7 +15,6 @@ export PATH="$HOME/.local/bin/scripts:$PATH"
 export TERM="screen-256color"
 
 #setting aliases
-alias rmdep="sudo pacman -Rns $(pacman -Qqtd)"
 alias cl="clear"
 alias tmux="tmux -2"
 alias attach="tmux a"
