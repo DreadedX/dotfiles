@@ -36,6 +36,8 @@ nnoremap <silent> <F12> :noh<cr>
 nnoremap <F4> :buffers<cr>:buffer<space>
 map <silent> <F2> :NERDTreeToggle<cr>
 map <silent> <F3> :TagbarToggle<cr>
+nnoremap <S-J> <pagedown>
+nnoremap <S-K> <pageup>
 " map <F5> :!./%<cr>
 
 " if !empty(glob("./build.gradle"))
