@@ -16,6 +16,7 @@ export TERM="screen-256color"
 
 #setting aliases
 alias cl="clear"
+alias v="vim"
 alias tmux="tmux -2"
 alias attach="tmux a"
 
