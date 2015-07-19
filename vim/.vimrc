@@ -16,6 +16,7 @@ set shiftwidth=2
 set expandtab
 set t_ZH=[3m
 set t_ZR=[23m
+set relativenumber
 " set mouse=a
 
 let g:airline_powerline_fonts = 1
@@ -32,7 +33,7 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <S-tab> :bprev<cr>
-nnoremap <silent> <F12> :noh<cr>
+" nnoremap <silent> <F12> :noh<cr>
 nnoremap <F4> :buffers<cr>:buffer<space>
 map <silent> <F2> :NERDTreeToggle<cr>
 map <silent> <F3> :TagbarToggle<cr>
