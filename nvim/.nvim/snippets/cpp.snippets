@@ -3,13 +3,11 @@ snippet header
 	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
 	#define $1
 
-	#include "Standard.h"
-
 	${0}
 
 	#endif
 
 snippet incl
-	#include "${1:`vim_snippets#Filename('$1.h', 'Untitled.h')`}"
+	# include "Standard.h"
 
 	${0}

@@ -86,5 +86,5 @@ map <S-J> <pagedown>
 map <S-K> <pageup>
 
 map <silent> <F9> :make<cr>:cw<cr>
-map <F10> :!./platformer<cr>
+map <F10> :make execute<cr>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
