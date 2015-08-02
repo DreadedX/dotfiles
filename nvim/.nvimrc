@@ -19,12 +19,13 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
+Plug 'beyondmarc/glsl.vim'
 " Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 let g:neomake_airline=1
 
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_custom_ignore = '\v[\/](build|bin)$'
 
 let delimitMate_expand_cr = 1
@@ -48,7 +49,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
 
-map <M-l> :TmuxNavigateLeft<cr>
+map <M-h> :TmuxNavigateLeft<cr>
 map <M-j> :TmuxNavigateDown<cr>
 map <M-k> :TmuxNavigateUp<cr>
 map <M-l> :TmuxNavigateRight<cr>
@@ -65,6 +66,9 @@ set completeopt=menuone,menu,longest
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " let g:SuperTabDefaultCompletionType = "<c-n>"
+
+let g:glsl_default_version = 'glsl330'
+let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
 
 syntax on
 filetype plugin indent on
@@ -88,3 +92,4 @@ map <S-K> <pageup>
 map <silent> <F9> :make<cr>:cw<cr>
 map <F10> :make execute<cr>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
