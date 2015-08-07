@@ -20,13 +20,14 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'beyondmarc/glsl.vim'
+Plug 'tpope/vim-dispatch'
 " Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 let g:neomake_airline=1
 
 " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_custom_ignore = '\v[\/](build|bin)$'
+let g:ctrlp_custom_ignore = '\v[\/](build|bin|obj)$'
 
 let delimitMate_expand_cr = 1
 
@@ -67,9 +68,6 @@ let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " let g:SuperTabDefaultCompletionType = "<c-n>"
 
-let g:glsl_default_version = 'glsl330'
-let g:glsl_file_extensions = '*.glsl,*.vsh,*.fsh'
-
 syntax on
 filetype plugin indent on
 
@@ -89,7 +87,8 @@ map <silent> <S-tab> :bp<cr>
 map <S-J> <pagedown>
 map <S-K> <pageup>
 
-map <silent> <F9> :make<cr>:cw<cr>
-map <F10> :make execute<cr>
+" map <silent> <F9> :make<cr>:cw<cr>
+map <F9> :Make<cr>
+map <F10> :Make debug<cr>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
