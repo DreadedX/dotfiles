@@ -19,6 +19,7 @@ alias cl="clear"
 alias vim="nvim"
 alias tmux="tmux -2"
 alias attach="tmux a"
+alias wcp="wc -l src/**/*.cpp include/**/*.h"
 
 #start tmux
 if [ -z "$TMUX" ]; then tmux; exit; fi

@@ -92,3 +92,5 @@ map <F9> :Make<cr>
 map <F10> :Make debug<cr>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
+map <F4> :cw<cr>
+map <C-N> :cn<cr>
