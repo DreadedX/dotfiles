@@ -21,13 +21,15 @@ Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 Plug 'beyondmarc/glsl.vim'
 Plug 'tpope/vim-dispatch'
-" Plug 'Valloric/YouCompleteMe'
+Plug 'freitass/todo.txt-vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'milkypostman/vim-togglelist'
 call plug#end()
 
 let g:neomake_airline=1
 
 " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_custom_ignore = '\v[\/](build|bin|obj)$'
+let g:ctrlp_custom_ignore = '\v[\/](bin|obj)$'
 
 let delimitMate_expand_cr = 1
 
@@ -71,7 +73,6 @@ let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 syntax on
 filetype plugin indent on
 
-set nocp
 set smartindent
 set number
 set relativenumber
@@ -81,16 +82,37 @@ set shiftwidth=4
 set noexpandtab
 set completeopt-=preview
 
+set cinkeys=0{,0},0),:,!^F,o,O,e
+
 map <silent> <tab> :bn<cr>
 map <silent> <S-tab> :bp<cr>
 
-map <S-J> <pagedown>
-map <S-K> <pageup>
+map <S-J> 10j
+map <S-K> 10k
 
 " map <silent> <F9> :make<cr>:cw<cr>
 map <F9> :Make<cr>
 map <F10> :Make debug<cr>
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-map <F4> :cw<cr>
-map <C-N> :cn<cr>
+map <silent> <F4> :call ToggleQuickfixList()<cr>
+map <silent> <F5> :e ./todo/todo.txt<cr>
+map <silent> <F6> :e ./todo/done.txt<cr>
+map <silent> <F7> :grep -F TODO -R ./src/**/*.cpp ./include/**/*.h<cr> :cw<cr>
+map <silent> <F8> :grep -F NOTE -R ./src/**/*.cpp ./include/**/*.h<cr> :cw<cr>
+
+function! NeatFoldText()
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+set foldtext=NeatFoldText()
+set foldcolumn=1
+au BufRead *.cpp setlocal foldmethod=syntax
+au BufRead *.cpp setlocal foldnestmax=1
