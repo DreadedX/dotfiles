@@ -91,8 +91,13 @@ map <S-J> 10j
 map <S-K> 10k
 
 " map <silent> <F9> :make<cr>:cw<cr>
-map <F9> :Make<cr>
-map <F10> :Make debug<cr>
+if $HOST != "hefaistos"
+    map <F9> :Make<cr>
+    map <F10> :Make debug<cr>
+else
+    map <F9> :Make CONFIG=legacy<cr>
+    map <F10> :Make CONFIG=legacy debug<cr>
+endif
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 map <silent> <F4> :call ToggleQuickfixList()<cr>
