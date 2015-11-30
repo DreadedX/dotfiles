@@ -13,6 +13,9 @@ export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/scripts:$PATH"
 export TERM="screen-256color"
+export SAL_USE_VCLPLUGIN="gtk"
+export GOPATH="$HOME/.local/go"
+export PATH="$HOME/.local/go/bin:$PATH"
 
 #setting aliases
 alias cl="clear"

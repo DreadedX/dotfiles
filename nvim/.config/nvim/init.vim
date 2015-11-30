@@ -1,4 +1,4 @@
-call plug#begin('~/.dotfiles/nvim/.nvim/plugged')
+call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Raimondi/delimitMate'
@@ -13,22 +13,18 @@ Plug 'tommcdo/vim-exchange'
 Plug 'justinmk/vim-matchparenalways'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'vim-scripts/OmniCppComplete'
-Plug 'ervandew/supertab'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'beyondmarc/glsl.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
-let g:neomake_airline=1
-
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_custom_ignore = '\v[\/](bin|obj)$'
 
 let delimitMate_expand_cr = 1
@@ -38,9 +34,9 @@ set t_Co=256
 set t_ZH=[3m
 set t_ZR=[23m
 set background=dark
-" set background=light
 
 let g:indentLine_char = '│'
+let g:indentLine_color_term = 239
 
 " map <silent> <M-a> :NERDTreeToggle<cr>
 map <silent> <F2> :NERDTreeToggle<cr>
@@ -57,18 +53,20 @@ map <M-j> :TmuxNavigateDown<cr>
 map <M-k> :TmuxNavigateUp<cr>
 map <M-l> :TmuxNavigateRight<cr>
 
-set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_DisplayMode         = 1
-let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-let OmniCpp_ShowAccess          = 1 "show access in pop-up
-let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-set completeopt=menuone,menu,longest
+" set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+" let OmniCpp_GlobalScopeSearch   = 1
+" let OmniCpp_DisplayMode         = 1
+" let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
+" let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
+" let OmniCpp_ShowAccess          = 1 "show access in pop-up
+" let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
 
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+set completeopt=menuone,menu,preview
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_error_symbol = ''
+let g:ycm_warning_symbol = ''
 
-" let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:UltiSnipsExpandTrigger="<c-s>"
 
 syntax on
 filetype plugin indent on
@@ -82,7 +80,8 @@ set shiftwidth=4
 set noexpandtab
 set completeopt-=preview
 
-set cinkeys=0{,0},0),:,!^F,o,O,e
+" I do not remember what this is for
+" set cinkeys=0{,0},0),:,!^F,o,O,e
 
 map <silent> <tab> :bn<cr>
 map <silent> <S-tab> :bp<cr>
@@ -90,15 +89,11 @@ map <silent> <S-tab> :bp<cr>
 map <S-J> 10j
 map <S-K> 10k
 
-" map <silent> <F9> :make<cr>:cw<cr>
-if $HOST != "hefaistos"
-    map <F9> :Make<cr>
-    map <F10> :Make debug<cr>
-else
-    map <F9> :Make CONFIG=legacy<cr>
-    map <F10> :Make CONFIG=legacy debug<cr>
-endif
-map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+autocmd FileType cpp map <F9> :Make<cr>
+autocmd FileType cpp map <F10> :Make debug<cr>
+autocmd FileType cpp map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+autocmd FileType tex map <F9> :!arara %<cr>
 
 map <silent> <F4> :call ToggleQuickfixList()<cr>
 map <silent> <F5> :e ./todo/todo.txt<cr>
