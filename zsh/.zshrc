@@ -7,11 +7,11 @@ setopt correct
 source $ZSH/oh-my-zsh.sh
 
 #setting environment variables
-export EDITOR=vim
+export EDITOR=nvim
 export ABSROOT=$HOME/Projects/abs
 export PATH="/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin/scripts:$PATH"
+export PATH="$HOME/.local/bin/scripts:$PATH:/usr/bin/core_perl"
 export TERM="screen-256color"
 export SAL_USE_VCLPLUGIN="gtk"
 export GOPATH="$HOME/.local/go"
@@ -22,7 +22,7 @@ alias cl="clear"
 alias vim="nvim"
 alias tmux="tmux -2"
 alias attach="tmux a"
-alias wcp="wc -l src/**/*.cpp include/**/*.h"
+alias wcp="wc -l **/src/**/*.cpp **/include/**/*.h"
 
 #start tmux
 if [ -z "$TMUX" ]; then tmux; exit; fi
