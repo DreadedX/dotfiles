@@ -100,21 +100,27 @@ map <silent> <S-tab> :bp<cr>
 map <S-J> 10j
 map <S-K> 10k
 
-autocmd FileType cpp map <F9> :Make<cr>
-autocmd FileType cpp map <F10> :Make debug<cr>
-autocmd FileType cpp map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <silent> <C-B> :Bdelete<cr>
 
 autocmd FileType go let &makeprg="go run %:p:h/*.go"
 autocmd FileType go map <F10> :Make<cr>
 
-autocmd FileType tex map <F9> :!arara %<cr>
+autocmd FileType tex map <F9> :Dispatch arara %<cr>
 
-if !filereadable(expand("%:p:h")."/Makefile")
+autocmd FileType cpp map <F9> :Make<cr>
+autocmd FileType cpp map <S-F9> :Make clean all<cr>
+
+if filereadable(expand("%:p:h")."/CMake/defualt/Makefile")
     let &makeprg="cd CMake/default && make"
+	autocmd FileType cpp map <F10> :Make debug<cr>
 endif
+if filereadable(expand("%:p:h")."/build/cmake/Makefile")
+    let &makeprg="cd build/cmake && make"
+	autocmd FileType cpp map <F10> :Start cd build/cmake && ./run-engine.sh; echo "\nPress [enter] to close" && read<cr>
+	autocmd FileType cpp map <S-F10> :Start cd build/cmake && ./debug-engine.sh<cr>
+endif
+
 map <silent> <F4> :call ToggleQuickfixList()<cr>
-map <silent> <F5> :e ./todo/todo.txt<cr>
-map <silent> <F6> :e ./todo/done.txt<cr>
 " map <silent> <F7> :grep -F TODO -R ./src/**/*.cpp ./include/**/*.h<cr> :cw<cr>
 " map <silent> <F8> :grep -F NOTE -R ./src/**/*.cpp ./include/**/*.h<cr> :cw<cr>
 
