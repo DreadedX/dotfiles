@@ -1,0 +1,10 @@
+/prezto/*
+.zlogin
+.zlogout
+.zpreztorc
+.zprofile
+.zshenv
+
+.zcompdump
+.zcompdump.zwc
+.zhistory

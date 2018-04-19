@@ -1,0 +1,15 @@
+[user]
+	name = Dreaded_X
+	email = tim.huizinga@gmail.com
+
+[push]
+	default = simple
+
+[core]
+	excludesfile = $HOME/.dotfiles/git/gitignore
+
+[color]
+	ui = true
+
+[credential]
+	helper = /usr/lib/git-core/git-credential-gnome-keyring

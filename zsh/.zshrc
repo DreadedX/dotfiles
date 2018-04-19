@@ -1,0 +1,19 @@
+if [ -z "$TMUX" ]; then tmux; exit; fi
+
+export ZDOTDIR="${HOME}/.dotfiles/zsh"
+export EDITOR=nvim
+export USE_CCACHE=1
+
+alias cl="clear"
+alias tmux="tmux -2"
+
+KEYTIMEOUT=1
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR}/prezto/init.zsh" ]]; then
+  source "${ZDOTDIR}/prezto/init.zsh"
+fi
+
+if [[ -s "${ZDOTDIR}/gitalias.zsh" ]]; then
+  source "${ZDOTDIR}/gitalias.zsh"
+fi
