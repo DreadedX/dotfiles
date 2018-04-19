@@ -1,0 +1,5 @@
+#!/bin/sh
+# colors taken from the solarized color scheme, see .Xresources
+
+dmenu_run -b -i -nb "#FDF6E3" -nf "#839496" -sf "#FFFFFF" -sb "#DC322F" -fn 'Source Code Pro-9'
+

@@ -1,0 +1,168 @@
+#!/bin/bash
+# GUID=0d7c1b6929d53
+GUID=70998f4a07e13
+
+function get_first_number {
+	printf "%03.f" $(echo $1 | sed -r 's/\./_/g' | sed -r 's/^([^.]+).*$/\1/; s/^[^0-9]*([0-9]+).*$/\1/')
+	# echo $1 | sed -r 's/\./_/' | sed -r 's/^([^.]+).*$/\1/; s/^[^0-9]*([0-9]+).*$/\1/'
+}
+
+# $1 = SEARCH
+function get_tracklist_url {
+	LINKS=$(curl -F 'search_selection=9' -F 'main_search='"$1" https://www.1001tracklists.com/search/result.php --silent |\
+		grep -o '<a href=['"'"'"][^"'"'"']*['"'"'"]' |\
+		sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//')
+
+	SEARCH=$(echo $1 | tr '[:upper:]' '[:lower:]')
+	echo "$LINKS" | grep "$(echo ${SEARCH// /\.*})"
+}
+
+function get_tracklist_id {
+	SOURCE=$(curl https://www.1001tracklists.com$1 --silent | grep "id_tracklist\" value=")
+	ID=$(get_first_number "$SOURCE")
+	echo $ID
+}
+
+# $1 = ID
+function get_tracklist {
+	curl -H "Cookie: guid=$GUID" --data "idTL=$1" https://www.1001tracklists.com/ajax/export_tracklist.php --silent
+}
+
+# $1 = JSON
+# $2 = KEY
+function parse_json {
+	echo $1 | jq -r ".$2"
+}
+
+# $1 = NUMBER
+function write_tracklist {
+	echo "Trying to download tracklist"
+	JSON=$(get_tracklist "$(get_tracklist_id "$(get_tracklist_url "$SEARCH_BASE $1")")")
+	echo "$JSON"
+	if "$(parse_json "$JSON" "success")"; then
+		# TRACKLIST=$(echo $JSON | jq -r ".tlTxt")
+		echo "$(parse_json "$JSON" "tlTxt")" | sed 's/\r//' > "/home/tim/Muziek/$FEED_NAME/$ARTIST - $ALBUM $1.txt"
+	else
+		echo "FAILED: $(parse_json "$JSON" "message")"
+	fi
+}
+
+# $1 = FILE
+# $2 = NUMVER
+function tag_file {
+	# id3 -M -d -t "$ALBUM $NUMBER" -a "$ARTIST" -l "$ALBUM" -n $2 $1
+	# id3v2 --APIC cover.jpg $1
+	echo "Tagging $1 $2"
+	tageditor --set --force-rewrite --remove-other-fields title="$ALBUM $2" artist="$ARTIST" album="$ALBUM" cover=cover.jpg --files "$1" -v
+	tageditor --set --force-rewrite track="$2" --files "$1" -v
+	# Maybe we should check if the file is a mp3
+	# id3ted -T $2 $1
+	rm $1.bak 2> /dev/null
+}
+
+# $1 = SONG
+# $2 = NUMBER
+function rename_file {
+
+	FILENAME=$(echo "$ALBUM" "$2")
+	FILENAME=$(echo "${FILENAME// /_}.${1##*.}")
+
+	echo "$1 -> $FILENAME"
+
+	mv "$1" "$FILENAME" 2> /dev/null
+}
+
+function do_feed {
+	echo "$ARTIST - $ALBUM"
+	#Check if there are new episodes
+	NEW_EPISODE_COUNT=$(podfox update $FEED_NAME | grep "new episode." | wc -l)
+	SONGS=""
+
+	if [ -z $(echo $NEW_EPISODE_COUNT | grep 0) ]; then
+		echo "Downloading new episodes"
+		SONGS=$(podfox download $FEED_NAME --how-many=$NEW_EPISODE_COUNT)
+	fi
+
+	for SONG in `find . | grep -e "mp3" -e "m4a"`; do
+		NUMBER=$(get_first_number "$SONG")
+
+		if [ ! -f  "/home/tim/Muziek/$FEED_NAME/$ARTIST - $ALBUM $NUMBER.txt" ]; then
+			# This should be a seperate loop, that downloads all missing tracklists
+			# echo "Tracklist disabled"
+			echo $SONG $NUMBER
+			write_tracklist $NUMBER
+		fi
+	done
+
+	for SONG in `echo $SONGS | sed 's/ /\n/g' | grep -v "http" | grep -e ".mp3" -e ".m4a"`; do
+		# Now all we need to do is use podfox to figure out if there are new podcasts and tag those
+		NUMBER=$(get_first_number "$SONG")
+
+		tag_file "$SONG" "$NUMBER"
+
+		rename_file "$SONG" "$NUMBER"
+	done
+}
+
+# function do_feed2 {
+# 	echo "$ARTIST - $ALBUM"
+# 	#Check if there are new episodes
+# 	# NEW_EPISODE_COUNT=$(podfox update $FEED_NAME | grep "new episode." | wc -l)
+# 	NEW_EPISODE_COUNT=0
+# 	SONGS=""
+#
+# 	if [ -z $(echo $NEW_EPISODE_COUNT | grep 0) ]; then
+# 		echo "Downloading new episodes"
+# 		SONGS=$(podfox download $FEED_NAME --how-many=$NEW_EPISODE_COUNT)
+# 	fi
+#
+# 	for SONG in `find . | grep -e "mp3" -e "m4a"`; do
+# 		NUMBER=$(get_first_number "$SONG")
+#
+# 		if [ ! -f  "/home/tim/.lyrics/$ARTIST - $ALBUM $NUMBER.txt" ]; then
+# 			# This should be a seperate loop, that downloads all missing tracklists
+# 			# echo "Tracklist disabled"
+# 			echo $SONG $NUMBER
+# 			write_tracklist $NUMBER
+# 		fi
+# 	done
+#
+# 	for SONG in `echo $SONGS | sed 's/ /\n/g' | grep -v "http" | grep -e ".mp3" -e ".m4a"`; do
+# 		# Now all we need to do is use podfox to figure out if there are new podcasts and tag those
+# 		NUMBER=$(get_first_number "$SONG")
+#
+# 		tag_file "$SONG" "$NUMBER"
+#
+# 		rename_file "$SONG" "$NUMBER"
+# 	done
+# }
+
+ARTIST="Oliver Heldens"
+ALBUM="Heldeep Radio"
+SEARCH_BASE="Oliver Heldens Heldeep Radio"
+FEED_NAME="heldeep"
+cd /home/tim/Muziek/heldeep
+do_feed
+
+ARTIST="Sam Feldt"
+ALBUM="Heartfeldt Radio"
+SEARCH_BASE="Sam Feldt Heartfeldt Radio"
+FEED_NAME="heartfeldt"
+cd /home/tim/Muziek/heartfeldt
+do_feed
+
+# ARTIST="Mr. Belt & Wezol"
+# ALBUM="Music Club"
+# SEARCH_BASE="Mr. Belt Wezol Music Club"
+# FEED_NAME="music-club"
+# cd /home/tim/Muziek/music-club
+# do_feed2
+
+ARTIST="Mr. Belt & Wezol"
+ALBUM="The Cuckoo's Nest"
+SEARCH_BASE="Mr. Belt Wezol The Cuckoos Nest"
+FEED_NAME="cuckoos-nest"
+cd /home/tim/Muziek/cuckoos-nest
+do_feed
+
+mopidy local scan

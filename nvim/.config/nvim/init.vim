@@ -1,16 +1,15 @@
 call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
-Plug 'kien/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
+" Plug 'kien/ctrlp.vim'
+" Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Raimondi/delimitMate'
 Plug 'morhetz/gruvbox'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'godlygeek/tabular'
 " Plug 'majutsushi/tagbar'
 Plug 'tomtom/tcomment_vim'
 Plug 'bling/vim-airline'
 Plug 'tommcdo/vim-exchange'
-Plug 'justinmk/vim-matchparenalways'
 Plug 'tpope/vim-surround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -29,11 +28,35 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-fugitive'
 Plug 'tikhomirov/vim-glsl'
+Plug 'rust-lang/rust.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'digitaltoad/vim-pug'
 call plug#end()
 
-let g:ctrlp_custom_ignore = '\v[\/](bin|docs)$'
+silent! so .vimlocal
+
+" let g:ctrlp_custom_ignore = '\v[\/](bin|build|docs)$'
+map <silent> <C-P> :call fzf#run(fzf#wrap('custom', {'source': 'ag -g ""'}, 0))<cr>
+let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 
 let delimitMate_expand_cr = 1
+
+set mouse=a
 
 colorscheme gruvbox
 set t_Co=256
@@ -41,11 +64,8 @@ set t_ZH=[3m
 set t_ZR=[23m
 set background=dark
 
-" let g:indentLine_char = '│'
-" let g:indentLine_color_term = 239
 set list lcs=tab:\│\ 
 
-" map <silent> <M-a> :NERDTreeToggle<cr>
 map <silent> <F2> :NERDTreeToggle<cr>
 
 " map <silent> <M-2> :TagbarToggle<cr>
@@ -78,6 +98,8 @@ let g:UltiSnipsExpandTrigger="<c-s>"
 syntax on
 filetype plugin indent on
 
+au BufRead,BufNewFile *.lang setfiletype lang
+
 set smartindent
 set number
 set relativenumber
@@ -102,23 +124,26 @@ map <S-K> 10k
 
 map <silent> <C-B> :Bdelete<cr>
 
-autocmd FileType go let &makeprg="go run %:p:h/*.go"
-autocmd FileType go map <F10> :Make<cr>
+" autocmd FileType go let &makeprg="go run %:p:h/*.go"
+" autocmd FileType go map <F10> :Make<cr>
+"
+" autocmd FileType tex map <F9> :Dispatch arara %<cr>
+"
+" autocmd FileType cpp map <F9> :Make<cr>
+" autocmd FileType cpp map <S-F9> :Make clean all<cr>
 
-autocmd FileType tex map <F9> :Dispatch arara %<cr>
-
-autocmd FileType cpp map <F9> :Make<cr>
-autocmd FileType cpp map <S-F9> :Make clean all<cr>
-
-if filereadable(expand("%:p:h")."/CMake/defualt/Makefile")
-    let &makeprg="cd CMake/default && make"
-	autocmd FileType cpp map <F10> :Make debug<cr>
-endif
-if filereadable(expand("%:p:h")."/build/cmake/Makefile")
-    let &makeprg="cd build/cmake && make"
-	autocmd FileType cpp map <F10> :Start cd build/cmake && ./run-engine.sh; echo "\nPress [enter] to close" && read<cr>
-	autocmd FileType cpp map <S-F10> :Start cd build/cmake && ./debug-engine.sh<cr>
-endif
+" if filereadable(expand("%:p:h")."/CMake/default/Makefile")
+"     let &makeprg="cd CMake/default && make"
+" 	autocmd FileType cpp map <F10> :Make debug<cr>
+" endif
+" if filereadable(expand("%:p:h")."/build/cmake/Makefile")
+" function KeyBind(platform)
+"     let &makeprg="cd cmake/configs/".a:platform." && make"
+" 	execute 'autocmd FileType cpp map <F10> :Start cd cmake/configs/'.a:platform.' && ./run-engine.sh; echo "\nPress [enter] to close" && read<cr>'
+" 	execute 'autocmd FileType cpp map <S-F10> :Start cd cmake/configs/'.a:platform.' && ./debug-engine.sh<cr>'
+" endfunction
+" call KeyBind("linux")
+" endif
 
 map <silent> <F4> :call ToggleQuickfixList()<cr>
 " map <silent> <F7> :grep -F TODO -R ./src/**/*.cpp ./include/**/*.h<cr> :cw<cr>

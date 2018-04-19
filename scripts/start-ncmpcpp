@@ -1,0 +1,3 @@
+/usr/lib/gnome-terminal/gnome-terminal-server --app-id nl.ncmpcpp --name ncmpcpp &
+sleep 0.2
+gnome-terminal --app-id nl.ncmpcpp -e ncmpcpp
