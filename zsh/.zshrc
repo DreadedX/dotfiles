@@ -4,6 +4,8 @@ export ZDOTDIR="${HOME}/.dotfiles/zsh"
 export EDITOR=nvim
 export USE_CCACHE=1
 
+export PATH="${HOME}/.local/bin:$PATH"
+
 alias cl="clear"
 alias tmux="tmux -2"
 
@@ -17,3 +19,5 @@ fi
 if [[ -s "${ZDOTDIR}/gitalias.zsh" ]]; then
   source "${ZDOTDIR}/gitalias.zsh"
 fi
+
+export GREP_COLORS="mt=01;32"

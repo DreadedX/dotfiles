@@ -30,7 +30,7 @@ call plug#end()
 au BufRead,BufNewFile *.lang setfiletype lang
 
 " Load vim config in current directory
-silent! do .vimlocal
+silent! so .vimlocal
 
 " Theme
 colorscheme gruvbox
