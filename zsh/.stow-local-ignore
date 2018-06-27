@@ -5,6 +5,9 @@
 .zprofile
 .zshenv
 
+gitalias.zsh
+agnoster.zsh-theme
+
 .zcompdump
 .zcompdump.zwc
 .zhistory
