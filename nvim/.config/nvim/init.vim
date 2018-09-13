@@ -61,6 +61,8 @@ set mouse=a
 " DelimitMate
 let delimitMate_expand_cr = 1
 
+let mapleader = '\'
+
 " Keybindings
 map <silent> <F2> :NERDTreeToggle<cr>
 map <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -73,6 +75,9 @@ map <silent> <S-j> 10j
 map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
 map <silent> <F4> :call ToggleQuickfixList()<cr>
+
+map <leader>n :cnext<cr>
+map <leader>p :cprevious<cr>
 
 " Fold in functions
 fu! CustomFoldText()
