@@ -103,8 +103,8 @@ endf
 
 set foldtext=CustomFoldText()
 set foldcolumn=1
-au BufRead *.cpp,*.go,*.js setlocal foldmethod=syntax
-au BufRead *.cpp,*.go,*.js setlocal foldnestmax=1
+au BufRead *.cpp,*.h,*.go,*.js setlocal foldmethod=syntax
+au BufRead *.cpp,*.h,*.go,*.js setlocal foldnestmax=2
 
 " Use fzf and silver searcher to search files (REQUIRES: the_silver_searcher)
 map <silent> <C-p> :call fzf#run(fzf#wrap('custom', {'source': 'ag -g ""'}, 0))<cr>
