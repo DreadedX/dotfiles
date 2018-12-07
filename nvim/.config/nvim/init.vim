@@ -129,6 +129,8 @@ set completeopt=menuone,menu
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = ''
 let g:ycm_warning_symbol = ''
+let g:ycm_max_diagnostics_to_display = 0
 
-" Ultisnip
-let g:UltiSnipsExpandTrigger='<C-s>'
+inoremap <Tab> <C-Space>
+
+" Ultisni g:UltiSnipsExpandTrigger='<C-s>'
