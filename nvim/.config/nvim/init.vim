@@ -1,36 +1,37 @@
 call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
-	Plug 'Raimondi/delimitMate'
 	Plug 'morhetz/gruvbox'
-	Plug 'scrooloose/nerdtree'
-	Plug 'godlygeek/tabular'
-	Plug 'tomtom/tcomment_vim'
 	Plug 'bling/vim-airline'
-	Plug 'tommcdo/vim-exchange'
+
+	Plug 'Raimondi/delimitMate'
+	Plug 'scrooloose/nerdtree'
+	Plug 'tomtom/tcomment_vim'
 	Plug 'tpope/vim-surround'
 	Plug 'christoomey/vim-tmux-navigator'
-	"Plug 'MarcWeber/vim-addon-mw-utils'
-	"Plug 'tomtom/tlib_vim'
-	"Plug 'SirVer/ultisnips'
-	"Plug 'honza/vim-snippets'
 	Plug 'tpope/vim-dispatch'
-	"Plug 'tpope/vim-unimpaired'
 	Plug 'milkypostman/vim-togglelist'
 	Plug 'moll/vim-bbye'
-	"Plug 'tpope/vim-fugative'
 	Plug 'junegunn/fzf', {'do': './install --bin'}
-	"Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --go-completer --rust-completer --js-completer --java-completer'}
-	Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
+
+	Plug 'prabirshrestha/async.vim'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	Plug 'prabirshrestha/asyncomplete-buffer.vim'
+	Plug 'prabirshrestha/asyncomplete-file.vim'
+	Plug 'wellle/tmux-complete.vim'
+	" Plug 'OmniSharp/omnisharp-vim'
 
 	Plug 'digitaltoad/vim-pug'
 	Plug 'tikhomirov/vim-glsl'
 	Plug 'rust-lang/rust.vim'
+	Plug 'OrangeT/vim-csharp'
 call plug#end()
-
-" Setup custom syntax
-au BufRead,BufNewFile *.lang setfiletype lang
 
 " Load vim config in current directory
 silent! so .vimlocal
+
+" DelimitMate
+let delimitMate_expand_cr = 1
 
 " Theme
 colorscheme gruvbox
@@ -45,6 +46,11 @@ set list lcs=tab:\|\
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
+let g:airline_section_z = '%3p%% %#__accent_bold#%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
+let g:airline_section_warning = ''
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Preferences
 syntax on
@@ -56,12 +62,11 @@ set softtabstop=4
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
-set mouse=a
+set mouse=n
 
-" DelimitMate
-let delimitMate_expand_cr = 1
-
-let mapleader = '\'
+" Setup custom syntax
+au BufRead,BufNewFile *.lang setfiletype lang
+au BufRead,BufNewFile *.razor setfiletype cshtml
 
 " Keybindings
 map <silent> <F2> :NERDTreeToggle<cr>
@@ -76,8 +81,15 @@ map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
 map <silent> <F4> :call ToggleQuickfixList()<cr>
 
+map <leader>N :LspNextError<cr>
+map <leader>P :LspPreviousError<cr>
 map <leader>n :cnext<cr>
 map <leader>p :cprevious<cr>
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 " Fold in functions
 fu! CustomFoldText()
@@ -107,7 +119,9 @@ au BufRead *.cpp,*.h,*.go,*.js setlocal foldmethod=syntax
 au BufRead *.cpp,*.h,*.go,*.js setlocal foldnestmax=2
 
 " Use fzf and silver searcher to search files (REQUIRES: the_silver_searcher)
-map <silent> <C-p> :call fzf#run(fzf#wrap('custom', {'source': 'ag -g ""'}, 0))<cr>
+if executable('ag')
+	map <silent> <C-p> :call fzf#run(fzf#wrap('custom', {'source': 'ag -g ""'}, 0))<cr>
+endif
 let g:fzf_layout = {'down': '~20%'}
 let g:fzf_colors =
 \ { 'fg':	['fg', 'Normal'],
@@ -124,13 +138,66 @@ let g:fzf_colors =
   \ 'spinner':	['fg', 'Label'],
   \ 'header':	['fg', 'Comment'] }
 
-" YouCompleteMe
-set completeopt=menuone,menu
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_error_symbol = ''
-let g:ycm_warning_symbol = ''
-let g:ycm_max_diagnostics_to_display = 0
+" vim-lsp
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
 
-inoremap <Tab> <C-Space>
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
-" Ultisni g:UltiSnipsExpandTrigger='<C-s>'
+au User lsp_setup call lsp#register_server({
+	\ 'name': 'omnisharp',
+	\ 'cmd': {server_info->['mono', '/home/tim/Downloads/omnisharp-mono/OmniSharp.exe', '-lsp']},
+	\ 'whitelist': ['cs'],
+	\ })
+
+let g:lsp_text_edit_enabled = 0
+let g:lsp_signs_enabled = 1
+let g:lsp_signs_error = {'text': ''}
+let g:lsp_signs_warning = {'text': ''}
+let g:lsp_highlights_enabled = 0
+let g:lsp_virtual_text_enabled = 1
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+
+highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
+
+highlight link LspErrorText GruvBoxRedSign
+highlight link LspWarningText GruvBoxYellowSign
+
+" asyncomplete
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ }))
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+let g:tmuxcomplete#asyncomplete_source_options = {
+            \ 'name':      'tmux',
+            \ 'whitelist': ['*'],
+            \ 'config': {
+            \     'splitmode':      'words',
+            \     'filter_prefix':   1,
+            \     'show_incomplete': 1,
+            \     'sort_candidates': 0,
+            \     'scrollback':      0,
+            \     'truncate':        0
+            \     }
+            \ }
