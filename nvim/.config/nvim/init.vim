@@ -11,6 +11,10 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 	Plug 'milkypostman/vim-togglelist'
 	Plug 'moll/vim-bbye'
 	Plug 'junegunn/fzf', {'do': './install --bin'}
+	Plug 'junegunn/fzf.vim'
+	Plug 'tpope/vim-fugitive'
+	" @todo Is this really usefull
+	Plug 'ConradIrwin/vim-bracketed-paste'
 
 	Plug 'prabirshrestha/async.vim'
 	Plug 'prabirshrestha/vim-lsp'
@@ -19,7 +23,10 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 	Plug 'prabirshrestha/asyncomplete-buffer.vim'
 	Plug 'prabirshrestha/asyncomplete-file.vim'
 	Plug 'wellle/tmux-complete.vim'
-	" Plug 'OmniSharp/omnisharp-vim'
+
+	" @todo Figure out how to integrate this with flint
+	" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+	" Plug 'idanarye/vim-vebugger'
 
 	Plug 'digitaltoad/vim-pug'
 	Plug 'tikhomirov/vim-glsl'
@@ -40,14 +47,22 @@ set t_ZH=[3m
 set t_ZR=[23m
 set background=dark
 
-set list lcs=tab:\|\ 
+" Ident
+set list lcs=tab:┃\ ,trail:·
 
-" Powerline
+" Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
 let g:airline_section_z = '%3p%% %#__accent_bold#%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
 let g:airline_section_warning = ''
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_symbols.dirty = " ⚡"
+let g:airline_symbols.notexists = " ╳"
 
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -63,6 +78,7 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 set mouse=n
+set hidden
 
 " Setup custom syntax
 au BufRead,BufNewFile *.lang setfiletype lang
@@ -80,43 +96,20 @@ map <silent> <S-j> 10j
 map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
 map <silent> <F4> :call ToggleQuickfixList()<cr>
+map <silent> <F11> :noh<cr>
 
-map <leader>N :LspNextError<cr>
-map <leader>P :LspPreviousError<cr>
-map <leader>n :cnext<cr>
-map <leader>p :cprevious<cr>
+map <silent> <leader>e :LspNextError<cr>
+map <silent> <leader>E :LspPreviousError<cr>
+map <silent> <leader>n :cnext<cr>
+map <silent> <leader>N :cprevious<cr>
+map <silent> <leader>b :Buffers<cr>
+map <silent> <leader>c :Commits<cr>
+map <silent> <leader>f :Ag<cr>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
-
-" Fold in functions
-fu! CustomFoldText()
-    "get first non-blank line
-    let fs = v:foldstart
-    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-    endwhile
-    if fs > v:foldend
-        let line = getline(v:foldstart)
-    else
-        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-    endif
-
-    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-    let foldSize = 1 + v:foldend - v:foldstart
-    let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = repeat("+--", v:foldlevel)
-    let lineCount = line("$")
-    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-endf
-
-set foldtext=CustomFoldText()
-set foldcolumn=1
-au BufRead *.cpp,*.h,*.go,*.js setlocal foldmethod=syntax
-au BufRead *.cpp,*.h,*.go,*.js setlocal foldnestmax=2
 
 " Use fzf and silver searcher to search files (REQUIRES: the_silver_searcher)
 if executable('ag')
@@ -137,6 +130,10 @@ let g:fzf_colors =
   \ 'marker':	['fg', 'Keyword'],
   \ 'spinner':	['fg', 'Label'],
   \ 'header':	['fg', 'Comment'] }
+
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " vim-lsp
 if executable('clangd')
@@ -183,6 +180,7 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ }))
 
+" @todo This currentyly does not work
 au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
     \ 'name': 'file',
     \ 'whitelist': ['*'],
