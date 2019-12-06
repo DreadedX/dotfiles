@@ -13,7 +13,7 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 	Plug 'junegunn/fzf', {'do': './install --bin'}
 	Plug 'junegunn/fzf.vim'
 	Plug 'tpope/vim-fugitive'
-	" @todo Is this really usefull
+	" @todo Is this really useful
 	Plug 'ConradIrwin/vim-bracketed-paste'
 
 	Plug 'prabirshrestha/async.vim'
