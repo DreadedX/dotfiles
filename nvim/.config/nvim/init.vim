@@ -24,6 +24,8 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 	Plug 'prabirshrestha/asyncomplete-file.vim'
 	Plug 'wellle/tmux-complete.vim'
 
+	Plug 'OmniSharp/omnisharp-vim'
+
 	" @todo Figure out how to integrate this with flint
 	" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 	" Plug 'idanarye/vim-vebugger'
@@ -152,11 +154,11 @@ if executable('pyls')
         \ })
 endif
 
-au User lsp_setup call lsp#register_server({
-	\ 'name': 'omnisharp',
-	\ 'cmd': {server_info->['mono', '/home/tim/Downloads/omnisharp-mono/OmniSharp.exe', '-lsp']},
-	\ 'whitelist': ['cs'],
-	\ })
+" au User lsp_setup call lsp#register_server({
+" 	\ 'name': 'omnisharp',
+" 	\ 'cmd': {server_info->['mono', '/opt/omnisharp-roslyn-stdio/OmniSharp.exe', '-lsp']},
+" 	\ 'whitelist': ['cs'],
+" 	\ })
 
 let g:lsp_text_edit_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
@@ -166,13 +168,17 @@ let g:lsp_signs_warning = {'text': ''}
 let g:lsp_highlights_enabled = 0
 let g:lsp_virtual_text_enabled = 1
 
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
 
 highlight link LspErrorText GruvBoxRedSign
 highlight link LspWarningText GruvBoxYellowSign
+
+" Omnisharp
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_highlight_types = 3
 
 " asyncomplete
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
