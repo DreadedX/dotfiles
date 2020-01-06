@@ -3,6 +3,7 @@ call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
 	Plug 'bling/vim-airline'
 
 	Plug 'Raimondi/delimitMate'
+	" For some reason this overrides existing keybindings
 	Plug 'scrooloose/nerdtree'
 	Plug 'tomtom/tcomment_vim'
 	Plug 'tpope/vim-surround'
@@ -39,6 +40,8 @@ silent! so .vimlocal
 
 " DelimitMate
 let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_balance_matchpairs = 1
 
 " Theme
 colorscheme gruvbox
@@ -79,6 +82,7 @@ set shiftwidth=4
 set noexpandtab
 set mouse=n
 set hidden
+set updatetime=750
 
 " Setup custom syntax
 au BufRead,BufNewFile *.lang setfiletype lang
@@ -96,9 +100,12 @@ map <silent> <S-j> 10j
 map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
 map <silent> <F4> :call ToggleQuickfixList()<cr>
+map <silent> <F9> :Make<cr>
 map <silent> <F11> :noh<cr>
 
-map <silent> <leader>e :LspNextError<cr>
+map <silent> <leader>e :LspNextDiagnostic<cr>
+map <silent> <leader>E :LspPreviousDiagnostic<cr>
+map <silent> <c-]> :LspPeekDefinition<cr>
 map <silent> <leader>E :LspPreviousError<cr>
 map <silent> <leader>n :cnext<cr>
 map <silent> <leader>N :cprevious<cr>
@@ -108,7 +115,9 @@ map <silent> <leader>f :Ag<cr>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+inoremap <expr> <C-y> pumvisible() ? asyncomplete#close_popup() : "\<C-y>"
+imap <expr> <BS> pumvisible() ? "\<C-e>\<bs>" : "<Plug>delimitMateBS"
+imap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "<Plug>delimitMateCR"
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 " Use fzf and silver searcher to search files (REQUIRES: the_silver_searcher)
@@ -166,8 +175,12 @@ let g:lsp_signs_warning = {'text': ''}
 let g:lsp_highlights_enabled = 0
 let g:lsp_virtual_text_enabled = 1
 
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
+
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 highlight lspReference ctermfg=red guifg=red ctermbg=green guibg=green
 
@@ -175,6 +188,7 @@ highlight link LspErrorText GruvBoxRedSign
 highlight link LspWarningText GruvBoxYellowSign
 
 " asyncomplete
+
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],
