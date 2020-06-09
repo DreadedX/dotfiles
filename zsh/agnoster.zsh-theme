@@ -32,10 +32,10 @@ fi
 
 # Characters
 SEGMENT_SEPARATOR="\ue0b0"
-PLUSMINUS="\u26a1"
+PLUSMINUS=""
 BRANCH="\ue0a0"
 DETACHED="\u27a6"
-CROSS="\u2573"
+CROSS=""
 LIGHTNING="\u26a1"
 GEAR="\u2699"
 
