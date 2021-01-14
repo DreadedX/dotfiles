@@ -21,4 +21,3 @@ if [[ -s "${ZDOTDIR}/gitalias.zsh" ]]; then
 fi
 
 export GREP_COLORS="mt=01;32"
-

@@ -141,6 +141,8 @@ let g:echodoc#type = 'signature'
 " LanguageClient
 let g:LanguageClient_serverCommands = {
 \ 'cpp': ['clangd'],
+\ 'cc': ['clangd'],
+\ 'c': ['clangd'],
 \ 'python': ['pyls'],
 \ }
 let g:LanguageClient_diagnosticsDisplay = {
