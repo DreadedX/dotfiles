@@ -1,34 +1,4 @@
-call plug#begin('~/.dotfiles/nvim/.config/nvim/plugged')
-	Plug 'morhetz/gruvbox'
-	Plug 'bling/vim-airline'
-
-	Plug 'Raimondi/delimitMate'
-	Plug 'scrooloose/nerdtree'
-	Plug 'tomtom/tcomment_vim'
-	Plug 'tpope/vim-surround'
-	Plug 'christoomey/vim-tmux-navigator'
-	Plug 'tpope/vim-dispatch'
-	Plug 'milkypostman/vim-togglelist'
-	Plug 'moll/vim-bbye'
-	Plug 'junegunn/fzf', {'do': './install --bin'}
-	Plug 'junegunn/fzf.vim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'ConradIrwin/vim-bracketed-paste'
-
-	Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
-	Plug 'ncm2/ncm2-tmux'
-	Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-
-	Plug 'Shougo/echodoc.vim'
-	
-	Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-call plug#end()
+lua require('plugins')
 
 " Load vim config in current directory
 silent! so .vimlocal
@@ -81,7 +51,7 @@ set updatetime=300
 set noshowmode
 
 " Keybindings
-map <silent> <F2> :NERDTreeToggle<cr>
+map <silent> <M-2> :NERDTreeToggle<cr>
 map <silent> <M-h> :TmuxNavigateLeft<cr>
 map <silent> <M-j> :TmuxNavigateDown<cr>
 map <silent> <M-k> :TmuxNavigateUp<cr>
@@ -91,86 +61,21 @@ map <silent> <S-tab> :bp<cr>
 map <silent> <S-j> 10j
 map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
-map <silent> <F4> :call ToggleQuickfixList()<cr>
-map <silent> <F11> :noh<cr>
-
-map <silent> <leader>m :call LanguageClient_contextMenu()<cr>
-map <silent> <leader>n :cnext<cr>
-map <silent> <leader>N :cprevious<cr>
-map <silent> <leader>b :Buffers<cr>
-map <silent> <leader>c :Commits<cr>
-map <silent> <leader>f :Ag<cr>
+map <silent> <M-3> :call ToggleQuickfixList()<cr>
+map <silent> <M-1> :noh<cr>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <expr> <BS> pumvisible() ? "\<bs>" : "<Plug>delimitMateBS"
 imap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "<Plug>delimitMateCR"
 
-" Use fzf and silver searcher to search files (REQUIRES: the_silver_searcher)
-if executable('ag')
-	map <silent> <C-p> :call fzf#run(fzf#wrap('custom', {'source': 'ag -g ""'}, 0))<cr>
-endif
-let g:fzf_layout = {'down': '~20%'}
-let g:fzf_colors =
-\ { 'fg':	['fg', 'Normal'],
-  \ 'bg':	['bg', 'Normal'],
-  \ 'hl':	['fg', 'Comment'],
-  \ 'fg+':	['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':	['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':	['fg', 'Statement'],
-  \ 'info':	['fg', 'PreProc'],
-  \ 'border':	['fg', 'Ignore'],
-  \ 'prompt':	['fg', 'Conditional'],
-  \ 'pointer':	['fg', 'Exception'],
-  \ 'marker':	['fg', 'Keyword'],
-  \ 'spinner':	['fg', 'Label'],
-  \ 'header':	['fg', 'Comment'] }
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+map <silent> <leader>ln :lua vim.lsp.diagnostic.goto_next()<cr>
+map <silent> <leader>lp :lua vim.lsp.diagnostic.goto_prev()<cr>
+map <leader>ll :lua vim.lsp.buf.
+map <silent> <leader>lh :lua vim.lsp.buf.hover()<cr>
 
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 ruler
-
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-" Echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
-
-" LanguageClient
-let g:LanguageClient_serverCommands = {
-\ 'cpp': ['clangd'],
-\ 'cc': ['clangd'],
-\ 'c': ['clangd'],
-\ 'python': ['pyls'],
-\ }
-let g:LanguageClient_diagnosticsDisplay = {
-\ 1: {
-\    "name": "Error",
-\    "texthl": "GruvBoxRedSign",
-\    "signText": "",
-\    "signTexthl": "GruvBoxRedSign",
-\    "virtualTexthl": "GruvBoxRedSign",
-\ },
-\ 2: {
-\    "name": "Warning",
-\    "texthl": "ALEWarning",
-\    "signText": "",
-\    "signTexthl": "ALEWarningSign",
-\    "virtualTexthl": "GruvBoxYellowSign",
-\  },
-\  3: {
-\    "name": "Information",
-\    "texthl": "ALEInfo",
-\    "signText": "",
-\    "signTexthl": "ALEInfoSign",
-\    "virtualTexthl": "Todo",
-\  },
-\  4: {
-\    "name": "Hint",
-\    "texthl": "ALEInfo",
-\    "signText": "",
-\    "signTexthl": "ALEInfoSign",
-\    "virtualTexthl": "Todo",
-\  },}
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.tsx"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx,*.erb'
