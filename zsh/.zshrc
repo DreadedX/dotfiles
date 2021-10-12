@@ -3,6 +3,8 @@ if [ -z "$TMUX" ]; then tmux; exit; fi
 export ZDOTDIR="${HOME}/.dotfiles/zsh"
 export EDITOR=nvim
 export USE_CCACHE=1
+export DOCKER_CLIENT_TIMEOUT=300
+export COMPOSE_HTTP_TIMEOUT=300
 
 export PATH="${HOME}/.local/bin:$PATH"
 
