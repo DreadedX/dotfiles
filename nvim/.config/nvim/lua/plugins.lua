@@ -35,6 +35,7 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-buffer' -- LSP source for buffer
 	use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
 	use 'L3MON4D3/LuaSnip' -- Snippets plugin
+	use 'ray-x/lsp_signature.nvim'
 	
 	use 'leafgarland/typescript-vim'
 	use 'peitalin/vim-jsx-typescript'
@@ -73,6 +74,14 @@ vim.fn.sign_define("LspDiagnosticsSignError", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignHint", { text="" })
+
+require 'lsp_signature'.setup({
+	bind =  true,
+	hint_enable = false,
+	handler_opts = {
+		border = "none"
+	}
+})
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
