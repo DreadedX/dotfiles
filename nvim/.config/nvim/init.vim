@@ -51,7 +51,7 @@ set updatetime=300
 set noshowmode
 
 " Keybindings
-map <silent> <M-2> :NERDTreeToggle<cr>
+map <silent> <F2> :NERDTreeToggle<cr>
 map <silent> <M-h> :TmuxNavigateLeft<cr>
 map <silent> <M-j> :TmuxNavigateDown<cr>
 map <silent> <M-k> :TmuxNavigateUp<cr>
@@ -61,8 +61,8 @@ map <silent> <S-tab> :bp<cr>
 map <silent> <S-j> 10j
 map <silent> <S-k> 10k
 map <silent> <C-b> :Bdelete<cr>
-map <silent> <M-3> :call ToggleQuickfixList()<cr>
-map <silent> <M-1> :noh<cr>
+map <silent> <F3> :call ToggleQuickfixList()<cr>
+map <silent> <F1> :noh<cr>
 
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -72,6 +72,7 @@ imap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "<Plug>delimitMateCR"
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>lc <cmd>Telescope lsp_code_actions<cr>
 map <silent> <leader>ln :lua vim.lsp.diagnostic.goto_next()<cr>
 map <silent> <leader>lp :lua vim.lsp.diagnostic.goto_prev()<cr>
 map <leader>ll :lua vim.lsp.buf.
