@@ -42,13 +42,13 @@ require('packer').startup(function()
 	use 'cespare/vim-toml'
 end)
 
+--Remap for dealing with word wrap
+vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
 require('telescope').setup{ defaults = { file_ignore_patterns = { "node_module" } } }
 
 local nvim_lsp = require('lspconfig')
-
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -61,9 +61,44 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
+
+-- Taken from: https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/lsp.lua
+-- Makes it so the diagnostic popup does not keep overwriting other popups
+vim.diagnostic.config({
+	virtual_text = false,
+	float = {
+		focusable = false,   -- See neovim#16425
+	},
+})
+_G.LspDiagnosticsShowPopup = function()
+	return vim.diagnostic.open_float(0, {scope="cursor"})
+end
+
+-- Show diagnostics in a pop-up window on hover
+_G.LspDiagnosticsPopupHandler = function()
+  local current_cursor = vim.api.nvim_win_get_cursor(0)
+  local last_popup_cursor = vim.w.lsp_diagnostics_last_cursor or {nil, nil}
+
+  -- Show the popup diagnostics window,
+  -- but only once for the current cursor location (unless moved afterwards).
+  if not (current_cursor[1] == last_popup_cursor[1] and current_cursor[2] == last_popup_cursor[2]) then
+    vim.w.lsp_diagnostics_last_cursor = current_cursor
+    local _, winnr = _G.LspDiagnosticsShowPopup()
+  end
+end
+vim.cmd [[
+augroup LSPDiagnosticsOnHover
+  autocmd!
+  autocmd CursorHold *   lua _G.LspDiagnosticsPopupHandler()
+augroup END
+]]
+
+vim.cmd [[autocmd CursorHoldI * lua vim.lsp.buf.signature_help()]]
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 local servers = { 'clangd', 'tsserver', 'gopls', 'pylsp' }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
@@ -76,14 +111,6 @@ vim.fn.sign_define("LspDiagnosticsSignError", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignWarning", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignInformation", { text="" })
 vim.fn.sign_define("LspDiagnosticsSignHint", { text="" })
-
--- require 'lsp_signature'.setup({
--- 	bind =  true,
--- 	hint_enable = false,
--- 	handler_opts = {
--- 		border = "none"
--- 	}
--- })
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -114,7 +141,7 @@ cmp.setup {
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -123,7 +150,7 @@ cmp.setup {
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+				luasnip.jump(-1)
 			else
 				fallback()
 			end

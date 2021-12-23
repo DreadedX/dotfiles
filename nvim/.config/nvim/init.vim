@@ -73,10 +73,12 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>lc <cmd>Telescope lsp_code_actions<cr>
+nnoremap <leader>ls <cmd>Telescope lsp_document_symbols<cr>
 map <silent> <leader>ln :lua vim.lsp.diagnostic.goto_next()<cr>
 map <silent> <leader>lp :lua vim.lsp.diagnostic.goto_prev()<cr>
 map <leader>ll :lua vim.lsp.buf.
 map <silent> <leader>lh :lua vim.lsp.buf.hover()<cr>
+map <silent> <leader>lf :lua vim.lsp.buf.formatting()<cr>
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.tsx"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx,*.erb'
