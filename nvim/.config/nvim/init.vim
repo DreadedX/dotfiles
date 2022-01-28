@@ -10,18 +10,21 @@ let delimitMate_balance_matchpairs = 1
 
 " Theme
 colorscheme gruvbox
+" colorscheme codedark
 set t_Co=256
 set t_ZH=[3m
 set t_ZR=[23m
 set background=dark
 
 " Ident
-set list lcs=tab:┃\ ,trail:·
+" set list lcs=tab:┃\ ,trail:·
+set list lcs=tab:¦\ ,trail:·
 
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
+" let g:airline_theme='codedark'
 let g:airline_section_z = '%3p%% %#__accent_bold#%4l%#__restore__#%#__accent_bold#/%L%#__restore__# :%3v'
 let g:airline_section_warning = ''
 
@@ -82,3 +85,20 @@ map <silent> <leader>lf :lua vim.lsp.buf.formatting()<cr>
 
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.tsx"
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx,*.erb'
+
+" gray
+highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+" blue
+highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+" light blue
+highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+" pink
+highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+" front
+highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
