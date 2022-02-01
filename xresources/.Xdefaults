@@ -38,3 +38,7 @@ URxvt.perl-ext-common:vtwheel
 ! LightGrey + White
 *color7:  #a89984
 *color15: #ebdbb2
+
+urxvt*perl-ext-common: default,matcher
+urxvt*url-launcher: /usr/bin/firefox-beta
+urxvt*matcher.Button: 1
