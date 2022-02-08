@@ -84,8 +84,8 @@ nnoremap <C-b>   <cmd>Bdelete<cr>
 nnoremap <F3>    <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <F4>    <cmd>call ToggleQuickfixList()<cr>
 nnoremap <F1>    <cmd>noh<cr>
-nnoremap <S-j>   10j
-nnoremap <S-k>   10k
+map <S-j>   10j
+map <S-k>   10k
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -98,5 +98,8 @@ nnoremap <leader>ll <cmd>lua vim.lsp.buf.
 nnoremap <leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
 nnoremap <leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
 
-highlight! CmpItemAbbrMatch ctermfg=cyan
-highlight! CmpItemAbbrMatchFuzzy ctermfg=cyan
+highlight! CmpItemAbbrMatch ctermfg=Cyan
+highlight! CmpItemAbbrMatchFuzzy ctermfg=Cyan
+highlight! NvimTreeFolderName ctermfg=Blue
+highlight! NvimTreeOpenedFolderName ctermfg=Blue cterm=bold
+highlight! NvimTreeEmptyFolderName ctermfg=Blue

@@ -17,7 +17,6 @@ require('packer').startup(function()
 	use {
 		'kyazdani42/nvim-tree.lua',
 		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icon
 		},
 		config = function() require'nvim-tree'.setup {
 			auto_close = true,
@@ -45,7 +44,6 @@ require('packer').startup(function()
 	use 'ray-x/lsp_signature.nvim'
 	use {
 		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
 			require("trouble").setup {
 				signs = {
@@ -76,15 +74,17 @@ vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true,
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
-    }
-  }
+	defaults = {
+	},
+	extensions = {
+		fzf = {
+			fuzzy = true,                    -- false will only do exact matching
+			override_generic_sorter = true,  -- override the generic sorter
+			override_file_sorter = true,     -- override the file sorter
+			case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+			-- the default case_mode is "smart_case"
+		}
+	}
 }
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
@@ -249,6 +249,7 @@ cmp.setup {
 	formatting = {
 		format = lspkind.cmp_format({
 			with_text = true,
+			mode = "text",
 			menu = ({
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
