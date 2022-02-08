@@ -5,6 +5,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function()
+	use 'antoinemadec/FixCursorHold.nvim'
 	use 'wbthomason/packer.nvim'
 
 	use 'gruvbox-community/gruvbox'
@@ -12,23 +13,27 @@ require('packer').startup(function()
 	use 'bling/vim-airline'
 
 	use 'Raimondi/delimitMate'
-	use 'alvan/vim-closetag'
-	use 'scrooloose/nerdtree'
-	-- -- use 'tomtom/tcomment_vim'
+	-- use 'scrooloose/nerdtree'
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons', -- optional, for file icon
+		},
+		config = function() require'nvim-tree'.setup {
+			auto_close = true,
+		} end
+	}
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-surround'
 	use 'christoomey/vim-tmux-navigator'
 	use 'tpope/vim-dispatch'
 	use 'milkypostman/vim-togglelist'
 	use 'moll/vim-bbye'
-	-- use { 'junegunn/fzf', run = './install --bin' }
-	-- use 'junegunn/fzf.vim'
-	-- use 'tpope/vim-fugitive'
-	-- use 'ConradIrwin/vim-bracketed-paste'
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 	use 'neovim/nvim-lspconfig'
 	use 'hrsh7th/cmp-nvim-lsp'
@@ -37,6 +42,26 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use 'onsails/lspkind-nvim'
+	use 'ray-x/lsp_signature.nvim'
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup {
+				signs = {
+					-- icons / text used for a diagnostic
+					error = "error",
+					warning = "warn",
+					hint = "hint",
+					information = "info"
+				},
+			}
+		end
+	}
+
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use 'windwp/nvim-ts-autotag'
+	use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
@@ -50,7 +75,30 @@ end)
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
-require('telescope').setup{ defaults = { file_ignore_patterns = { "node_module" } } }
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+}
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension('fzf')
+
+require "lsp_signature".setup({
+	hint_enable = false,
+	handler_opts = {
+		border = "none"   -- double, rounded, single, shadow, none
+	},
+	padding = ' ',
+})
+
+require'nvim-tree'.setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -145,7 +193,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
-vim.o.updatetime = 250
+vim.o.updatetime = 100
 
 -- Taken from: https://github.com/wookayin/dotfiles/blob/master/nvim/lua/config/lsp.lua
 -- Makes it so the diagnostic popup does not keep overwriting other popups
@@ -177,8 +225,6 @@ augroup LSPDiagnosticsOnHover
   autocmd CursorHold *   lua _G.LspDiagnosticsPopupHandler()
 augroup END
 ]]
-
-vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -217,10 +263,21 @@ cmp.setup {
 	}
 }
 
-vim.fn.sign_define("LspDiagnosticsSignError", { text="" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text="" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text="" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text="" })
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = "maintained",
+}
+require('nvim-ts-autotag').setup()
+require'nvim-treesitter.configs'.setup {
+	context_commentstring = {
+		enable = true
+	}
+}
+
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+-- vim.o.completeopt = 'menuone,noselect'

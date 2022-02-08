@@ -1,3 +1,16 @@
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 1,
+    \ 'files': 1,
+    \ 'folder_arrows': 1,
+    \ }
+let g:nvim_tree_icons = {
+    \ 'default': '',
+    \ 'folder': {
+    \   'arrow_open': "",
+    \   'arrow_closed': "",
+    \   }
+    \ }
 lua require('plugins')
 
 " Load vim config in current directory
@@ -10,7 +23,6 @@ let delimitMate_balance_matchpairs = 1
 
 " Theme
 colorscheme gruvbox
-" colorscheme codedark
 set t_Co=256
 set t_ZH=[3m
 set t_ZR=[23m
@@ -35,9 +47,6 @@ endif
 let g:airline_symbols.dirty = " ±"
 let g:airline_symbols.notexists = " "
 
-" NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " Preferences
 syntax on
 filetype plugin indent on
@@ -53,52 +62,36 @@ set hidden
 set updatetime=300
 set noshowmode
 
-" Keybindings
-map <silent> <F2> :NERDTreeToggle<cr>
-map <silent> <M-h> :TmuxNavigateLeft<cr>
-map <silent> <M-j> :TmuxNavigateDown<cr>
-map <silent> <M-k> :TmuxNavigateUp<cr>
-map <silent> <M-l> :TmuxNavigateRight<cr>
-map <silent> <tab> :bn<cr>
-map <silent> <S-tab> :bp<cr>
-map <silent> <S-j> 10j
-map <silent> <S-k> 10k
-map <silent> <C-b> :Bdelete<cr>
-map <silent> <F3> :call ToggleQuickfixList()<cr>
-map <silent> <F1> :noh<cr>
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=1
+set foldlevel=20
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <expr> <BS> pumvisible() ? "\<bs>" : "<Plug>delimitMateBS"
-imap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "<Plug>delimitMateCR"
+" Keybindings
+nnoremap <F2>    <cmd>NvimTreeToggle<cr>
+nnoremap <M-h>   <cmd>TmuxNavigateLeft<cr>
+nnoremap <M-j>   <cmd>TmuxNavigateDown<cr>
+nnoremap <M-k>   <cmd>TmuxNavigateUp<cr>
+nnoremap <M-l>   <cmd>TmuxNavigateRight<cr>
+nnoremap <tab>   <cmd>bn<cr>
+nnoremap <S-tab> <cmd>bp<cr>
+nnoremap <C-b>   <cmd>Bdelete<cr>
+nnoremap <F3>    <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <F4>    <cmd>call ToggleQuickfixList()<cr>
+nnoremap <F1>    <cmd>noh<cr>
+nnoremap <S-j>   10j
+nnoremap <S-k>   10k
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>lc <cmd>Telescope lsp_code_actions<cr>
 nnoremap <leader>ls <cmd>Telescope lsp_document_symbols<cr>
-map <silent> <leader>ln :lua vim.lsp.diagnostic.goto_next()<cr>
-map <silent> <leader>lp :lua vim.lsp.diagnostic.goto_prev()<cr>
-map <leader>ll :lua vim.lsp.buf.
-map <silent> <leader>lh :lua vim.lsp.buf.hover()<cr>
-map <silent> <leader>lf :lua vim.lsp.buf.formatting()<cr>
+nnoremap <leader>ln <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+nnoremap <leader>lp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap <leader>ll <cmd>lua vim.lsp.buf.
+nnoremap <leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
 
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.erb,*.jsx,*.tsx"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx,*.erb'
-
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+highlight! CmpItemAbbrMatch ctermfg=cyan
+highlight! CmpItemAbbrMatchFuzzy ctermfg=cyan
