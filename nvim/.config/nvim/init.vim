@@ -90,11 +90,11 @@ map <S-k>   10k
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>lc <cmd>Telescope lsp_code_actions<cr>
 nnoremap <leader>ls <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>ln <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <leader>lp <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
-nnoremap <leader>ll <cmd>lua vim.lsp.buf.
+nnoremap <leader>ll :lua vim.lsp.buf.
+nnoremap <leader>lc <cmd>lua vim.lsp.buf.code_action()<cr>
 nnoremap <leader>lh <cmd>lua vim.lsp.buf.hover()<cr>
 nnoremap <leader>lf <cmd>lua vim.lsp.buf.formatting()<cr>
 
@@ -103,3 +103,5 @@ highlight! CmpItemAbbrMatchFuzzy ctermfg=Cyan
 highlight! NvimTreeFolderName ctermfg=Blue
 highlight! NvimTreeOpenedFolderName ctermfg=Blue cterm=bold
 highlight! NvimTreeEmptyFolderName ctermfg=Blue
+
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif

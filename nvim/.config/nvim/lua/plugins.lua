@@ -10,7 +10,7 @@ require('packer').startup(function()
 
 	use 'gruvbox-community/gruvbox'
 	use 'tomasiser/vim-code-dark'
-	use 'bling/vim-airline'
+	use 'vim-airline/vim-airline'
 
 	use 'Raimondi/delimitMate'
 	-- use 'scrooloose/nerdtree'
@@ -18,9 +18,6 @@ require('packer').startup(function()
 		'kyazdani42/nvim-tree.lua',
 		requires = {
 		},
-		config = function() require'nvim-tree'.setup {
-			auto_close = true,
-		} end
 	}
 	use 'tpope/vim-commentary'
 	use 'tpope/vim-surround'
@@ -32,6 +29,7 @@ require('packer').startup(function()
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
+	use {'nvim-telescope/telescope-ui-select.nvim' }
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 	use 'neovim/nvim-lspconfig'
@@ -77,6 +75,10 @@ require('telescope').setup {
 	defaults = {
 	},
 	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown {
+			}
+		},
 		fzf = {
 			fuzzy = true,                    -- false will only do exact matching
 			override_generic_sorter = true,  -- override the generic sorter
@@ -89,6 +91,7 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+require("telescope").load_extension("ui-select")
 
 require "lsp_signature".setup({
 	hint_enable = false,
@@ -265,7 +268,7 @@ cmp.setup {
 }
 
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = "maintained",
+	ensure_installed = "all",
 }
 require('nvim-ts-autotag').setup()
 require'nvim-treesitter.configs'.setup {
