@@ -4,4 +4,4 @@ PORT=$1
 DOMAIN=$2
 INTERNAL_PORT=$(shuf -i 1024-65535 -n 1)
 
-ssh -tR $INTERNAL_PORT:localhost:$PORT tunnel@10.0.0.2 -p 2222 $INTERNAL_PORT $DOMAIN
+ssh -tR $INTERNAL_PORT:localhost:$PORT tunnel $INTERNAL_PORT $DOMAIN
