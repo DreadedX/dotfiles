@@ -46,9 +46,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-   x: 5
-   y: 5
+  # padding:
+  #  x: 5
+  #  y: 5
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -104,7 +104,7 @@ window:
   # Resize increments
   #
   # Prefer resizing window by discrete steps equal to cell dimensions.
-  #resize_increments: false
+  resize_increments: true
 
   # Make `Option` key behave as `Alt` (macOS only):
   #   - OnlyLeft
@@ -170,7 +170,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
