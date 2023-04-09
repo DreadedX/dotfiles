@@ -40,10 +40,10 @@ return {
 				-- TODO: Have multiline, but end when %p (punctuation) is at the end of a line
 				multiline = false,
 				before = "fg",
-				pattern = [[(KEYWORDS)\s*(\([^\)]*\))?:?]],
+				pattern = [[(KEYWORDS)\s*(\([^\)]*\))?:]],
 			},
 			search = {
-				pattern = [[\b(KEYWORDS)(\(.*\))?:?]]
+				pattern = [[\b(KEYWORDS)(\(.*\))?:]]
 			},
 			colors = {
 				error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
