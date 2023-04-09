@@ -51,4 +51,4 @@ vim.o.smarttab = true
 vim.o.confirm = true
 
 -- Turn on cursorline
--- vim.o.cursorline = true
+vim.o.cursorline = true
