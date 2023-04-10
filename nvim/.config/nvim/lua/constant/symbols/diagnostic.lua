@@ -1,16 +1,15 @@
 -- Symbols to use for diagnostics
 return {
 	-- LSP Status symbols
-	error = "",
-	warning = "",
-	info = "",
-	hint = "",
-
+	error       = "",
+	warning     = "",
+	info        = "",
+	hint        = "",
 	-- Comment type symbols
-	bug = "",
-	todo = "",
-	hack = "",
+	bug         = "",
+	todo        = "",
+	hack        = "",
 	performance = "",
-	note = "",
-	test = "",
+	note        = "",
+	test        = "",
 }

@@ -1,10 +1,10 @@
 -- https://github.com/toppair/peek.nvim
 return {
 	'toppair/peek.nvim',
-    build = 'deno task --quiet build:fast',
-    cond = function()
-      return vim.fn.executable 'deno' == 1
-    end,
+	build = 'deno task --quiet build:fast',
+	cond = function()
+		return vim.fn.executable 'deno' == 1
+	end,
 	lazy = true,
 	cmds = { "PeekOpen", "PeekClose" },
 	init = function()
@@ -14,7 +14,7 @@ return {
 		local augroup = vim.api.nvim_create_augroup('Peek', { clear = true })
 
 		-- Automatically open a markdown preview window
-		vim.api.nvim_create_autocmd({ "FileType"}, {
+		vim.api.nvim_create_autocmd({ "FileType" }, {
 			callback = function()
 				require('peek').open()
 			end,

@@ -1,6 +1,6 @@
 -- Symbols to use for folds
 return {
-	open = '',
+	open   = '',
 	closed = '',
-	empty = ''
+	empty  = ''
 }

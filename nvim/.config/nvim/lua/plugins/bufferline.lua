@@ -49,8 +49,8 @@ return {
 					local s = " "
 					for e, n in pairs(diagnostics_dict) do
 						local sym = e == "error" and symbols.diagnostic.error .. ' '
-						or (e == "warning" and symbols.diagnostic.warning .. ' ')
-						or (e == "info" and symbols.diagnostic.info .. ' ' or symbols.diagnostic.hint .. ' ' )
+							or (e == "warning" and symbols.diagnostic.warning .. ' ')
+							or (e == "info" and symbols.diagnostic.info .. ' ' or symbols.diagnostic.hint .. ' ')
 						s = s .. n .. sym
 					end
 					return s

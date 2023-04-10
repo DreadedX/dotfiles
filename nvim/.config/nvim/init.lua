@@ -35,7 +35,6 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now :)
 --]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -69,7 +68,8 @@ require('lazy').setup({
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
-  { -- LSP Configuration & Plugins
+  {
+    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -111,17 +111,21 @@ require('lazy').setup({
       handler_opts = {
         -- TODO: Setup borders for other lsp stuff (Maybe using noice?)
         border = "single"
-      }}
+      }
+    }
   },
 
-  { -- Autocompletion
+  {
+    -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-path', 'onsails/lspkind-nvim', },
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-path',
+      'onsails/lspkind-nvim', },
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  { 'folke/which-key.nvim',          opts = {} },
+  {
+    -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -135,24 +139,26 @@ require('lazy').setup({
     },
   },
 
-  { -- Set lualine as statusline
+  {
+    -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
         theme = 'gruvbox',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
       sections = {
         lualine_b = {
           'branch',
           'diff',
-          { 'diagnostics', symbols = {error = '', warn = '', info = '', hint = ''} },
+          { 'diagnostics', symbols = { error = '', warn = '', info = '', hint = '' } },
         },
         lualine_c = {
-          { 'filename',
+          {
+            'filename',
             path = 1,
             symbols = {
               modified = symbols.file.modified,
@@ -172,7 +178,8 @@ require('lazy').setup({
     },
   },
 
-  { -- Add indentation guides even on blank lines
+  {
+    -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
@@ -184,7 +191,9 @@ require('lazy').setup({
 
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim' } },
+  { 'nvim-telescope/telescope.nvim', version = '*',
+                                                      dependencies = { 'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim' } },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -199,7 +208,8 @@ require('lazy').setup({
     end,
   },
 
-  { -- Highlight, edit, and navigate code
+  {
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -351,7 +361,8 @@ require('nvim-treesitter.configs').setup {
 
 -- LSP settings.
 -- Set the diagnostic symbols (Also used by Neo-tree)
-local signs = { Error = symbols.diagnostic.error, Warn = symbols.diagnostic.warning, Hint = symbols.diagnostic.hint, Info = symbols.diagnostic.info }
+local signs = { Error = symbols.diagnostic.error, Warn = symbols.diagnostic.warning, Hint = symbols.diagnostic.hint,
+  Info = symbols.diagnostic.info }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -379,7 +390,8 @@ local on_attach = function(client, bufnr)
 
   -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
   -- Should allow code actions in visual mode
-  vim.keymap.set({'v', 'n'}, '<leader>ca', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'LSP: [C]ode [A]ction', remap=true })
+  vim.keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action,
+  { buffer = bufnr, desc = 'LSP: [C]ode [A]ction', remap = true })
   -- nmap('<leader>ca', require('telescope.builtin')., '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
@@ -419,10 +431,10 @@ local on_attach = function(client, bufnr)
     })
   end
 
-	-- Attach document colour support
-	if client.server_capabilities.colorProvider then
-		require("document-color").buf_attach(bufnr)
-	end
+  -- Attach document colour support
+  if client.server_capabilities.colorProvider then
+    require("document-color").buf_attach(bufnr)
+  end
 end
 
 -- Enable the following language servers
@@ -475,7 +487,7 @@ require('neodev').setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.textDocument.colorProvider = {
-	dynamicRegistration = true
+  dynamicRegistration = true
 }
 
 -- Setup mason so it can manage external tooling

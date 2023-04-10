@@ -5,7 +5,6 @@ return {
 	modified  = '●',
 	deleted   = '✖',
 	renamed   = '',
-
 	-- Status type
 	untracked = '',
 	ignored   = '',

@@ -2,7 +2,7 @@
 return {
 	'NvChad/nvim-colorizer.lua',
 	event = "VeryLazy",
-	opts =  {
+	opts = {
 		filetypes = {
 			'*', -- Enable color highlighting for all files
 			'!neo-tree', -- Exclude neo-tree

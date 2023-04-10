@@ -5,7 +5,7 @@ return {
 	keys = {
 		{ '<F3>', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Goto previous buffer' },
 	},
-	config = function ()
+	config = function()
 		local symbols = require('constant.symbols');
 		require('trouble').setup {
 			icons = false,

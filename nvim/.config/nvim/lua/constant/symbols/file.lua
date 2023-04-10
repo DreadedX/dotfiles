@@ -1,6 +1,6 @@
 -- Symbols to use for files
 return {
-	icon = '',
-	modified  = '●',
+	icon     = '',
+	modified = '●',
 	readonly = ''
 }

@@ -11,7 +11,7 @@ return {
 	keys = {
 		{ '<F2>', '<cmd>Neotree toggle reveal filesystem float<cr>', desc = 'Open floating Neo-tree window' },
 	},
-	config = function ()
+	config = function()
 		local symbols = require('constant.symbols');
 
 		require('neo-tree').setup {
