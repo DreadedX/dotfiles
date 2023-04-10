@@ -86,6 +86,8 @@ require('lazy').setup({
       -- Add document color
       'mrshmllow/document-color.nvim',
 
+      'b0o/schemastore.nvim',
+
       -- Rename with immediate visual feedback
       {
         'smjonas/inc-rename.nvim',
@@ -453,6 +455,17 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  jsonls = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+    },
+  },
+  yamlls = {
+    yaml = {
+      schemas = require('schemastore').yaml.schemas(),
+    },
+  },
+  taplo = {}
 }
 
 -- Setup neovim lua configuration
