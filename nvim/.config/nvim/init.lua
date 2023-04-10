@@ -58,6 +58,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local symbols = require('constant.symbols');
+local border = 'rounded';
 
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -106,13 +107,11 @@ require('lazy').setup({
       'neovim/nvim-lspconfig',
     },
     opts = {
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
       hint_enable = false,
       handler_opts = {
-        -- TODO: Setup borders for other lsp stuff (Maybe using noice?)
-        border = "single"
+        border = border
       }
-    }
+    },
   },
 
   {
@@ -360,6 +359,23 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- LSP settings.
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {border = border}
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  {border = border}
+)
+
+vim.diagnostic.config {
+  float = {
+    border = border
+  }
+}
+
 -- Set the diagnostic symbols (Also used by Neo-tree)
 local signs = { Error = symbols.diagnostic.error, Warn = symbols.diagnostic.warning, Hint = symbols.diagnostic.hint,
   Info = symbols.diagnostic.info }
