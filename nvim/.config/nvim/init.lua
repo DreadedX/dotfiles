@@ -122,7 +122,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -190,9 +190,12 @@ require('lazy').setup({
 
 
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*',
-                                                      dependencies = { 'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-ui-select.nvim' } },
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim' }
+  },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -362,12 +365,12 @@ require('nvim-treesitter.configs').setup {
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
-  {border = border}
+  { border = border }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.hover,
-  {border = border}
+  { border = border }
 )
 
 vim.diagnostic.config {
@@ -377,8 +380,12 @@ vim.diagnostic.config {
 }
 
 -- Set the diagnostic symbols (Also used by Neo-tree)
-local signs = { Error = symbols.diagnostic.error, Warn = symbols.diagnostic.warning, Hint = symbols.diagnostic.hint,
-  Info = symbols.diagnostic.info }
+local signs = {
+  Error = symbols.diagnostic.error,
+  Warn = symbols.diagnostic.warning,
+  Hint = symbols.diagnostic.hint,
+  Info = symbols.diagnostic.info
+}
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -407,7 +414,7 @@ local on_attach = function(client, bufnr)
   -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
   -- Should allow code actions in visual mode
   vim.keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action,
-  { buffer = bufnr, desc = 'LSP: [C]ode [A]ction', remap = true })
+    { buffer = bufnr, desc = 'LSP: [C]ode [A]ction', remap = true })
   -- nmap('<leader>ca', require('telescope.builtin')., '[C]ode [A]ction')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
