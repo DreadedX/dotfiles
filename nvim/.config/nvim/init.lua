@@ -126,6 +126,13 @@ require('lazy').setup({
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    init = function()
+      vim.keymap.set('n', '<leader>gs', require('gitsigns.actions').stage_hunk, { desc = "[G]it [S]tage hunk" })
+      vim.keymap.set('n', '<leader>gS', require('gitsigns.actions').undo_stage_hunk, { desc = "[G]it undo [S]tage hunk" })
+      vim.keymap.set('n', '<leader>gd', require('gitsigns.actions').preview_hunk_inline, { desc = "[G]it [D]iff hunk " })
+      vim.keymap.set('n', ']g', require('gitsigns.actions').next_hunk, { desc = "Go to next hunk" })
+      vim.keymap.set('n', '[g', require('gitsigns.actions').prev_hunk, { desc = "Go to previous hunk" })
+    end,
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
