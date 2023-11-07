@@ -15,7 +15,10 @@
 [credential]
 	helper = store
 [pull]
-	rebase = false
+	; If we pull we only want to fast forward, if that is not possible we should not allow pull to work
+	; Instead use fetch and then either rebase or merge
+	ff = only
+	; rebase = false
 [init]
 	defaultBranch = master
 [filter "kicad_project"]
@@ -26,3 +29,6 @@
 	smudge = cat
 [commit]
 	gpgsign = true
+
+[includeIf "gitdir:~/Projects/ALTEN/"]
+	path = ~/.dotfiles/git/alten.gitconfig
