@@ -308,7 +308,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'markdown',
-    'markdown_inline', 'bash' },
+    'markdown_inline', 'bash', 'zig' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -478,7 +478,8 @@ end
 local servers = {
   clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
+  zls = {},
   rust_analyzer = {
     -- enable clippy on save
     ["rust-analyzer"] = {
