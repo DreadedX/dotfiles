@@ -4,7 +4,7 @@ return {
 	added     = '✚',
 	modified  = '●',
 	deleted   = '✖',
-	renamed   = '',
+	renamed   = '',
 	-- Status type
 	untracked = '',
 	ignored   = '',

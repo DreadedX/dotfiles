@@ -4,12 +4,12 @@ return {
 	error       = "",
 	warning     = "",
 	info        = "",
-	hint        = "",
+	hint        = "󰌵",
 	-- Comment type symbols
-	bug         = "",
+	bug         = "󰃤",
 	todo        = "",
-	hack        = "",
+	hack        = "",
 	performance = "",
-	note        = "",
-	test        = "",
+	note        = "󰙏",
+	test        = "󰙨",
 }
