@@ -1,6 +1,7 @@
 -- https://github.com/ellisonleao/gruvbox.nvim
 return {
 	'ellisonleao/gruvbox.nvim',
+	commit = "487598d979868224aff92cf8818195c1a60e5dfe", -- Commit before things start breaking
 	priority = 1000,
 	config = function()
 		local config = require("gruvbox").config
