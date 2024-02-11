@@ -511,7 +511,8 @@ local servers = {
       schemas = require('schemastore').yaml.schemas(),
     },
   },
-  taplo = {}
+  taplo = {},
+  cmake = {}
 }
 
 -- Setup neovim lua configuration
