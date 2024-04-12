@@ -81,7 +81,7 @@ prompt_end() {
     echo -n "%{%k%}"
   fi
 	echo -n "%(1j. %B%F{cyan}%j%b .)"
-  echo -n "\n%F{white}$SEGMENT_SEPARATOR%{%f%}"
+  echo -n "\n%F{white}:%f"
   CURRENT_BG=''
 }
 
