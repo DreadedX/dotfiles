@@ -7,7 +7,7 @@
 	default = simple
 
 [core]
-	excludesfile = $HOME/.dotfiles/git/gitignore
+	excludesfile = ~/.dotfiles/git/gitignore
 
 [color]
 	ui = true
@@ -21,14 +21,8 @@
 	; rebase = false
 [init]
 	defaultBranch = master
-[filter "kicad_project"]
-	clean = sed -E 's/^update=.*$/update=Date/'
-	smudge = cat
-[filter "kicad_sch"]
-	clean = "sed -E 's/#(PWR|FLG)[0-9]+/#\\1?/'"
-	smudge = cat
 [commit]
 	gpgsign = true
 
 [includeIf "gitdir:~/Projects/ALTEN/"]
-	path = ~/.dotfiles/git/alten.gitconfig
+	path = ~/.dotfiles/git/gitconfig/ALTEN

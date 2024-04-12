@@ -1,2 +1,0 @@
-# Allow loading of .gdbinit files everywhere (Might not be safe!)
-set auto-load safe-path /
