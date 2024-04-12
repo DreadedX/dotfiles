@@ -4,7 +4,7 @@ import = ["/home/tim/.config/alacritty/gruvbox_dark.toml"]
 TERM = "xterm-256color"
 
 [font]
-size = 11.0
+size = 12.0
 
 [font.normal]
 family = "SauceCodePro Nerd Font Mono"
