@@ -1,13 +1,2 @@
-/prezto/*
-.zlogin
-.zlogout
-.zpreztorc
-.zprofile
-.zshenv
-
-gitalias.zsh
-agnoster.zsh-theme
-
-.zcompdump
-.zcompdump.zwc
-.zhistory
+ohmyzsh
+custom
