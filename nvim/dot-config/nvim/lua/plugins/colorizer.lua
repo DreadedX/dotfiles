@@ -1,11 +1,11 @@
 -- https://github.com/NvChad/nvim-colorizer.lua
 return {
-	'NvChad/nvim-colorizer.lua',
+	"NvChad/nvim-colorizer.lua",
 	event = "VeryLazy",
 	opts = {
 		filetypes = {
-			'*', -- Enable color highlighting for all files
-			'!neo-tree', -- Exclude neo-tree
+			"*", -- Enable color highlighting for all files
+			"!neo-tree", -- Exclude neo-tree
 		},
 		buftypes = {
 			"*",
@@ -13,10 +13,13 @@ return {
 			"!popup",
 		},
 		always_update = true,
+		user_default_options = {
+			names = false,
+		},
 	},
 	-- Fix lazy loading: https://github.com/NvChad/nvim-colorizer.lua
 	config = function(_, opts)
-		local colorizer = require('colorizer');
+		local colorizer = require("colorizer")
 		colorizer.setup(opts)
 
 		-- nvim-colorizer doesn't work on the initial buffer if we lazy load, so force it to attach
@@ -25,5 +28,5 @@ return {
 		if bufnr and not colorizer.is_buffer_attached(bufnr) then
 			colorizer.attach_to_buffer(bufnr)
 		end
-	end
+	end,
 }
