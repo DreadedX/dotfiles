@@ -35,9 +35,12 @@ return {
 			-- ["*"] = { "codespell" },
 			["_"] = { "trim_whitespace", "trim_newlines" },
 		},
-		format_after_save = {
-			lsp_fallback = true,
-		},
+		format_after_save = function(bufnr)
+			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+				return
+			end
+			return { lsp_fallback = true }
+		end,
 		notify_on_error = true,
 	},
 	init = function()
