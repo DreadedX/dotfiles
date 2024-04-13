@@ -1,5 +1,6 @@
 -- https://github.com/Wansmer/treesj
 return {
+	enabled = false,
 	'Wansmer/treesj',
 	keys = {
 		{

@@ -1,6 +1,6 @@
--- See `:help vim.o`
--- Set highlight on search
-vim.o.hlsearch = false
+-- Set highlight on search, clear by pressing esc
+vim.o.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Make line numbers default
 vim.wo.number = true
@@ -52,3 +52,9 @@ vim.o.confirm = true
 
 -- Turn on cursorline
 vim.o.cursorline = true
+
+-- Don't show mode, powerline already shows it
+vim.o.showmode = false
+
+-- Minimum number of screen lines above and below the cursor
+vim.o.scrolloff = 10
