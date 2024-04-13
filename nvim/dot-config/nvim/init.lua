@@ -541,13 +541,9 @@ local servers = {
 	gopls = {},
 	pyright = {},
 	rust_analyzer = {
-		-- enable clippy on save
 		["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy",
-			},
 			check = {
-				allTargets = false,
+				command = "clippy",
 			},
 		},
 	},
