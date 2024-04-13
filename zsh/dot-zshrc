@@ -14,6 +14,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_AUTO_TITLE="true"
 # ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
+ZSH_DISABLE_COMPFIX="true"
 
 plugins=(
 	git
