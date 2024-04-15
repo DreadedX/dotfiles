@@ -1,13 +1,14 @@
 -- https://github.com/simrat39/symbols-outline.nvim
 return {
-	'simrat39/symbols-outline.nvim',
+	enabled = false,
+	"simrat39/symbols-outline.nvim",
 	keys = {
 		{
-			'<F5>',
+			"<F5>",
 			function()
-				require('symbols-outline').toggle_outline()
+				require("symbols-outline").toggle_outline()
 			end,
-			desc = 'Toggle symbols outline'
+			desc = "Toggle symbols outline",
 		},
 	},
 	opts = {},

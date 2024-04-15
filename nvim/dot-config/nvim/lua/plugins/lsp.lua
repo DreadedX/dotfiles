@@ -1,0 +1,104 @@
+return {
+	-- LSP Configuration & Plugins
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+		-- Some of the lsp keybindings rely on telescope
+		"nvim-telescope/telescope.nvim",
+		-- Set capabilities from cmp
+		"hrsh7th/cmp-nvim-lsp",
+
+		-- Additional lua configuration, makes nvim stuff amazing!
+		{ "folke/neodev.nvim", opts = {} },
+
+		-- Add document color
+		"mrshmllow/document-color.nvim",
+
+		"b0o/schemastore.nvim",
+
+		-- Rename with immediate visual feedback
+	},
+	config = function()
+		local border = require("symbols.window").border
+
+		-- Set borders
+		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+		vim.lsp.handlers["textDocument/signatureHelp"] =
+			vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+
+		require("lspconfig.ui.windows").default_options = {
+			border = border,
+		}
+
+		-- Create the signs for diagnostic symbols
+		local diagnostic = require("symbols.diagnostic")
+		local signs = {
+			Error = diagnostic.error,
+			Warn = diagnostic.warning,
+			Hint = diagnostic.hint,
+			Info = diagnostic.info,
+		}
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
+
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("dx-lsp-attach", { clear = true }),
+			callback = function(event)
+				local map = function(keys, func, desc)
+					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP:" .. desc })
+				end
+
+				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]symbols")
+				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols")
+
+				vim.keymap.set("n", "<leader>rn", function()
+					return ":IncRename " .. vim.fn.expand("<cword>")
+				end, { buffer = event.buf, expr = true, desc = "LSP: [R]e[N]ame" })
+
+				-- Also works in visual mode
+				-- TODO: Is that something we even need?
+				vim.keymap.set(
+					{ "v", "n" },
+					"<leader>ca",
+					vim.lsp.buf.code_action,
+					{ buffer = event.buf, desc = "LSP: [C]ode [A]ction", remap = true }
+				)
+
+				-- Signature help
+				map("K", vim.lsp.buf.hover, "Hover Documentation")
+				map("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+
+				-- Lesser used LSP functionality
+				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+			end,
+		})
+
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- TODO: Only do this is cmp_nvim_lsp is enabled
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		-- TODO: Check if this is still up to date
+		capabilities.textDocument.colorProvider = {
+			dynamicRegistration = true,
+		}
+
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					local server = require("tools").servers[server_name] or {}
+					server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
+
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
+		})
+	end,
+}

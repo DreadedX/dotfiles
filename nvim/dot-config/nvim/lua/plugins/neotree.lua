@@ -1,20 +1,22 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+local fold = require("symbols.fold")
+local file = require("symbols.file")
+
 return {
-	'nvim-neo-tree/neo-tree.nvim',
+	"nvim-neo-tree/neo-tree.nvim",
 	version = "v2.x",
 	dependencies = {
-		'nvim-lua/plenary.nvim',
-		'MunifTanjim/nui.nvim',
+		"nvim-lua/plenary.nvim",
+		"MunifTanjim/nui.nvim",
 	},
-	cmd = { 'Neotree' },
+	cmd = { "Neotree" },
 	keys = {
-		{ '<F2>', '<cmd>Neotree toggle reveal filesystem float<cr>', desc = 'Open floating Neo-tree window' },
+		{ "<F2>", "<cmd>Neotree toggle reveal filesystem float<cr>", desc = "Open floating Neo-tree window" },
 	},
 	config = function()
-		local symbols = require('constant.symbols');
+		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-		require('neo-tree').setup {
+		require("neo-tree").setup({
 			close_if_last_window = true,
 			enable_diagnostics = true,
 			source_selector = {
@@ -22,27 +24,27 @@ return {
 			},
 			default_component_configs = {
 				icon = {
-					folder_closed = symbols.fold.closed,
-					folder_open = symbols.fold.open,
-					folder_empty = symbols.fold.empty,
-					default = symbols.file.icon,
+					folder_closed = fold.closed,
+					folder_open = fold.open,
+					folder_empty = fold.empty,
+					default = file.icon,
 				},
 				modified = {
-					symbol = symbols.file.modified,
+					symbol = file.modified,
 				},
 				name = {
 					use_git_status_colors = false,
 				},
 				git_status = {
-					symbols = symbols.git,
-				}
+					symbols = require("symbols.git"),
+				},
 			},
 			filesystem = {
 				filtered_items = {
 					hide_dotfiles = false,
 					hide_by_name = {
-						".git"
-					}
+						".git",
+					},
 				},
 				use_libuv_file_watcher = true,
 			},
@@ -60,6 +62,6 @@ return {
 					},
 				},
 			},
-		}
+		})
 	end,
 }

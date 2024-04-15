@@ -1,18 +1,19 @@
 return {
-	'johnfrankmorgan/whitespace.nvim',
+	enabled = false,
+	"johnfrankmorgan/whitespace.nvim",
 	config = function()
-		require('whitespace-nvim').setup({
+		require("whitespace-nvim").setup({
 			-- configuration options and their defaults
 
 			-- `highlight` configures which highlight is used to display
 			-- trailing whitespace
-			highlight = 'CursorLine',
+			highlight = "CursorLine",
 			-- `ignored_filetypes` configures which filetypes to ignore when
 			-- displaying trailing whitespace
-			ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'help' },
+			ignored_filetypes = { "TelescopePrompt", "Trouble", "help" },
 		})
 
 		-- remove trailing whitespace with a keybinding
-		vim.keymap.set('n', '<Leader>t', require('whitespace-nvim').trim, { desc = "Remove trailing whitespace" })
-	end
+		vim.keymap.set("n", "<Leader>t", require("whitespace-nvim").trim, { desc = "Remove trailing whitespace" })
+	end,
 }

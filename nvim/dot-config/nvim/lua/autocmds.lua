@@ -1,15 +1,15 @@
 -- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		vim.highlight.on_yank({ higroup = 'YankHighlight' })
+		vim.highlight.on_yank({ higroup = "YankHighlight" })
 	end,
 	group = highlight_group,
-	pattern = '*',
+	pattern = "*",
 })
 
 -- show cursor line only in active window
-local cursor_group = vim.api.nvim_create_augroup('ActiveCursor', { clear = true })
+local cursor_group = vim.api.nvim_create_augroup("ActiveCursor", { clear = true })
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	callback = function()
 		local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 		end
 	end,
 	group = cursor_group,
-	pattern = '*',
+	pattern = "*",
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	callback = function()
@@ -30,5 +30,5 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 		end
 	end,
 	group = cursor_group,
-	pattern = '*',
+	pattern = "*",
 })

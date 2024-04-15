@@ -28,9 +28,14 @@ return {
 				TelescopeMatching = { fg = colors.aqua, bold = true },
 				TelescopeSelection = { fg = colors.blue },
 				TelescopeSelectionCaret = { fg = colors.red },
+				CmpItemAbbrMatch = { fg = colors.aqua, bold = true },
+				CmpItemAbbrMatchFuzzy = { fg = colors.aqua, bold = true },
+				CmpItemMenu = { fg = colors.bg2 },
+				CmpItemKindFunction = { fg = colors.red },
 			},
 		})
 
+		-- Load the colorscheme
 		vim.cmd.colorscheme("gruvbox")
 	end,
 }

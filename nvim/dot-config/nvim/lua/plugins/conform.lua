@@ -1,7 +1,11 @@
 -- https://github.com/stevearc/conform.nvim
+
 local slow_format_filetypes = {}
 return {
 	"stevearc/conform.nvim",
+	dependencies = {
+		"williamboman/mason.nvim",
+	},
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	keys = {
@@ -16,26 +20,7 @@ return {
 		},
 	},
 	opts = {
-		-- TODO: Automate installing these using e.g. mason
-		formatters_by_ft = {
-			c = { "clang-format" },
-			cpp = { "clang-format" },
-			go = { "goimports", "gofmt" },
-			python = { "ruff_format" },
-			rust = { "rustfmt" },
-			javascript = { { "prettierd", "prettier" } },
-			typescript = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
-			css = { { "prettierd", "prettier" } },
-			markdown = { { "prettierd", "prettier" } },
-			lua = { "stylua" },
-			json = { "jq" },
-			yaml = { { "prettierd", "prettier" } },
-			toml = { "taplo" },
-			cmake = { "cmake_format" },
-			-- ["*"] = { "codespell" },
-			["_"] = { "trim_whitespace", "trim_newlines" },
-		},
+		formatters_by_ft = require("tools").formatters,
 		format_on_save = function(bufnr)
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
@@ -59,7 +44,7 @@ return {
 			end
 			return { lsp_fallback = true }
 		end,
-		notify_on_error = true,
+		-- log_level = vim.log.levels.DEBUG,
 	},
 	init = function()
 		vim.api.nvim_create_user_command("FormatDisable", function(args)
