@@ -91,9 +91,9 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%B%F{yellow}%}.)%n@%m%(!.%{%b%}.)"
+    prompt_segment black default "%(!.%{%B%F{11}%}.)%n@%m%(!.%{%b%}.)"
 	else
-    prompt_segment black default "%(!.%{%B%F{yellow}%}.)%n%(!.%{%b%}.)"
+    prompt_segment black default "%(!.%{%B%F{11}%}.)%n%(!.%{%b%}.)"
   fi
 }
 
@@ -119,7 +119,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
-      prompt_segment green $CURRENT_FG
+      prompt_segment 10 $CURRENT_FG
     fi
 
     local ahead behind
@@ -177,7 +177,7 @@ prompt_bzr() {
       if [[ $status_all -gt 0 ]] ; then
         prompt_segment yellow black "bzr@$revision"
       else
-        prompt_segment green black "bzr@$revision"
+        prompt_segment 10 black "bzr@$revision"
       fi
     fi
   fi
@@ -198,7 +198,7 @@ prompt_hg() {
         st='±'
       else
         # if working copy is clean
-        prompt_segment green $CURRENT_FG
+        prompt_segment 10 $CURRENT_FG
       fi
       echo -n ${$(hg prompt "☿ {rev}@{branch}"):gs/%/%%} $st
     else
@@ -212,7 +212,7 @@ prompt_hg() {
         prompt_segment yellow black
         st='±'
       else
-        prompt_segment green $CURRENT_FG
+        prompt_segment 10 $CURRENT_FG
       fi
       echo -n "☿ ${rev:gs/%/%%}@${branch:gs/%/%%}" $st
     fi
@@ -221,7 +221,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue $CURRENT_FG '%~'
+  prompt_segment 12 $CURRENT_FG '%~'
 }
 
 # Virtualenv: current working virtualenv
@@ -240,7 +240,7 @@ prompt_status() {
   local -a symbols
 
   [[ $RETVAL -ne 0 ]] && prompt_segment red black ""
-  [[ $UID -eq 0 ]] && prompt_segment yellow black "󱐋"
+  [[ $UID -eq 0 ]] && prompt_segment 11 black "󱐋"
 }
 
 #AWS Profile:
@@ -251,7 +251,7 @@ prompt_status() {
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment red yellow  "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *-prod|*production*) prompt_segment red 11  "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
     *) prompt_segment cyan black "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
