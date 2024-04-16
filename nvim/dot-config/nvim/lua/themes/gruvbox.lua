@@ -32,6 +32,9 @@ return {
 				CmpItemAbbrMatchFuzzy = { fg = colors.aqua, bold = true },
 				CmpItemMenu = { fg = colors.bg2 },
 				CmpItemKindFunction = { fg = colors.red },
+				LspReferenceText = { fg = colors.bg0, bg = colors.neutral_purple },
+				LspReferenceRead = { link = "LspReferenceText" },
+				LspReferenceWrite = { link = "LspReferenceText" },
 			},
 		})
 
