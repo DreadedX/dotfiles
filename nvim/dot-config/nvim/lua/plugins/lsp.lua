@@ -37,7 +37,7 @@ return {
 		local diagnostic = require("symbols.diagnostic")
 		local signs = {
 			Error = diagnostic.error,
-			Warn = diagnostic.warning,
+			Warn = diagnostic.warn,
 			Hint = diagnostic.hint,
 			Info = diagnostic.info,
 		}
