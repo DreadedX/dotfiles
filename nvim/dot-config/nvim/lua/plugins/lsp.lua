@@ -25,9 +25,10 @@ return {
 		local border = require("symbols.window").border
 
 		-- Set borders
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+		local handlers = {
+			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+			["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+		}
 
 		require("lspconfig.ui.windows").default_options = {
 			border = border,
@@ -108,6 +109,7 @@ return {
 				function(server_name)
 					local server = require("tools").servers[server_name] or {}
 					server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
+					server.handlers = handlers
 
 					require("lspconfig")[server_name].setup(server)
 				end,
