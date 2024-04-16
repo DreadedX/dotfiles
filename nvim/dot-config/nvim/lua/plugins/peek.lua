@@ -6,7 +6,7 @@ return {
 		return vim.fn.executable("deno") == 1
 	end,
 	lazy = true,
-	cmds = { "PeekOpen", "PeekClose" },
+	cmd = { "PeekOpen", "PeekClose" },
 	init = function()
 		vim.api.nvim_create_user_command("PeekOpen", function()
 			require("peek").open()
