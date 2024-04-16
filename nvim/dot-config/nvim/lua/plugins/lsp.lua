@@ -52,7 +52,7 @@ return {
 		end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("dx-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("LspAttach", { clear = true }),
 			callback = function(event)
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP:" .. desc })
@@ -86,6 +86,8 @@ return {
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
+				-- Turn of lsp based syntax highlighting
+				client.server_capabilities.semanticTokensProvider = nil
 				if client and client.server_capabilities.documentHighlightProvider then
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
