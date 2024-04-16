@@ -34,6 +34,10 @@ return {
 			border = border,
 		}
 
+		vim.diagnostic.config({
+			severity_sort = true,
+		})
+
 		-- Create the signs for diagnostic symbols
 		local diagnostic = require("symbols.diagnostic")
 		local signs = {
