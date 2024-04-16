@@ -44,6 +44,11 @@ tools.servers = {
 	taplo = {},
 	neocmake = {},
 	nil_ls = {},
+	typos_lsp = {
+		init_options = {
+			diagnosticSeverity = "Hint",
+		},
+	},
 }
 
 -- https://github.com/stevearc/conform.nvim
