@@ -26,7 +26,7 @@ return {
 				end,
 			},
 			window = {
-				completion = cmp.config.window.bordered({ border = border, winhighlight = "CursorLine:YankHighlight" }),
+				completion = cmp.config.window.bordered({ border = border, winhighlight = "CursorLine:CmpSelection" }),
 				documentation = cmp.config.window.bordered({ border = border }),
 			},
 			-- Include the source of the cmp entry
