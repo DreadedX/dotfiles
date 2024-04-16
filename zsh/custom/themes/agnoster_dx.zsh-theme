@@ -232,6 +232,27 @@ prompt_virtualenv() {
   fi
 }
 
+# nix-shell: currently running nix-shell
+prompt_nix_shell() {
+  if [[ -n "$IN_NIX_SHELL" ]]; then
+    if [[ -n $NIX_SHELL_PACKAGES ]]; then
+      local package_names=""
+      local packages=($NIX_SHELL_PACKAGES)
+      for package in $packages; do
+        package_names+=" ${package##*.}"
+      done
+      prompt_segment magenta black "$package_names"
+    elif [[ -n $name ]]; then
+      local cleanName=${name#interactive-}
+      cleanName=${cleanName#lorri-keep-env-hack-}
+      cleanName=${cleanName%-environment}
+      prompt_segment magenta black "$cleanName"
+    else # This case is only reached if the nix-shell plugin isn't installed or failed in some way
+      prompt_segment magenta black "nix-shell"
+    fi
+  fi
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -262,6 +283,7 @@ build_prompt() {
   prompt_status
   prompt_context
   prompt_virtualenv
+	prompt_nix_shell
   prompt_aws
   prompt_dir
   prompt_git

@@ -43,6 +43,7 @@ tools.servers = {
 	},
 	taplo = {},
 	neocmake = {},
+	nil_ls = {},
 }
 
 -- https://github.com/stevearc/conform.nvim
@@ -58,6 +59,7 @@ tools.formatters = require("util.conform").assign_formatters({
 	lua = { "stylua" },
 	json = { "jq" },
 	toml = { "taplo" },
+	nix = { "nixfmt" },
 	-- ["*"] = { "codespell" },
 	["_"] = { "trim_whitespace", "trim_newlines" },
 })
