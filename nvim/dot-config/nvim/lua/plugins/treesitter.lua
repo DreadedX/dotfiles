@@ -23,6 +23,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"bash",
+				"sql",
 			},
 
 			-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
