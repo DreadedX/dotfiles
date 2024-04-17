@@ -1,11 +1,9 @@
 -- https://github.com/ellisonleao/gruvbox.nvim
 return {
 	"ellisonleao/gruvbox.nvim",
-	commit = "487598d979868224aff92cf8818195c1a60e5dfe", -- Commit before things start breaking
 	priority = 1000,
 	config = function()
-		local config = require("gruvbox").config
-		local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
+		local palette = require("gruvbox").palette
 
 		require("gruvbox").setup({
 			background = "dark",
@@ -13,27 +11,27 @@ return {
 				strings = false,
 			},
 			overrides = {
-				YankHighlight = { fg = colors.blue, bg = colors.bg0, reverse = config.inverse },
-				Search = { fg = colors.aqua },
+				YankHighlight = { fg = palette.bright_blue, bg = palette.dark0, reverse = true },
+				Search = { fg = palette.bright_aqua },
 				IncSearch = { link = "Search" },
-				NormalFloat = { bg = colors.bg0 },
-				FloatBorder = { fg = colors.bg4 },
-				TelescopePromptTitle = { fg = colors.fg4 },
+				NormalFloat = { bg = palette.dark0 },
+				FloatBorder = { fg = palette.dark4 },
+				TelescopePromptTitle = { fg = palette.light4 },
 				TelescopePromptBorder = { link = "FloatBorder" },
-				TelescopePromptPrefix = { fg = colors.red },
+				TelescopePromptPrefix = { fg = palette.bright_red },
 				TelescopePreviewTitle = { link = "TelescopePreviewTitle" },
 				TelescopePreviewBorder = { link = "FloatBorder" },
 				TelescopeResultsTitle = { link = "TelescopePreviewTitle" },
 				TelescopeResultsBorder = { link = "FloatBorder" },
-				TelescopeMatching = { fg = colors.aqua, bold = true },
-				TelescopeSelection = { fg = colors.blue },
+				TelescopeMatching = { fg = palette.bright_aqua, bold = true },
+				TelescopeSelection = { fg = palette.bright_blue },
 				TelescopeSelectionCaret = { link = "TelescopeSelection" },
-				CmpItemAbbrMatch = { fg = colors.aqua, bold = true },
+				CmpItemAbbrMatch = { fg = palette.bright_aqua, bold = true },
 				CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
-				CmpItemMenu = { fg = colors.bg2 },
-				CmpItemKindFunction = { fg = colors.red },
-				CmpSelection = { fg = colors.bg0, bg = colors.blue },
-				LspReferenceText = { fg = colors.bg0, bg = colors.neutral_purple },
+				CmpItemMenu = { fg = palette.dark2 },
+				CmpItemKindFunction = { fg = palette.bright_red },
+				CmpSelection = { fg = palette.dark0, bg = palette.bright_blue },
+				LspReferenceText = { fg = palette.dark0, bg = palette.neutral_purple },
 				LspReferenceRead = { link = "LspReferenceText" },
 				LspReferenceWrite = { link = "LspReferenceText" },
 			},
