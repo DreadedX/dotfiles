@@ -34,6 +34,12 @@ return {
 				LspReferenceText = { fg = palette.dark0, bg = palette.neutral_purple },
 				LspReferenceRead = { link = "LspReferenceText" },
 				LspReferenceWrite = { link = "LspReferenceText" },
+				TodoCommentError = { fg = palette.bright_red },
+				TodoCommentWarning = { fg = palette.bright_yellow },
+				TodoCommentInfo = { fg = palette.light1 },
+				TodoCommentHint = { fg = palette.bright_aqua },
+				TodoCommentTest = { fg = palette.bright_purple },
+				TodoCommentDefault = { fg = palette.bright_blue },
 			},
 		})
 

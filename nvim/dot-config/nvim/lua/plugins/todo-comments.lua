@@ -28,12 +28,19 @@ return {
 
 		require("todo-comments").setup({
 			keywords = {
+				-- FIX: Fix
 				FIX = { icon = diagnostic.bug },
+				-- TODO: Todo
 				TODO = { icon = diagnostic.todo },
+				-- HACK: Hack
 				HACK = { icon = diagnostic.hack },
+				-- WARN: Warn
 				WARN = { icon = diagnostic.warning },
+				-- PERF: Perf
 				PERF = { icon = diagnostic.performance },
+				-- NOTE: Note
 				NOTE = { icon = diagnostic.note },
+				-- TEST: Test
 				TEST = { icon = diagnostic.test },
 			},
 			highlight = {
@@ -46,12 +53,12 @@ return {
 				pattern = [[\b(KEYWORDS)(\(.*\))?:]],
 			},
 			colors = {
-				error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-				warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-				info = { "Todo", "#2563EB" },
-				hint = { "DiagnosticHint", "#10B981" },
-				default = { "Identifier", "#7C3AED" },
-				test = { "Identifier", "#FF00FF" },
+				error = { "TodoCommentError" },
+				warning = { "TodoCommentWarning" },
+				info = { "TodoCommentInfo" },
+				hint = { "TodoCommentHint" },
+				test = { "TodoCommentTest" },
+				default = { "TodoCommentDefault" },
 			},
 		})
 	end,
