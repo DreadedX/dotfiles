@@ -1,5 +1,4 @@
 -- https://github.com/hrsh7th/nvim-cmp
--- TODO: Go over this
 return {
 	{
 		-- Autocompletion

@@ -9,7 +9,7 @@ return {
 		},
 	},
 	init = function()
-		-- TODO: Can we tie these to where the keymaps are registered?
+		-- TODO: Only make a category show up if there actually are any keybinds under it
 		require("which-key").register({
 			["<leader>g"] = { name = "[G]it", _ = "which_key_ignore" },
 			["<leader>b"] = { name = "[B]buffer", _ = "which_key_ignore" },

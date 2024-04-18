@@ -69,8 +69,7 @@ return {
 					return ":IncRename " .. vim.fn.expand("<cword>")
 				end, { buffer = event.buf, expr = true, desc = "LSP: [R]e[N]ame" })
 
-				-- Also works in visual mode
-				-- TODO: Is that something we even need?
+				-- TODO: Do we need this to work in visal mode?
 				vim.keymap.set(
 					{ "v", "n" },
 					"<leader>ca",
@@ -105,7 +104,6 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		-- TODO: Only do this is cmp_nvim_lsp is enabled
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-		-- TODO: Check if this is still up to date
 		capabilities.textDocument.colorProvider = {
 			dynamicRegistration = true,
 		}

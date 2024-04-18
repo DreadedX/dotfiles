@@ -2,8 +2,8 @@
 local diagnostic = require("symbols.diagnostic")
 
 return {
-	-- NOTE: Using a fork for the time being upstream does not support authors
 	-- 'folke/todo-comments.nvim',
+	-- NOTE: This fork highlights the entire matched word, not just the keyword.
 	"doongjohn/todo-comments.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
