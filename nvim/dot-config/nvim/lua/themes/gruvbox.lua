@@ -44,6 +44,14 @@ return {
 				GitSignsAdd = { link = "GruvboxGreenSign" },
 				GitSignsChange = { link = "GruvboxAquaSign" },
 				GitSignsDelete = { link = "GruvboxRedSign" },
+				NeoTreeGitAdded = { link = "GruboxGreen" },
+				NeoTreeGitModified = { link = "GruvboxAqua" },
+				NeoTreeGitDelete = { link = "GruboxRed" },
+				NeoTreeFloatTitle = { link = "TelescopePromptTitle" },
+				NeoTreeTabActive = { fg = palette.dark0, bg = palette.bright_blue },
+				NeoTreeTabInactive = { fg = palette.light4, bg = palette.dark2 },
+				NeoTreeTabSeparatorActive = { link = "NeoTreeTabActive" },
+				NeoTreeTabSeparatorInactive = { link = "NeoTreeTabInactive" },
 			},
 		})
 

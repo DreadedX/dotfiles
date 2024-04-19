@@ -4,25 +4,33 @@ local file = require("symbols.file")
 
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	version = "v2.x",
+	version = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 	},
 	cmd = { "Neotree" },
 	keys = {
-		{ "<F2>", "<cmd>Neotree toggle reveal filesystem float<cr>", desc = "Open floating Neo-tree window" },
+		{ "<F2>", "<cmd>Neotree toggle last<cr>", desc = "Open floating Neo-tree window" },
 	},
+	-- netrw hijack does not work when lazy loading
+	lazy = false,
 	config = function()
-		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 		require("neo-tree").setup({
 			close_if_last_window = true,
-			enable_diagnostics = true,
+			popup_border_style = require("symbols.window").border,
 			source_selector = {
 				winbar = true,
 			},
 			default_component_configs = {
+				diagnostics = {
+					highlights = {
+						hint = "DiagnosticHint",
+						info = "DiagnosticInfo",
+						warn = "DiagnosticWarn",
+						error = "DiagnosticError",
+					},
+				},
 				icon = {
 					folder_closed = fold.closed,
 					folder_open = fold.open,
@@ -38,28 +46,29 @@ return {
 				git_status = {
 					symbols = require("symbols.git"),
 				},
+				type = {
+					enabled = false,
+				},
+				last_modified = {
+					enabled = false,
+				},
+				symlink_target = {
+					enabled = true,
+				},
 			},
 			filesystem = {
-				filtered_items = {
-					hide_dotfiles = false,
-					hide_by_name = {
-						".git",
-					},
+				follow_current_file = {
+					enabled = true,
 				},
+				hijack_netrw_behavior = "open_current",
 				use_libuv_file_watcher = true,
+				scan_mode = "deep",
 			},
 			window = {
+				position = "float",
 				mappings = {
 					["<C-c>"] = "close_window",
 					["<esc>"] = "close_window",
-				},
-			},
-			buffers = {
-				window = {
-					mappings = {
-						["bd"] = nil,
-						["<C-d>"] = "buffer_delete",
-					},
 				},
 			},
 		})
