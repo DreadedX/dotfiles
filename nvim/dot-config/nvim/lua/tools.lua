@@ -65,7 +65,7 @@ tools.formatters = require("util.conform").assign_formatters({
 	json = { "jq" },
 	toml = { "taplo" },
 	nix = { "nixfmt" },
-	-- ["*"] = { "codespell" },
+	["*"] = { "injected" },
 	["_"] = { "trim_whitespace", "trim_newlines" },
 })
 
