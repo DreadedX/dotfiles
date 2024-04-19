@@ -40,6 +40,9 @@ return {
 				TodoCommentHint = { fg = palette.bright_aqua },
 				TodoCommentTest = { fg = palette.bright_purple },
 				TodoCommentDefault = { fg = palette.bright_blue },
+				GitSignsAdd = { link = "GruvboxGreenSign" },
+				GitSignsChange = { link = "GruvboxAquaSign" },
+				GitSignsDelete = { link = "GruvboxRedSign" },
 			},
 		})
 
