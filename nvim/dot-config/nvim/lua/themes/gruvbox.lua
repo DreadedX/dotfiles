@@ -16,6 +16,7 @@ return {
 				IncSearch = { link = "Search" },
 				NormalFloat = { bg = palette.dark0 },
 				FloatBorder = { fg = palette.dark4 },
+				LspInfoBorder = { link = "FloatBorder" },
 				TelescopePromptTitle = { fg = palette.light4 },
 				TelescopePromptBorder = { link = "FloatBorder" },
 				TelescopePromptPrefix = { fg = palette.bright_red },
