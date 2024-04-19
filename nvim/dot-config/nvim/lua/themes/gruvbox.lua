@@ -31,7 +31,7 @@ return {
 				CmpItemMenu = { fg = palette.dark2 },
 				CmpItemKindFunction = { fg = palette.bright_red },
 				CmpSelection = { fg = palette.dark0, bg = palette.bright_blue },
-				LspReferenceText = { fg = palette.dark0, bg = palette.neutral_purple },
+				LspReferenceText = { bg = palette.dark1 },
 				LspReferenceRead = { link = "LspReferenceText" },
 				LspReferenceWrite = { link = "LspReferenceText" },
 				TodoCommentError = { fg = palette.bright_red },
