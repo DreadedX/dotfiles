@@ -47,8 +47,9 @@ return {
 			Info = diagnostic.info,
 		}
 		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+			local hl_sign = "DiagnosticSign" .. type
+			local hl_text = "Diagnostic" .. type
+			vim.fn.sign_define(hl_sign, { text = icon, texthl = hl_sign, numhl = hl_text })
 		end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
