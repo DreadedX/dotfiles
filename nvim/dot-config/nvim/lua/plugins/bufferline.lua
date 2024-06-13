@@ -32,10 +32,10 @@ return {
 		bufferline.setup({
 			options = {
 				show_buffer_icons = false,
-				show_buffer_close_icons = true,
+				show_buffer_close_icons = false,
 				diagnostics = "nvim_lsp",
-				close_command = "BufDel %d",
-				right_mouse_command = "BufDel %d",
+				-- close_command = "BufDel %d",
+				-- right_mouse_command = "BufDel %d",
 				separator_style = "thick",
 				left_trunc_marker = "",
 				right_trunc_marker = "",
