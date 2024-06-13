@@ -1,3 +1,6 @@
 [user]
 	name = Tim Huizinga
 	email = tim.huizinga@alten.nl
+
+[commit]
+	gpgsign = false

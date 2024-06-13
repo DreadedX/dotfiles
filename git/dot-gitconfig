@@ -1,31 +1,6 @@
-[user]
-	name = Dreaded_X
-	email = tim@huizinga.dev
-	signingkey = CD17A34CBFB21DE9A73D47EB76BDEC4E165D8AD9
-
-[push]
-	default = simple
-
-[core]
-	excludesfile = ~/.dotfiles/git/gitignore
-
-[color]
-	ui = true
-
-[credential]
-	helper = store
-[pull]
-	; If we pull we only want to fast forward, if that is not possible we should not allow pull to work
-	; Instead use fetch and then either rebase or merge
-	ff = only
-	; rebase = false
-[init]
-	defaultBranch = master
-[commit]
-	gpgsign = true
-
-[diff]
-	tool = nvimdiff
+[include]
+	path = ~/.dotfiles/git/profiles/common
+	path = ~/.dotfiles/git/profiles/Dreaded_X
 
 [includeIf "gitdir:~/Projects/ALTEN/"]
 	path = ~/.dotfiles/git/gitconfig/ALTEN

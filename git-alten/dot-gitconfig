@@ -1,0 +1,3 @@
+[include]
+	path = ~/.dotfiles/git/profiles/common
+	path = ~/.dotfiles/git/profiles/ALTEN
