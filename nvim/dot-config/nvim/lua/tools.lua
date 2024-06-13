@@ -2,7 +2,9 @@ local tools = {}
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 tools.servers = {
-	clangd = {},
+	clangd = {
+		cmd = { "clangd", "--offset-encoding=utf-16", "--clang-tidy" },
+	},
 	gopls = {},
 	pyright = {},
 	rust_analyzer = {
