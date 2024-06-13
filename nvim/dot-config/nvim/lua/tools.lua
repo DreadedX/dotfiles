@@ -45,7 +45,7 @@ tools.servers = {
 	},
 	taplo = {},
 	neocmake = {},
-	nil_ls = {},
+	-- nil_ls = {},
 	typos_lsp = {
 		init_options = {
 			diagnosticSeverity = "Hint",
