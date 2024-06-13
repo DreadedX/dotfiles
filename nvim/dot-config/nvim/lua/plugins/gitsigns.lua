@@ -8,6 +8,21 @@ return {
 			delete = { text = "_" },
 			topdelete = { text = "‾" },
 			changedelete = { text = "~" },
+			untracked = { text = "|" },
+		},
+		signs_staged = {
+			add = { text = "+" },
+			change = { text = "~" },
+			delete = { text = "_" },
+			topdelete = { text = "‾" },
+			changedelete = { text = "~" },
+			untracked = { text = "|" },
+		},
+		attach_to_untracked = true,
+		current_line_blame_opts = {
+			virt_text_pos = "right_align",
+			delay = 200,
+			priority = 9999,
 		},
 	},
 	init = function()
@@ -23,11 +38,13 @@ return {
 			{ desc = "[G]it undo [S]tage hunk" }
 		)
 
+		vim.keymap.set("n", "<leader>gd", require("gitsigns.actions").preview_hunk, { desc = "[G]it [D]iff hunk" })
+
 		vim.keymap.set(
 			"n",
-			"<leader>gd",
-			require("gitsigns.actions").preview_hunk_inline,
-			{ desc = "[G]it [D]iff hunk" }
+			"<leader>gb",
+			require("gitsigns.actions").toggle_current_line_blame,
+			{ desc = "[G]it [B]lame" }
 		)
 
 		vim.keymap.set("n", "<leader>gr", require("gitsigns.actions").reset_hunk, { desc = "[G]it [R]eset hunk" })
