@@ -4,7 +4,6 @@ local file = require("symbols.file")
 
 return {
 	"akinsho/bufferline.nvim",
-	version = "v3.*",
 	dependencies = {
 		"ojroques/nvim-bufdel",
 	},
