@@ -24,5 +24,8 @@
 [commit]
 	gpgsign = true
 
+[diff]
+	tool = nvimdiff
+
 [includeIf "gitdir:~/Projects/ALTEN/"]
 	path = ~/.dotfiles/git/gitconfig/ALTEN
