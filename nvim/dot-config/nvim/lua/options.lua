@@ -57,3 +57,7 @@ vim.o.showmode = false
 
 -- Minimum number of screen lines above and below the cursor
 vim.o.scrolloff = 10
+
+-- Highlight tabs and trailing whitespace
+vim.o.listchars = "trail:~,tab:¦⁃,nbsp:␣"
+vim.o.list = true
