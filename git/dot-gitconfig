@@ -3,4 +3,4 @@
 	path = ~/.dotfiles/git/profiles/Dreaded_X
 
 [includeIf "gitdir:~/Projects/ALTEN/"]
-	path = ~/.dotfiles/git/gitconfig/ALTEN
+	path = ~/.dotfiles/git/profiles/ALTEN
