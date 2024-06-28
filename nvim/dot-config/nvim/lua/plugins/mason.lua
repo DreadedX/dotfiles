@@ -15,7 +15,13 @@ return {
 		},
 		config = function()
 			local tools = require("tools")
-			local ensure_installed = vim.tbl_keys(tools.servers)
+			local ensure_installed = vim.tbl_keys(vim.tbl_map(function(server)
+				if server.system then
+					return nil
+				else
+					return server
+				end
+			end, tools.servers))
 			ensure_installed =
 				vim.list_extend(ensure_installed, require("util.mason").process_formatters(tools.formatters))
 			ensure_installed = vim.list_extend(ensure_installed, tools.extra)

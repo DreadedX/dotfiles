@@ -122,16 +122,22 @@ return {
 			dynamicRegistration = true,
 		}
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = require("tools").servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
-					server.handlers = handlers
+		local handler = function(server_name)
+			local server = require("tools").servers[server_name] or {}
+			server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
+			server.handlers = handlers
 
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
+			require("lspconfig")[server_name].setup(server)
+		end
+
+		for server, config in pairs(require("tools").servers) do
+			if config.system then
+				handler(server)
+			end
+		end
+
+		require("mason-lspconfig").setup({
+			handlers = { handler },
 		})
 	end,
 }

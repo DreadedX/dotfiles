@@ -8,6 +8,7 @@ tools.servers = {
 	gopls = {},
 	pyright = {},
 	rust_analyzer = {
+		system = true,
 		settings = {
 			["rust-analyzer"] = {
 				check = {
@@ -45,7 +46,9 @@ tools.servers = {
 	},
 	taplo = {},
 	neocmake = {},
-	-- nil_ls = {},
+	nil_ls = {
+		system = true,
+	},
 	typos_lsp = {
 		init_options = {
 			diagnosticSeverity = "Hint",
