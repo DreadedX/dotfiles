@@ -75,6 +75,8 @@ tools.formatters = require("util.conform").assign_formatters({
 })
 
 -- https://mason-registry.dev/registry/list
-tools.extra = {}
+tools.extra = {
+	"cpptools",
+}
 
 return tools
