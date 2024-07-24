@@ -11,9 +11,6 @@ return {
 		-- Set capabilities from cmp
 		"hrsh7th/cmp-nvim-lsp",
 
-		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim", opts = {} },
-
 		-- Add document color
 		"mrshmllow/document-color.nvim",
 
