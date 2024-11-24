@@ -1,4 +1,3 @@
-import = ["/home/tim/.config/alacritty/gruvbox_dark.toml"]
 
 [env]
 TERM = "xterm-256color"
@@ -18,3 +17,6 @@ resize_increments = true
 [window.dimensions]
 columns = 80
 lines = 24
+
+[general]
+import = ["/home/tim/.config/alacritty/gruvbox_dark.toml"]
