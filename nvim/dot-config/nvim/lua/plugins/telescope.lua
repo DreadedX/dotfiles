@@ -27,12 +27,12 @@ return {
 				},
 				mappings = {
 					n = {
-						["<S-Tab>"] = "move_selection_next",
-						["<Tab>"] = "move_selection_previous",
+						["<Tab>"] = "move_selection_worse",
+						["<S-Tab>"] = "move_selection_better",
 					},
 					i = {
-						["<S-Tab>"] = "move_selection_next",
-						["<Tab>"] = "move_selection_previous",
+						["<Tab>"] = "move_selection_worse",
+						["<S-Tab>"] = "move_selection_better",
 					},
 				},
 				borderchars = require("symbols.window").borderchars,
