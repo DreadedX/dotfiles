@@ -45,7 +45,7 @@ source $ZSH/oh-my-zsh.sh
 
 less_termcap[so]="${fg_bold[black]}${bg[white]}"
 
-export PATH="${HOME}/.local/bin:$PATH"
+export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:$PATH"
 export EDITOR=nvim
 # export GREP_COLORS="mt=01;32"
 
