@@ -59,6 +59,13 @@ return {
 				WhichKey = { fg = palette.bright_aqua, bold = true },
 				WhichKeyDesc = { fg = palette.light1 },
 				WhichKeyGroup = { fg = palette.neutral_blue, bold = true },
+				NeoTreeBufferNumber = { fg = palette.bright_green, bold = true },
+				NeoTreeDirectoryName = { fg = palette.neutral_blue, bold = true },
+				NeoTreeRootName = { fg = palette.neutral_blue, bold = true },
+				NeoTreeDirectoryIcon = { fg = palette.neutral_blue },
+				NeoTreeFileIcon = { fg = palette.light1 },
+				NeoTreeFilterTerm = { fg = palette.bright_aqua, bold = true },
+				NeoTreeSymbolicLinkTarget = { fg = palette.bright_aqua, bold = true },
 			},
 		})
 

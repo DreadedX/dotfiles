@@ -21,6 +21,22 @@ return {
 			popup_border_style = require("symbols.window").border,
 			source_selector = {
 				winbar = true,
+				show_scrolled_off_parent_node = true,
+				sources = {
+					{
+						source = "filesystem",
+						display_name = " Files ",
+					},
+					{
+						source = "buffers",
+						display_name = " Buffers ",
+					},
+					{
+						source = "git_status",
+						display_name = " Git ",
+					},
+				},
+				show_separator_on_edge = true,
 			},
 			default_component_configs = {
 				diagnostics = {
@@ -65,10 +81,15 @@ return {
 				scan_mode = "deep",
 			},
 			window = {
+				popup = {
+					title = "",
+				},
 				position = "float",
 				mappings = {
 					["<C-c>"] = "close_window",
 					["<esc>"] = "close_window",
+					["<tab>"] = "next_source",
+					["<S-tab>"] = "prev_source",
 				},
 			},
 		})
