@@ -23,7 +23,7 @@ return {
 			vim.keymap.set("n", "<F4>", "<cmd>TroubleToggle todo<cr>", { desc = "Next todo comment" })
 		end
 		if pcall(require, "telescope") then
-			vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "[S]earch [T]odo" })
+			vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search todo" })
 		end
 
 		require("todo-comments").setup({

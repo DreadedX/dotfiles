@@ -56,23 +56,23 @@ return {
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP:" .. desc })
 				end
 
-				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-				map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]symbols")
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols")
+				map("gd", vim.lsp.buf.definition, "Goto definition")
+				map("gr", require("telescope.builtin").lsp_references, "Goto references")
+				map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
+				map("<leader>D", vim.lsp.buf.type_definition, "Type definition")
+				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
 
 				vim.keymap.set("n", "<leader>rn", function()
 					return ":IncRename " .. vim.fn.expand("<cword>")
-				end, { buffer = event.buf, expr = true, desc = "LSP: [R]e[N]ame" })
+				end, { buffer = event.buf, expr = true, desc = "Rename" })
 
 				-- TODO: Do we need this to work in visal mode?
 				vim.keymap.set(
 					{ "v", "n" },
 					"<leader>ca",
 					vim.lsp.buf.code_action,
-					{ buffer = event.buf, desc = "LSP: [C]ode [A]ction", remap = true }
+					{ buffer = event.buf, desc = "Code actions", remap = true }
 				)
 
 				-- Signature help
@@ -80,7 +80,7 @@ return {
 				map("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 				-- Lesser used LSP functionality
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				map("gD", vim.lsp.buf.declaration, "Goto declaration")
 
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				-- Turn of lsp based syntax highlighting

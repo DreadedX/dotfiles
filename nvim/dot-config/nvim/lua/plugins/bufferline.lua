@@ -24,10 +24,10 @@ return {
 		-- Setup keybinds to move buffers around
 		vim.keymap.set("n", "<leader>b[", function()
 			bufferline.move(-1)
-		end, { silent = true, desc = "[B]uffer to the [ left" })
+		end, { silent = true, desc = "Move buffer to left" })
 		vim.keymap.set("n", "<leader>b]", function()
 			bufferline.move(1)
-		end, { silent = true, desc = "[B]uffer to the ] right" })
+		end, { silent = true, desc = "Move buffer to right" })
 
 		bufferline.setup({
 			options = {

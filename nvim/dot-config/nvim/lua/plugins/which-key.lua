@@ -41,24 +41,16 @@ return {
 				F12 = "<F12> ",
 			},
 		},
+		expand = 1,
+		sort = { "alphanum" },
 	},
 	init = function()
 		-- TODO: Only make a category show up if there actually are any keybinds under it
 		require("which-key").add({
-			{ "<leader>b", group = "[B]buffer" },
-			{ "<leader>b_", hidden = true },
-			{ "<leader>c", group = "[C]ode" },
-			{ "<leader>c_", hidden = true },
-			{ "<leader>d", group = "[D]ocument" },
-			{ "<leader>d_", hidden = true },
-			{ "<leader>g", group = "[G]it" },
-			{ "<leader>g_", hidden = true },
-			{ "<leader>r", group = "[R]e[N]ame" },
-			{ "<leader>r_", hidden = true },
-			{ "<leader>s", group = "[S]earch" },
-			{ "<leader>s_", hidden = true },
-			{ "<leader>w", group = "[W]orkspace" },
-			{ "<leader>w_", hidden = true },
+			{ "<leader>b", group = "Buffer" },
+			{ "<leader>d", group = "Document" },
+			{ "<leader>g", group = "Git" },
+			{ "<leader>s", group = "Search" },
 		})
 	end,
 }
