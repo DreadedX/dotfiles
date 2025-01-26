@@ -56,6 +56,9 @@ return {
 				NeoTreeTabInactive = { fg = palette.light4, bg = palette.dark2 },
 				NeoTreeTabSeparatorActive = { link = "NeoTreeTabActive" },
 				NeoTreeTabSeparatorInactive = { link = "NeoTreeTabInactive" },
+				WhichKey = { fg = palette.bright_aqua, bold = true },
+				WhichKeyDesc = { fg = palette.light1 },
+				WhichKeyGroup = { fg = palette.neutral_blue, bold = true },
 			},
 		})
 
