@@ -120,14 +120,14 @@ return {
 		}
 
 		local handler = function(server_name)
-			local server = require("tools").servers[server_name] or {}
+			local server = require("tools").servers()[server_name] or {}
 			server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
 			server.handlers = handlers
 
 			require("lspconfig")[server_name].setup(server)
 		end
 
-		for server, config in pairs(require("tools").servers) do
+		for server, config in pairs(require("tools").servers()) do
 			if config.system then
 				handler(server)
 			end
