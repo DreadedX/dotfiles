@@ -34,17 +34,12 @@ tools.servers = function()
 				},
 			},
 		},
-		yamlls = {
-			settings = {
-				yaml = {
-					schemaStore = {
-						enable = false,
-						url = "",
-					},
-					schemas = require("schemastore").yaml.schemas(),
-				},
+		yamlls = require("yaml-companion").setup({
+			builtin_matchers = {
+				kubernetes = { enabled = false },
+				kubernetes_custom = { enabled = true },
 			},
-		},
+		}),
 		taplo = {},
 		neocmake = {},
 		nil_ls = {
