@@ -28,6 +28,9 @@ plugins=(
 	dirhistory
 )
 
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=yellow"
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red"
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT=3
