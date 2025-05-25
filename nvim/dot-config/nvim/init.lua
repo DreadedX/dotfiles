@@ -26,6 +26,9 @@ require("lazy").setup({
 			"gruvbox",
 		},
 	},
+	rocks = {
+		enabled = false,
+	},
 	ui = {
 		border = require("symbols.window").border,
 		backdrop = 100,
