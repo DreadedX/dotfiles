@@ -53,3 +53,22 @@ export EDITOR=nvim
 # export GREP_COLORS="mt=01;32"
 
 alias cl="clear"
+
+if hash devcontainer 2>/dev/null; then
+	dc() {
+	  ORIG_DIR="$PWD"
+	  while [[ "$PWD" != / ]] ; do
+		if find "$PWD"/ -maxdepth 1 -type d -name ".devcontainer" | grep -q ".devcontainer"; then
+		  WORKSPACE_FOLDER="$PWD"
+		  builtin cd "$ORIG_DIR"
+		  devcontainer exec --workspace-folder "$WORKSPACE_FOLDER" $@
+		  return 0
+		else
+		  builtin cd ..
+		fi
+	  done
+	  builtin cd "$ORIG_DIR"
+	  echo "Unable to find workspace folder"
+	  return 1
+	}
+fi
