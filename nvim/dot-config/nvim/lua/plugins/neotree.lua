@@ -82,7 +82,9 @@ return {
 			},
 			window = {
 				popup = {
-					title = "",
+					title = function(state)
+						return ""
+					end,
 				},
 				position = "float",
 				mappings = {
