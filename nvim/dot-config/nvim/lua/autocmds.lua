@@ -90,12 +90,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		)
 
 		-- Documentation
-		vim.keymap.set("n", "K", function()
-			vim.lsp.buf.hover({ border = window.border })
-		end, { desc = "Hover Documentation" })
-		-- vim.keymap.set("n", "<C-k>", function()
-		-- 	vim.lsp.buf.signature_help({ border = border })
-		-- end, { desc = "Signature Documentation" })
+		-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 	end,
 })
 
@@ -128,7 +123,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Setup cursor hover symbol highlight
+-- Disable lsp based syntax highlighting
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)

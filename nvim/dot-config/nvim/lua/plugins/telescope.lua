@@ -1,4 +1,5 @@
 -- https://github.com/nvim-telescope/telescope.nvim
+local window = require("symbols.window")
 -- TODO: Ensure installed ripgrep
 return {
 	"nvim-telescope/telescope.nvim",
@@ -35,13 +36,27 @@ return {
 						["<S-Tab>"] = "move_selection_better",
 					},
 				},
-				borderchars = require("symbols.window").borderchars,
+				borderchars = window.borderchars,
 			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
 			},
+		})
+
+		-- HACK: Workaround until new borders are fixed in telescope
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "TelescopeFindPre",
+			callback = function()
+				vim.opt_local.winborder = "none"
+				vim.api.nvim_create_autocmd("WinLeave", {
+					once = true,
+					callback = function()
+						vim.opt_local.winborder = window.border
+					end,
+				})
+			end,
 		})
 
 		require("telescope").load_extension("fzf")

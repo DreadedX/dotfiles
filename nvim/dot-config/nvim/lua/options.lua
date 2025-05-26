@@ -1,5 +1,5 @@
 local diagnostic = require("symbols.diagnostic")
-local border = require("symbols.window").border
+local window = require("symbols.window")
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -67,6 +67,9 @@ vim.o.list = true
 
 -- Fold settings
 vim.o.foldlevelstart = 99
+
+-- Windows borders
+vim.o.winborder = window.border
 
 -- LSP config
 vim.diagnostic.config({

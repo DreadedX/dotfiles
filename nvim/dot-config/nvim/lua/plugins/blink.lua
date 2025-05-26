@@ -1,4 +1,3 @@
-local window = require("symbols.window")
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
@@ -56,9 +55,6 @@ return {
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
-				window = {
-					border = window.border,
-				},
 			},
 			menu = {
 				auto_show = true,
@@ -77,15 +73,11 @@ return {
 						},
 					},
 				},
-				border = window.border,
 			},
 		},
 
 		signature = {
 			enabled = true,
-			window = {
-				border = window.border,
-			},
 			trigger = {
 				show_on_accept = true,
 				show_on_insert = true,
