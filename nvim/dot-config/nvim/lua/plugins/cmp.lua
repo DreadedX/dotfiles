@@ -8,9 +8,6 @@ return {
 			"hrsh7th/cmp-path",
 			"onsails/lspkind-nvim",
 
-			-- Improve sorting order for rust
-			"zjp-CN/nvim-cmp-lsp-rs",
-
 			-- Snippets
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
@@ -20,9 +17,6 @@ return {
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 			local border = require("symbols.window").border
-
-			local cmp_rs = require("cmp_lsp_rs")
-			local comparators = cmp_rs.comparators
 
 			cmp.setup({
 				snippet = {
@@ -82,12 +76,6 @@ return {
 						end
 					end, { "i", "s" }),
 				}),
-				sorting = {
-					comparators = {
-						comparators.inherent_import_inscope,
-						comparators.sort_by_label_but_underscore_last,
-					},
-				},
 				sources = {
 					{ name = "lazydev", group_index = 0 },
 					{ name = "nvim_lsp" },
