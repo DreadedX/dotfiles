@@ -61,3 +61,6 @@ vim.o.scrolloff = 10
 -- Highlight tabs and trailing whitespace
 vim.o.listchars = "trail:~,tab:¦⁃,nbsp:␣"
 vim.o.list = true
+
+-- Fold settings
+vim.o.foldlevelstart = 99
