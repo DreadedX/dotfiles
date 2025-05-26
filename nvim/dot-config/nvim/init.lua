@@ -34,3 +34,24 @@ require("lazy").setup({
 		backdrop = 100,
 	},
 })
+
+local lsp = require("tools.lsp")
+for _, tool in pairs(lsp) do
+	if type(tool) == "table" then
+		local name = tool[1]
+
+		-- Apply additional config if specified
+		local config = tool[2]
+		if config ~= nil then
+			vim.lsp.config(name, config)
+		end
+
+		-- System LSP are not managed by mason and need to be enabled manually
+		if
+			(type(tool.system) == "boolean" and tool.system and vim.fn.executable(name) > 0)
+			or (type(tool.system) == "string" and vim.fn.executable(tool.system) > 0)
+		then
+			vim.lsp.enable(name)
+		end
+	end
+end

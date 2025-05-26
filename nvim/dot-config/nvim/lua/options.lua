@@ -1,3 +1,6 @@
+local diagnostic = require("symbols.diagnostic")
+local border = require("symbols.window").border
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
@@ -39,7 +42,7 @@ vim.o.termguicolors = true
 
 -- Default tab settings
 -- Tab settings are automatically detected by vim-sleuth
--- Can be overriden by .editorconfig and modeline
+-- Can be overridden by .editorconfig and modeline
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
@@ -64,3 +67,22 @@ vim.o.list = true
 
 -- Fold settings
 vim.o.foldlevelstart = 99
+
+-- LSP config
+vim.diagnostic.config({
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = diagnostic.error,
+			[vim.diagnostic.severity.WARN] = diagnostic.warn,
+			[vim.diagnostic.severity.HINT] = diagnostic.hint,
+			[vim.diagnostic.severity.INFO] = diagnostic.info,
+		},
+	},
+	virtual_text = {
+		virt_text_pos = "eol_right_align",
+		format = function(d)
+			return ("%s [%s]"):format(d.message, d.source)
+		end,
+	},
+})
