@@ -4,27 +4,15 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-context",
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 			"windwp/nvim-ts-autotag",
 		},
+		lazy = false,
+		branch = "main",
+		build = ":TSUpdate",
 		opts = {
 			-- Add languages to be installed here that you want installed for treesitter
-			ensure_installed = {
-				"c",
-				"cpp",
-				"go",
-				"lua",
-				"python",
-				"rust",
-				"tsx",
-				"typescript",
-				"vimdoc",
-				"vim",
-				"markdown",
-				"markdown_inline",
-				"bash",
-				"sql",
-			},
+			ensure_installed = require("tools.highlight"),
 
 			-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
 			auto_install = true,
@@ -91,10 +79,6 @@ return {
 				enable = true,
 			},
 		},
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",

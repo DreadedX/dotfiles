@@ -1,0 +1,16 @@
+return {
+	"c",
+	"cpp",
+	"go",
+	"lua",
+	"python",
+	"rust",
+	"tsx",
+	"typescript",
+	"vimdoc",
+	"vim",
+	"markdown",
+	"markdown_inline",
+	"bash",
+	"sql",
+}
