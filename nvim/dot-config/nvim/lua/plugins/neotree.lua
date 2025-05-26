@@ -11,7 +11,7 @@ return {
 	},
 	cmd = { "Neotree" },
 	keys = {
-		{ "<F2>", "<cmd>Neotree toggle last<cr>", desc = "Open floating Neo-tree window" },
+		{ "<F2>", "<cmd>Neotree toggle reveal<cr>", desc = "Open floating Neo-tree window" },
 	},
 	-- netrw hijack does not work when lazy loading
 	lazy = false,
