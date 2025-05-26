@@ -2,9 +2,6 @@
 local slow_format_filetypes = {}
 return {
 	"stevearc/conform.nvim",
-	dependencies = {
-		"williamboman/mason.nvim",
-	},
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	keys = {
@@ -19,7 +16,24 @@ return {
 		},
 	},
 	opts = {
-		formatters_by_ft = require("tools.format"),
+		formatters_by_ft = (function()
+			local formatters = require("tools.format")
+			local formatters_by_ft = {}
+			for lang, formatter in pairs(formatters) do
+				formatters_by_ft[lang] = {}
+				if type(formatter) == "table" then
+					for _, tool in ipairs(formatter) do
+						if type(tool) == "table" then
+							table.insert(formatters_by_ft[lang], tool[1])
+						else
+							table.insert(formatters_by_ft[lang], tool)
+						end
+					end
+				end
+			end
+
+			return formatters_by_ft
+		end)(),
 		notify_on_error = false,
 		format_on_save = function(bufnr)
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then

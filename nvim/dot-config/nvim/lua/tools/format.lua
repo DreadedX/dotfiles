@@ -3,7 +3,7 @@ return {
 	cpp = { "clang-format" },
 	go = { "goimports", "gofmt" },
 	python = { "ruff_organize_imports", "ruff_format" },
-	rust = { "rustfmt" },
+	rust = { { "rustfmt", system = true } },
 	javascript = { "prettierd" },
 	javascriptreact = { "prettierd" },
 	typescript = { "prettierd" },
