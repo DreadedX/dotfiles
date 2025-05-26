@@ -3,7 +3,6 @@ return {
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-context",
 			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 			"windwp/nvim-ts-autotag",
 		},
@@ -78,14 +77,6 @@ return {
 			autotag = {
 				enable = true,
 			},
-		},
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		opts = {
-			multiwindow = true,
-			mode = "topline",
-			separator = require("symbols.window").borderchars[3],
 		},
 	},
 }
