@@ -93,9 +93,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "K", function()
 			vim.lsp.buf.hover({ border = window.border })
 		end, { desc = "Hover Documentation" })
-		vim.keymap.set("n", "<C-k>", function()
-			vim.lsp.buf.signature_help({ border = border })
-		end, { desc = "Signature Documentation" })
+		-- vim.keymap.set("n", "<C-k>", function()
+		-- 	vim.lsp.buf.signature_help({ border = border })
+		-- end, { desc = "Signature Documentation" })
 	end,
 })
 
