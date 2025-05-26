@@ -22,8 +22,6 @@ return {
 					return tool
 				end
 			end, tools.servers()))
-			ensure_installed =
-				vim.list_extend(ensure_installed, require("util.mason").process_formatters(tools.formatters))
 			ensure_installed = vim.list_extend(ensure_installed, tools.extra)
 
 			require("mason-tool-installer").setup({
@@ -31,5 +29,13 @@ return {
 				auto_update = true,
 			})
 		end,
+	},
+	{
+		"zapling/mason-conform.nvim",
+		opts = {},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"stevearc/conform.nvim",
+		},
 	},
 }

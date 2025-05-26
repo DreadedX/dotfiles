@@ -1,5 +1,4 @@
 -- https://github.com/stevearc/conform.nvim
-
 local slow_format_filetypes = {}
 return {
 	"stevearc/conform.nvim",
@@ -20,7 +19,7 @@ return {
 		},
 	},
 	opts = {
-		formatters_by_ft = require("tools").formatters,
+		formatters_by_ft = require("tools.format"),
 		notify_on_error = false,
 		format_on_save = function(bufnr)
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
