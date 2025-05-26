@@ -20,7 +20,7 @@ return {
 	{ "clangd", {
 		cmd = { "clangd", "--offset-encoding=utf-16", "--clang-tidy" },
 	} },
-	"pyright",
+	"basedpyright",
 	{
 		"lua_ls",
 		{
