@@ -20,7 +20,17 @@ return {
 			["<C-d>"] = { "scroll_documentation_down" },
 
 			["<CR>"] = { "accept", "fallback" },
-			["<Esc>"] = { "cancel", "fallback" },
+			["<Esc>"] = {
+				function(cmp)
+					if cmp.is_visible() then
+						cmp.cancel()
+						if cmp.get_selected_item_idx() ~= nil then
+							return true
+						end
+					end
+				end,
+				"fallback",
+			},
 
 			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
 			["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
