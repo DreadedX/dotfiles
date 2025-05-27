@@ -4,7 +4,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
-			"windwp/nvim-ts-autotag",
+			{ "windwp/nvim-ts-autotag", opts = {} },
 		},
 		lazy = false,
 		branch = "master",
@@ -70,9 +70,6 @@ return {
 						["<leader>A"] = "@parameter.inner",
 					},
 				},
-			},
-			autotag = {
-				enable = true,
 			},
 		},
 	},
