@@ -139,23 +139,3 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 		vim.diagnostic.config({ virtual_lines = false })
 	end,
 })
-
--- Auto install treesitter parser and start them
-vim.api.nvim_create_autocmd("FileType", {
-	desc = "Enable Treesitter",
-	group = vim.api.nvim_create_augroup("enable_treesitter", {}),
-	callback = function(event)
-		local has_treesitter, treesitter = pcall(require, "nvim-treesitter")
-		if has_treesitter then
-			local language = vim.treesitter.language.get_lang(event.match)
-			treesitter.install(language):await(function()
-				if pcall(vim.treesitter.start) then
-					-- Use Treesitter indentation and folds.
-					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-					vim.wo.foldmethod = "expr"
-					vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-				end
-			end)
-		end
-	end,
-})

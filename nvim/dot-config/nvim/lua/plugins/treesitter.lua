@@ -3,12 +3,13 @@ return {
 		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
-			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
 			"windwp/nvim-ts-autotag",
 		},
 		lazy = false,
-		branch = "main",
+		branch = "master",
 		build = ":TSUpdate",
+		main = "nvim-treesitter.configs",
 		opts = {
 			ensure_installed = require("tools.highlight"),
 
