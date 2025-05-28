@@ -11,6 +11,7 @@ return {
 				strings = false,
 			},
 			overrides = {
+				CursorLineNr = { fg = palette.light4, bg = palette.dark1, bold = true },
 				YankHighlight = { fg = palette.bright_blue, bg = palette.dark0, reverse = true },
 				Search = { fg = palette.bright_aqua },
 				IncSearch = { link = "Search" },
@@ -68,6 +69,10 @@ return {
 				NeoTreeFileIcon = { fg = palette.light1 },
 				NeoTreeFilterTerm = { fg = palette.bright_aqua, bold = true },
 				NeoTreeSymbolicLinkTarget = { fg = palette.bright_aqua, bold = true },
+				DiagnosticNumError = { fg = palette.dark0, bg = palette.bright_red, bold = true },
+				DiagnosticNumWarn = { fg = palette.dark0, bg = palette.bright_yellow, bold = true },
+				DiagnosticNumHint = { fg = palette.dark0, bg = palette.bright_aqua, bold = true },
+				DiagnosticNumInfo = { fg = palette.dark0, bg = palette.bright_blue, bold = true },
 			},
 		})
 

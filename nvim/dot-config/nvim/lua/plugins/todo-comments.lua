@@ -35,7 +35,7 @@ return {
 				-- HACK: Hack
 				HACK = { icon = diagnostic.hack },
 				-- WARN: Warn
-				WARN = { icon = diagnostic.warning },
+				WARN = { icon = diagnostic.warn },
 				-- PERF: Perf
 				PERF = { icon = diagnostic.performance },
 				-- NOTE: Note

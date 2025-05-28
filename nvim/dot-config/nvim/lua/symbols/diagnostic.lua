@@ -1,9 +1,13 @@
 -- Symbols to use for diagnostics
 return {
 	-- LSP Status symbols
-	error = "",
-	warn = "",
-	info = "",
+	[vim.diagnostic.severity.ERROR] = " ",
+	[vim.diagnostic.severity.WARN] = " ",
+	[vim.diagnostic.severity.INFO] = " ",
+	[vim.diagnostic.severity.HINT] = "󰌵",
+	error = " ",
+	warn = " ",
+	info = " ",
 	hint = "󰌵",
 	-- Comment type symbols
 	bug = "󰃤",

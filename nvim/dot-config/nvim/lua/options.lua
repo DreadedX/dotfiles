@@ -77,11 +77,17 @@ vim.o.winborder = window.border
 vim.diagnostic.config({
 	severity_sort = true,
 	signs = {
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticNumError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticNumWarn",
+			[vim.diagnostic.severity.HINT] = "DiagnosticNumHint",
+			[vim.diagnostic.severity.INFO] = "DiagnosticNumInfo",
+		},
 		text = {
-			[vim.diagnostic.severity.ERROR] = diagnostic.error,
-			[vim.diagnostic.severity.WARN] = diagnostic.warn,
-			[vim.diagnostic.severity.HINT] = diagnostic.hint,
-			[vim.diagnostic.severity.INFO] = diagnostic.info,
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
 		},
 	},
 	float = {
@@ -95,7 +101,7 @@ vim.diagnostic.config({
 	},
 	virtual_text = {
 		prefix = function(d)
-			return vim.diagnostic.config().signs.text[d.severity]
+			return diagnostic[d.severity]
 		end,
 		virt_text_pos = "eol_right_align",
 	},
