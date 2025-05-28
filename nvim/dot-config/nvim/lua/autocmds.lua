@@ -64,19 +64,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = 1 })
 		end, { desc = "Go to next diagnostic message" })
-		-- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-		vim.keymap.set("n", "<leader>e", function()
-			if vim.diagnostic.config().virtual_lines then
-				vim.diagnostic.config({ virtual_lines = false })
-			else
-				vim.diagnostic.config({
-					virtual_lines = {
-						current_line = true,
-						format = vim.diagnostic.config().virtual_text.format,
-					},
-				})
-			end
-		end, { desc = "Show virtual diagnostic line" })
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 
 		-- Helpers
 		vim.keymap.set("n", "<leader>rn", function()
@@ -130,12 +118,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if client and client.server_capabilities.semanticTokensProvider then
 			client.server_capabilities.semanticTokensProvider = nil
 		end
-	end,
-})
-
---
-vim.api.nvim_create_autocmd("CursorMoved", {
-	callback = function()
-		vim.diagnostic.config({ virtual_lines = false })
 	end,
 })

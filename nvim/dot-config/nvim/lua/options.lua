@@ -82,10 +82,19 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.INFO] = diagnostic.info,
 		},
 	},
-	virtual_text = {
-		virt_text_pos = "eol_right_align",
-		format = function(d)
-			return ("%s [%s]"):format(d.message, d.source)
+	float = {
+		severity_sort = false,
+		header = "",
+		suffix = function(d)
+			local code = d.code and string.format(" (%s)", d.code) or ""
+
+			return string.format("%s [%s]", code, d.source), "NormalFloat"
 		end,
+	},
+	virtual_text = {
+		prefix = function(d)
+			return vim.diagnostic.config().signs.text[d.severity]
+		end,
+		virt_text_pos = "eol_right_align",
 	},
 })
