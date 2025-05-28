@@ -7,3 +7,6 @@
 [submodule "tmux/tpm"]
 	path = tmux/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "zsh/custom/plugins/zsh-autopair"]
+	path = zsh/custom/plugins/zsh-autopair
+	url = https://github.com/hlissner/zsh-autopair
