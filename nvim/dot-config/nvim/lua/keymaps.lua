@@ -7,12 +7,6 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Keybinds for resizing windows
-vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<CR>")
-vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<CR>")
-vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
-vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
-
 -- Some nice adjustments
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
