@@ -24,7 +24,7 @@ return {
 				function(cmp)
 					if cmp.is_visible() then
 						cmp.cancel()
-						if cmp.get_selected_item_idx() ~= nil then
+						if cmp.get_selected_item_idx() ~= nil or cmp.snippet_active() then
 							return true
 						end
 					end
