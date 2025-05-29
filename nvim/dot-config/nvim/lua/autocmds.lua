@@ -1,5 +1,3 @@
-local window = require("symbols.window")
-
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
@@ -27,63 +25,58 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
 	end,
 })
 
+local group = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
 -- Setup lsp keybindings
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = group,
 	callback = function(event)
-		-- Symbols
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
-		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type definition" })
+		local map = function(keys, func, desc, mode)
+			mode = mode or "n"
+			vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
+		end
 
-		if pcall(require, "telescope") then
-			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "Goto references" })
-			vim.keymap.set(
-				"n",
-				"gI",
-				require("telescope.builtin").lsp_implementations,
-				{ desc = "Goto implementation" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ds",
-				require("telescope.builtin").lsp_document_symbols,
-				{ desc = "Document symbols" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>ws",
-				require("telescope.builtin").lsp_dynamic_workspace_symbols,
-				{ desc = "Workspace symbols" }
-			)
+		-- Symbols
+		map("grD", vim.lsp.buf.declaration, "Goto declaration")
+
+		local has_telescope, telescope = pcall(require, "telescope.builtin")
+		if has_telescope then
+			map("grd", telescope.lsp_definitions, "Goto definition")
+
+			map("grt", telescope.lsp_type_definitions, "Type definition")
+
+			map("grr", telescope.lsp_references, "Goto references")
+			map("gri", telescope.lsp_implementations, "Goto implementation")
+			map("gO", telescope.lsp_document_symbols, "Document symbols")
+			map("gW", telescope.lsp_dynamic_workspace_symbols, "Workspace symbols")
 		end
 
 		-- Diagnostics
-		vim.keymap.set("n", "[d", function()
+		map("[d", function()
 			vim.diagnostic.jump({ count = -1 })
-		end, { desc = "Go to previous diagnostic message" })
-		vim.keymap.set("n", "]d", function()
+		end, "Go to previous diagnostic message")
+		map("]d", function()
 			vim.diagnostic.jump({ count = 1 })
-		end, { desc = "Go to next diagnostic message" })
-		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+		end, "Go to next diagnostic message")
+		map("<leader>e", vim.diagnostic.open_float, "Open floating diagnostic message")
 
 		-- Helpers
-		vim.keymap.set("n", "<leader>rn", function()
+		vim.keymap.set("n", "grn", function()
 			return ":IncRename " .. vim.fn.expand("<cword>")
 		end, { buffer = event.buf, expr = true, desc = "Rename" })
-		vim.keymap.set(
-			"n",
-			"<leader>ca",
-			vim.lsp.buf.code_action,
-			{ buffer = event.buf, desc = "Code actions", remap = true }
-		)
+		map("gra", vim.lsp.buf.code_action, "Code actions", { "n", "x" })
 
-		-- Documentation
-		-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+			map("<leader>th", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+			end, "Toggle inlay hints")
+		end
 	end,
 })
 
 -- Setup cursor hover symbol highlight
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = group,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
@@ -113,6 +106,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Disable lsp based syntax highlighting
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = group,
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if client and client.server_capabilities.semanticTokensProvider then

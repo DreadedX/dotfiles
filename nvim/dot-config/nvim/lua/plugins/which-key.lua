@@ -51,6 +51,7 @@ return {
 			{ "<leader>d", group = "Document" },
 			{ "<leader>g", group = "Git" },
 			{ "<leader>s", group = "Search" },
+			{ "gr", group = "LSP" },
 		})
 	end,
 }
