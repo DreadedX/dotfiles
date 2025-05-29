@@ -28,19 +28,22 @@ return {
 	},
 	init = function()
 		local ga = require("gitsigns.actions")
-		vim.keymap.set("n", "<leader>gs", ga.stage_hunk, { desc = "(Un)stage hunk" })
-		vim.keymap.set("v", "<leader>gs", function()
+		vim.keymap.set("n", "gs", ga.stage_hunk, { desc = "(Un)stage hunk" })
+		vim.keymap.set("n", "gS", ga.stage_buffer, { desc = "Stage buffer" })
+		vim.keymap.set("v", "gs", function()
 			ga.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end, { desc = "(Un)stage selection" })
 
-		vim.keymap.set("n", "<leader>gd", ga.preview_hunk, { desc = "Diff hunk" })
+		vim.keymap.set("n", "gd", ga.preview_hunk, { desc = "Diff hunk" })
 
-		vim.keymap.set("n", "<leader>gb", ga.toggle_current_line_blame, { desc = "Blame" })
+		vim.keymap.set("n", "<leader>tb", ga.toggle_current_line_blame, { desc = "Line blame" })
+		vim.keymap.set("n", "gb", ga.blame_line, { desc = "View blame" })
 
 		vim.keymap.set("n", "<leader>gr", ga.reset_hunk, { desc = "Reset hunk" })
+		vim.keymap.set("n", "<leader>gR", ga.reset_buffer, { desc = "Reset buffer" })
 		vim.keymap.set("v", "<leader>gr", function()
 			ga.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end, { desc = "Reset selection" })
+		end, { desc = "Git reset selection" })
 
 		vim.keymap.set("n", "]g", function()
 			ga.nav_hunk("next")

@@ -48,8 +48,9 @@ return {
 		-- TODO: Only make a category show up if there actually are any keybinds under it
 		require("which-key").add({
 			{ "<leader>b", group = "Buffer" },
-			{ "<leader>d", group = "Document" },
+			{ "<leader>d", group = "Doument" },
 			{ "<leader>g", group = "Git" },
+			{ "<leader>t", group = "Toggle" },
 			{ "<leader>s", group = "Search" },
 			{ "gr", group = "LSP" },
 		})

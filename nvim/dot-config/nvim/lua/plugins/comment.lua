@@ -1,6 +1,13 @@
 -- https://github.com/numToStr/Comment.nvim
 return {
-	'numToStr/Comment.nvim',
+	"numToStr/Comment.nvim",
 	event = "VeryLazy",
-	opts = {},
+	opts = {
+		toggler = {
+			block = "gBc",
+		},
+		opleader = {
+			block = "gB",
+		},
+	},
 }
