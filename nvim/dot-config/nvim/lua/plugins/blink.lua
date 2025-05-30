@@ -13,8 +13,6 @@ return {
 		-- keymap = { preset = "default" },
 		keymap = {
 			preset = "default",
-			-- ["<C-u>"] = {function(cmp) cmp.scroll_documentation_up(4) end},
-			-- ["<C-d>"] = {function(cmp) cmp.scroll_documentation_down(4) end},
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-u>"] = { "scroll_documentation_up" },
 			["<C-d>"] = { "scroll_documentation_down" },

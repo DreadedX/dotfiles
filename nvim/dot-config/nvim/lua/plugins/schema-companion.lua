@@ -43,6 +43,7 @@ return {
 			schemas = {},
 		})
 
+		-- TODO: Set on lsp attach with filetype yaml?
 		vim.keymap.set(
 			"n",
 			"<leader>ss",

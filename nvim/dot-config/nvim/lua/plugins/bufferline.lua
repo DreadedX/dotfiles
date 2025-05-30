@@ -4,9 +4,6 @@ local file = require("symbols.file")
 
 return {
 	"akinsho/bufferline.nvim",
-	dependencies = {
-		"ojroques/nvim-bufdel",
-	},
 	config = function()
 		-- Enable mousemoveevent if possible
 		vim.o.mousemoveevent = true
@@ -34,8 +31,6 @@ return {
 				show_buffer_icons = false,
 				show_buffer_close_icons = false,
 				diagnostics = "nvim_lsp",
-				-- close_command = "BufDel %d",
-				-- right_mouse_command = "BufDel %d",
 				separator_style = "thick",
 				left_trunc_marker = "",
 				right_trunc_marker = "",
