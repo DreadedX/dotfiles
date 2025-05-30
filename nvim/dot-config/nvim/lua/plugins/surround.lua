@@ -6,5 +6,7 @@ return {
 	event = "VeryLazy",
 	--- @module "nvim-surround"
 	--- @type user_options
-	opts = {},
+	opts = {
+		move_cursor = "sticky",
+	},
 }
