@@ -4,9 +4,7 @@ local diagnostic = require("symbols.diagnostic")
 --- @module "lazy"
 --- @type LazySpec
 return {
-	-- 'folke/todo-comments.nvim',
-	-- NOTE: This fork highlights the entire matched word, not just the keyword.
-	"doongjohn/todo-comments.nvim",
+	"folke/todo-comments.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
