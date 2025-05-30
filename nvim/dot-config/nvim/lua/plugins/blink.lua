@@ -25,6 +25,8 @@ return {
 						if cmp.get_selected_item_idx() ~= nil or cmp.snippet_active() then
 							return true
 						end
+					elseif cmp.snippet_active() then
+						vim.snippet.stop()
 					end
 				end,
 				"fallback",
