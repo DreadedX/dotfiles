@@ -1,5 +1,24 @@
 -- https://github.com/stevearc/conform.nvim
-local slow_format_filetypes = {}
+local formatters_by_ft = {
+	c = { "clang-format" },
+	cpp = { "clang-format" },
+	go = { "goimports" },
+	python = { "ruff_organize_imports", "ruff_format" },
+	rust = { "rustfmt" },
+	javascript = { "prettierd" },
+	javascriptreact = { "prettierd" },
+	typescript = { "prettierd" },
+	typescriptreact = { "prettierd" },
+	css = { "prettierd" },
+	markdown = { "prettierd" },
+	yaml = { "prettierd" },
+	lua = { "stylua" },
+	json = { "jq" },
+	toml = { "taplo" },
+	-- ["*"] = { "injected" },
+	["_"] = { "trim_whitespace", "trim_newlines" },
+}
+
 --- @module "lazy"
 --- @type LazySpec
 return {
@@ -20,47 +39,14 @@ return {
 	--- @module "conform"
 	--- @type conform.setupOpts
 	opts = {
-		formatters_by_ft = (function()
-			local formatters = require("tools.format")
-			local formatters_by_ft = {}
-			for lang, formatter in pairs(formatters) do
-				formatters_by_ft[lang] = {}
-				if type(formatter) == "table" then
-					for _, tool in ipairs(formatter) do
-						if type(tool) == "table" then
-							table.insert(formatters_by_ft[lang], tool[1])
-						else
-							table.insert(formatters_by_ft[lang], tool)
-						end
-					end
-				end
-			end
-
-			return formatters_by_ft
-		end)(),
+		formatters_by_ft = formatters_by_ft,
 		notify_on_error = false,
 		format_on_save = function(bufnr)
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
 			end
-			if slow_format_filetypes[vim.bo[bufnr].filetype] then
-				return
-			end
-			local function on_format(err)
-				if err and err:match("timeout$") then
-					slow_format_filetypes[vim.bo[bufnr].filetype] = true
-				end
-			end
-			return { timeout_ms = 200, lsp_fallback = true }, on_format
-		end,
-		format_after_save = function(bufnr)
-			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-				return
-			end
-			if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-				return
-			end
-			return { lsp_fallback = true }
+			--- @type conform.FormatOpts
+			return { lsp_format = "fallback" }
 		end,
 	},
 	init = function()

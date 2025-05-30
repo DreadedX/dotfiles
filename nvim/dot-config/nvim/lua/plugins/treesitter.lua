@@ -15,7 +15,22 @@ return {
 		--- @module "nvim-treesitter"
 		--- @type TSConfig
 		opts = {
-			ensure_installed = require("tools.highlight"),
+			ensure_installed = {
+				"c",
+				"cpp",
+				"go",
+				"lua",
+				"python",
+				"rust",
+				"tsx",
+				"typescript",
+				"vimdoc",
+				"vim",
+				"markdown",
+				"markdown_inline",
+				"bash",
+				"sql",
+			},
 
 			highlight = { enable = true },
 			indent = { enable = true },

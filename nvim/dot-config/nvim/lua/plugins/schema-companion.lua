@@ -41,19 +41,9 @@ return {
 	init = function()
 		vim.keymap.set(
 			"n",
-			"<leader>ss",
+			"<leader>ys",
 			require("telescope").extensions.schema_companion.select_schema,
-			{ desc = "Select schema" }
-		)
-
-		vim.lsp.config(
-			"yamlls",
-			require("schema-companion").setup_client({
-				single_file_support = true,
-				settings = {
-					yaml = {},
-				},
-			})
+			{ desc = "Yaml schema" }
 		)
 	end,
 	--- @module "schema-companion"

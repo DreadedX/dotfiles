@@ -1,4 +1,3 @@
-local diagnostic = require("symbols.diagnostic")
 local window = require("symbols.window")
 
 -- Set highlight on search
@@ -72,37 +71,3 @@ vim.o.foldlevelstart = 99
 
 -- Windows borders
 vim.o.winborder = window.border
-
--- LSP config
-vim.diagnostic.config({
-	severity_sort = true,
-	signs = {
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "DiagnosticNumError",
-			[vim.diagnostic.severity.WARN] = "DiagnosticNumWarn",
-			[vim.diagnostic.severity.HINT] = "DiagnosticNumHint",
-			[vim.diagnostic.severity.INFO] = "DiagnosticNumInfo",
-		},
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.HINT] = "",
-			[vim.diagnostic.severity.INFO] = "",
-		},
-	},
-	float = {
-		severity_sort = false,
-		header = "",
-		suffix = function(d)
-			local code = d.code and string.format(" (%s)", d.code) or ""
-
-			return string.format("%s [%s]", code, d.source), "NormalFloat"
-		end,
-	},
-	virtual_text = {
-		prefix = function(d)
-			return diagnostic[d.severity]
-		end,
-		virt_text_pos = "eol_right_align",
-	},
-})
