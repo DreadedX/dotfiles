@@ -1,13 +1,18 @@
 -- https://github.com/folke/which-key.nvim
+local window = require("symbols.window")
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"folke/which-key.nvim",
+	--- @module "which-key"
+	--- @type wk.Opts
 	opts = {
 		preset = "modern",
 		delay = function(ctx)
 			return ctx.plugin and 0 or 500
 		end,
 		win = {
-			border = "single",
+			border = window.border,
 			padding = { 1, 1 },
 			title = false,
 		},
@@ -45,7 +50,6 @@ return {
 		sort = { "alphanum" },
 	},
 	init = function()
-		-- TODO: Only make a category show up if there actually are any keybinds under it
 		require("which-key").add({
 			{ "<leader>b", group = "Buffer" },
 			{ "<leader>d", group = "Doument" },

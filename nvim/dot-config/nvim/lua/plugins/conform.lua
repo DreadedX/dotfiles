@@ -1,5 +1,7 @@
 -- https://github.com/stevearc/conform.nvim
 local slow_format_filetypes = {}
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
@@ -15,6 +17,8 @@ return {
 			desc = "Format buffer",
 		},
 	},
+	--- @module "conform"
+	--- @type conform.setupOpts
 	opts = {
 		formatters_by_ft = (function()
 			local formatters = require("tools.format")
@@ -58,7 +62,6 @@ return {
 			end
 			return { lsp_fallback = true }
 		end,
-		-- log_level = vim.log.levels.DEBUG,
 	},
 	init = function()
 		vim.api.nvim_create_user_command("FormatDisable", function(args)
@@ -72,6 +75,7 @@ return {
 			desc = "Disable autoformat-on-save",
 			bang = true,
 		})
+
 		vim.api.nvim_create_user_command("FormatEnable", function()
 			vim.b.disable_autoformat = false
 			vim.g.disable_autoformat = false

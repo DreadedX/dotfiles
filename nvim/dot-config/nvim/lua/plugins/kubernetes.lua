@@ -1,3 +1,6 @@
+-- https://github.com/diogo464/kubernetes.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"diogo464/kubernetes.nvim",
 	opts = {

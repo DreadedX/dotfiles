@@ -1,3 +1,6 @@
+-- https://github.com/tadachs/ros-nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"tadachs/ros-nvim",
 	opts = {

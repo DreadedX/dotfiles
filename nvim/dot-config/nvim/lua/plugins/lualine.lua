@@ -8,6 +8,8 @@ local function get_schema()
 	return schema.name
 end
 
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"nvim-lualine/lualine.nvim",
 	opts = {

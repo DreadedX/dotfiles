@@ -1,7 +1,12 @@
 -- https://github.com/lewis6991/gitsigns.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	-- Adds git related signs to the gutter, as well as utilities for managing changes
 	"lewis6991/gitsigns.nvim",
+	event = "VeryLazy",
+	--- @module "gitsigns"
+	--- @type Gitsigns.Config
 	opts = {
 		signs = {
 			add = { text = "+" },
@@ -28,6 +33,7 @@ return {
 	},
 	init = function()
 		local ga = require("gitsigns.actions")
+
 		vim.keymap.set("n", "gs", ga.stage_hunk, { desc = "(Un)stage hunk" })
 		vim.keymap.set("n", "gS", ga.stage_buffer, { desc = "Stage buffer" })
 		vim.keymap.set("v", "gs", function()

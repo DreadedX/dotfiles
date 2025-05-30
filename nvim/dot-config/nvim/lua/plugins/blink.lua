@@ -1,3 +1,6 @@
+-- https://github.com/saghen/blink.cmp
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
@@ -6,8 +9,8 @@ return {
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
 
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
+	--- @module "blink-cmp"
+	--- @type blink.cmp.Config
 	opts = {
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		-- keymap = { preset = "default" },

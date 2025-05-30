@@ -1,9 +1,11 @@
+--- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	event = "VeryLazy",
 	dependencies = {
 		"mason-org/mason.nvim",
-		"mason-org/mason-lspconfig.nvim",
-		"zapling/mason-conform.nvim",
 	},
 	config = function()
 		local lsp = require("tools.lsp")

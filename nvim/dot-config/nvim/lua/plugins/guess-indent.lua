@@ -1,7 +1,9 @@
 -- https://github.com/NMAC427/guess-indent.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
-	-- Adds a command to automatically detect the indentation settings
-	-- Prefer to use .editorconfig for projects and modeline for files
 	"NMAC427/guess-indent.nvim",
+	--- @module "guess-indent"
+	--- @type GuessIndentConfig
 	opts = {},
 }

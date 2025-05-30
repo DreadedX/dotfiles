@@ -1,8 +1,12 @@
 -- https://github.com/altermo/ultimate-autopair.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"altermo/ultimate-autopair.nvim",
 	event = { "InsertEnter", "CmdlineEnter" },
 	branch = "v0.6",
+	--- @module "ultimate-autopair"
+	--- @type prof.def.conf
 	opts = {
 		fastwarp = {
 			faster = true,

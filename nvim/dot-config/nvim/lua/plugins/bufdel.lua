@@ -1,4 +1,6 @@
 -- https://github.com/ojroques/nvim-bufdel
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"ojroques/nvim-bufdel",
 	cmd = { "BufDel", "BuffDelOthers" },

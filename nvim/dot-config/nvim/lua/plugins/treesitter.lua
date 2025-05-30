@@ -1,6 +1,8 @@
+-- https://github.com/nvim-treesitter/nvim-treesitter
+--- @module "lazy"
+--- @type LazySpec
 return {
 	{
-		-- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
@@ -10,6 +12,8 @@ return {
 		branch = "master",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
+		--- @module "nvim-treesitter"
+		--- @type TSConfig
 		opts = {
 			ensure_installed = require("tools.highlight"),
 

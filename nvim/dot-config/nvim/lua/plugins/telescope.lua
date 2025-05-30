@@ -1,6 +1,7 @@
 -- https://github.com/nvim-telescope/telescope.nvim
 local window = require("symbols.window")
--- TODO: Ensure installed ripgrep
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
@@ -14,51 +15,35 @@ return {
 			end,
 		},
 	},
-	config = function()
-		require("telescope").setup({
-
-			pickers = {
-				find_files = {
-					hidden = true,
+	opts = {
+		pickers = {
+			find_files = {
+				hidden = true,
+			},
+		},
+		defaults = {
+			file_ignore_patterns = {
+				".git/",
+			},
+			mappings = {
+				n = {
+					["<Tab>"] = "move_selection_worse",
+					["<S-Tab>"] = "move_selection_better",
+				},
+				i = {
+					["<Tab>"] = "move_selection_worse",
+					["<S-Tab>"] = "move_selection_better",
 				},
 			},
-			defaults = {
-				file_ignore_patterns = {
-					".git/",
-				},
-				mappings = {
-					n = {
-						["<Tab>"] = "move_selection_worse",
-						["<S-Tab>"] = "move_selection_better",
-					},
-					i = {
-						["<Tab>"] = "move_selection_worse",
-						["<S-Tab>"] = "move_selection_better",
-					},
-				},
-				borderchars = window.borderchars,
+			borderchars = window.borderchars,
+		},
+		extensions = {
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown(),
 			},
-			extensions = {
-				["ui-select"] = {
-					require("telescope.themes").get_dropdown(),
-				},
-			},
-		})
-
-		-- HACK: Workaround until new borders are fixed in telescope
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "TelescopeFindPre",
-			callback = function()
-				vim.opt_local.winborder = "none"
-				vim.api.nvim_create_autocmd("WinLeave", {
-					once = true,
-					callback = function()
-						vim.opt_local.winborder = window.border
-					end,
-				})
-			end,
-		})
-
+		},
+	},
+	init = function()
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("ui-select")
 
@@ -93,5 +78,19 @@ return {
 		vim.keymap.set("n", "<leader>sn", function()
 			require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "Neovim files" })
+
+		-- HACK: Workaround until new borders are fixed in telescope
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "TelescopeFindPre",
+			callback = function()
+				vim.opt_local.winborder = "none"
+				vim.api.nvim_create_autocmd("WinLeave", {
+					once = true,
+					callback = function()
+						vim.opt_local.winborder = window.border
+					end,
+				})
+			end,
+		})
 	end,
 }

@@ -1,4 +1,6 @@
 -- https://github.com/toppair/peek.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"toppair/peek.nvim",
 	build = "deno task --quiet build:fast",

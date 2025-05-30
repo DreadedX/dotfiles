@@ -1,4 +1,6 @@
 -- https://github.com/j-hui/fidget.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"j-hui/fidget.nvim",
 	opts = {

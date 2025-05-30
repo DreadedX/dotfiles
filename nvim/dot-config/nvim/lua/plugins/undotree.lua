@@ -1,7 +1,9 @@
 -- https://github.com/mbbill/undotree
+--- @module "lazy"
+--- @type LazySpec
 return {
-	'mbbill/undotree',
+	"mbbill/undotree",
 	keys = {
-		{ '<F6>', vim.cmd.UndotreeToggle, desc = 'Toggle undotree' },
+		{ "<F6>", vim.cmd.UndotreeToggle, desc = "Toggle undotree" },
 	},
 }

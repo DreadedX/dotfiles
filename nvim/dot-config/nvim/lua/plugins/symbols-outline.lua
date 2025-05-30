@@ -1,4 +1,6 @@
 -- https://github.com/simrat39/symbols-outline.nvim
+--- @module "lazy"
+--- @type LazySpec
 return {
 	enabled = false,
 	"simrat39/symbols-outline.nvim",

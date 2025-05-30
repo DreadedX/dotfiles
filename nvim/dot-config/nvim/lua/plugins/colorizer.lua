@@ -1,4 +1,6 @@
 -- https://github.com/NvChad/nvim-colorizer.lua
+--- @module "lazy"
+--- @type LazySpec
 return {
 	"NvChad/nvim-colorizer.lua",
 	event = "VeryLazy",

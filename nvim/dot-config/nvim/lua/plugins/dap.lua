@@ -1,4 +1,6 @@
 -- https://github.com/mfussenegger/nvim-dap
+--- @module "lazy"
+--- @type LazySpec
 return {
 	{
 		"mfussenegger/nvim-dap",
