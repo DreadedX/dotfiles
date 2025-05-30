@@ -12,6 +12,10 @@ return {
 		branch = "master",
 		build = ":TSUpdate",
 		main = "nvim-treesitter.configs",
+		init = function()
+			vim.wo.foldmethod = "expr"
+			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		end,
 		--- @module "nvim-treesitter"
 		--- @type TSConfig
 		opts = {

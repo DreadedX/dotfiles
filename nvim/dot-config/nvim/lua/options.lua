@@ -65,8 +65,6 @@ vim.o.listchars = "trail:~,tab:¦⁃,nbsp:␣"
 vim.o.list = true
 
 -- Fold settings
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
 
 -- Windows borders
