@@ -44,7 +44,7 @@ return {
 		},
 
 		appearance = {
-			nerd_font_variant = "mono",
+			nerd_font_variant = "normal",
 		},
 
 		completion = {
