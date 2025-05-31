@@ -3,24 +3,51 @@
 --- @type LazySpec
 return {
 	"mrjones2014/smart-splits.nvim",
+	event = "VeryLazy",
+	--- @module "smart-splits"
+	--- @type SmartSplitsConfig
 	opts = {
 		at_edge = "stop",
 		cursor_follows_swapped_bufs = true,
 	},
 	init = function()
-		vim.keymap.set("n", "<M-h>", require("smart-splits").move_cursor_left)
-		vim.keymap.set("n", "<M-j>", require("smart-splits").move_cursor_down)
-		vim.keymap.set("n", "<M-k>", require("smart-splits").move_cursor_up)
-		vim.keymap.set("n", "<M-l>", require("smart-splits").move_cursor_right)
+		vim.keymap.set("n", "<M-h>", function()
+			require("smart-splits").move_cursor_left()
+		end)
+		vim.keymap.set("n", "<M-j>", function()
+			require("smart-splits").move_cursor_down()
+		end)
+		vim.keymap.set("n", "<M-k>", function()
+			require("smart-splits").move_cursor_up()
+		end)
+		vim.keymap.set("n", "<M-l>", function()
+			require("smart-splits").move_cursor_right()
+		end)
 
-		vim.keymap.set("n", "<C-w>h", require("smart-splits").swap_buf_left, { desc = "Swap buffer to the left" })
-		vim.keymap.set("n", "<C-w>j", require("smart-splits").swap_buf_down, { desc = "Swap buffer to the bottom" })
-		vim.keymap.set("n", "<C-w>k", require("smart-splits").swap_buf_up, { desc = "Swap buffer to the top" })
-		vim.keymap.set("n", "<C-w>l", require("smart-splits").swap_buf_right, { desc = "Swap buffer to the right" })
+		vim.keymap.set("n", "<C-w>h", function()
+			require("smart-splits").swap_buf_left()
+		end, { desc = "Swap buffer to the left" })
+		vim.keymap.set("n", "<C-w>j", function()
+			require("smart-splits").swap_buf_down()
+		end, { desc = "Swap buffer to the bottom" })
+		vim.keymap.set("n", "<C-w>k", function()
+			require("smart-splits").swap_buf_up()
+		end, { desc = "Swap buffer to the top" })
+		vim.keymap.set("n", "<C-w>l", function()
+			require("smart-splits").swap_buf_right()
+		end, { desc = "Swap buffer to the right" })
 
-		vim.keymap.set("n", "<M-left>", require("smart-splits").resize_left, { desc = "Resize buffer to the left" })
-		vim.keymap.set("n", "<M-down>", require("smart-splits").resize_down, { desc = "Resize buffer to the bottom" })
-		vim.keymap.set("n", "<M-up>", require("smart-splits").resize_up, { desc = "Resize buffer to the top" })
-		vim.keymap.set("n", "<M-right>", require("smart-splits").resize_right, { desc = "Resize buffer to the right" })
+		vim.keymap.set("n", "<M-left>", function()
+			require("smart-splits").resize_left()
+		end, { desc = "Resize buffer to the left" })
+		vim.keymap.set("n", "<M-down>", function()
+			require("smart-splits").resize_down()
+		end, { desc = "Resize buffer to the bottom" })
+		vim.keymap.set("n", "<M-up>", function()
+			require("smart-splits").resize_up()
+		end, { desc = "Resize buffer to the top" })
+		vim.keymap.set("n", "<M-right>", function()
+			require("smart-splits").resize_right()
+		end, { desc = "Resize buffer to the right" })
 	end,
 }

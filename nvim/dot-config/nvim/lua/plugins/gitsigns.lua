@@ -4,7 +4,7 @@
 return {
 	-- Adds git related signs to the gutter, as well as utilities for managing changes
 	"lewis6991/gitsigns.nvim",
-	event = "VeryLazy",
+	event = { "BufWritePost", "BufReadPre" },
 	--- @module "gitsigns"
 	--- @type Gitsigns.Config
 	opts = {
@@ -32,30 +32,42 @@ return {
 		},
 	},
 	init = function()
-		local ga = require("gitsigns.actions")
-
-		vim.keymap.set("n", "gs", ga.stage_hunk, { desc = "(Un)stage hunk" })
-		vim.keymap.set("n", "gS", ga.stage_buffer, { desc = "Stage buffer" })
+		vim.keymap.set("n", "gs", function()
+			require("gitsigns.actions").stage_hunk()
+		end, { desc = "(Un)stage hunk" })
+		vim.keymap.set("n", "gS", function()
+			require("gitsigns.actions").stage_buffer()
+		end, { desc = "Stage buffer" })
 		vim.keymap.set("v", "gs", function()
-			ga.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			require("gitsigns.actions").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end, { desc = "(Un)stage selection" })
 
-		vim.keymap.set("n", "gd", ga.preview_hunk, { desc = "Diff hunk" })
+		vim.keymap.set("n", "gd", function()
+			require("gitsigns.actions").preview_hunk()
+		end, { desc = "Diff hunk" })
 
-		vim.keymap.set("n", "<leader>tb", ga.toggle_current_line_blame, { desc = "Line blame" })
-		vim.keymap.set("n", "gb", ga.blame_line, { desc = "View blame" })
+		vim.keymap.set("n", "<leader>tb", function()
+			require("gitsigns.actions").toggle_current_line_blame()
+		end, { desc = "Line blame" })
+		vim.keymap.set("n", "gb", function()
+			require("gitsigns.actions").blame_line()
+		end, { desc = "View blame" })
 
-		vim.keymap.set("n", "<leader>gr", ga.reset_hunk, { desc = "Reset hunk" })
-		vim.keymap.set("n", "<leader>gR", ga.reset_buffer, { desc = "Reset buffer" })
+		vim.keymap.set("n", "<leader>gr", function()
+			require("gitsigns.actions").reset_hunk()
+		end, { desc = "Reset hunk" })
+		vim.keymap.set("n", "<leader>gR", function()
+			require("gitsigns.actions").reset_buffer()
+		end, { desc = "Reset buffer" })
 		vim.keymap.set("v", "<leader>gr", function()
-			ga.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			require("gitsigns.actions").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end, { desc = "Git reset selection" })
 
 		vim.keymap.set("n", "]g", function()
-			ga.nav_hunk("next")
+			require("gitsigns.actions").nav_hunk("next")
 		end, { desc = "Next hunk" })
 		vim.keymap.set("n", "[g", function()
-			ga.nav_hunk("prev")
+			require("gitsigns.actions").nav_hunk("prev")
 		end, { desc = "Previous hunk" })
 	end,
 }

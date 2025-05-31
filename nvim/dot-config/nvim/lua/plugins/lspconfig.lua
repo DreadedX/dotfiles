@@ -3,4 +3,5 @@
 --- @type LazySpec
 return {
 	"neovim/nvim-lspconfig",
+	cmd = { "LspInfo", "LspStart", "LspStop", "LspRestart" },
 }

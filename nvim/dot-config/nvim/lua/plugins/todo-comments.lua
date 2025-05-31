@@ -8,6 +8,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
+	event = "VeryLazy",
 	opts = {
 		keywords = {
 			-- FIX: Fix
@@ -52,13 +53,12 @@ return {
 			require("todo-comments").jump_prev()
 		end, { desc = "Previous todo comment" })
 
-		if pcall(require, "trouble") then
-			-- TODO: Use cwd to only show todo's in the current file
-			-- vim.keymap.set("n", "<F4>", "<cmd>TroubleToggle todo cwd=%<cr>", { desc = "Next todo comment" })
-			vim.keymap.set("n", "<F4>", "<cmd>TroubleToggle todo<cr>", { desc = "Next todo comment" })
-		end
-		if pcall(require, "telescope") then
-			vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "Search todo" })
-		end
+		-- -- TODO: Use cwd to only show todo's in the current file
+		-- -- vim.keymap.set("n", "<F4>", "<cmd>TroubleToggle todo cwd=%<cr>", { desc = "Next todo comment" })
+		-- vim.keymap.set("n", "<F4>", "<cmd>TroubleToggle todo<cr>", { desc = "Next todo comment" })
+
+		vim.keymap.set("n", "<leader>st", function()
+			require("telescope").extensions["todo-comments"].todo()
+		end, { desc = "Search todo" })
 	end,
 }

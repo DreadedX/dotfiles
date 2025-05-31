@@ -38,14 +38,16 @@ return {
 		"nvim-telescope/telescope.nvim",
 		"diogo464/kubernetes.nvim",
 	},
-	init = function()
-		vim.keymap.set(
-			"n",
+	keys = {
+		{
 			"<leader>ys",
-			require("telescope").extensions.schema_companion.select_schema,
-			{ desc = "Yaml schema" }
-		)
-	end,
+			function()
+				require("telescope").extensions.schema_companion.select_schema()
+			end,
+			desc = "Yaml schema",
+			ft = "yaml",
+		},
+	},
 	--- @module "schema-companion"
 	--- @type schema_companion.Config
 	opts = {

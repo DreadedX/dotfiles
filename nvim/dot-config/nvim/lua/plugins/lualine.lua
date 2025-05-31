@@ -1,6 +1,10 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
 local function get_schema()
+	if vim.bo.filetype ~= "yaml" then
+		return ""
+	end
+
 	local schema = require("schema-companion.context").get_buffer_schema()
 	if schema.name == "none" then
 		return ""

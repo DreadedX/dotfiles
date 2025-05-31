@@ -5,6 +5,7 @@ return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
 	dependencies = { "rafamadriz/friendly-snippets" },
+	event = "InsertEnter",
 
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
@@ -115,6 +116,10 @@ return {
 					score_offset = 100,
 				},
 			},
+		},
+
+		cmdline = {
+			enabled = false,
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

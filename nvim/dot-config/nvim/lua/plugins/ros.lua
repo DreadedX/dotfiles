@@ -3,6 +3,7 @@
 --- @type LazySpec
 return {
 	"tadachs/ros-nvim",
+	event = { "BufRead", "BufNewFile" },
 	opts = {
 		only_workspace = true,
 	},
@@ -10,6 +11,5 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-telescope/telescope.nvim",
 	},
 }

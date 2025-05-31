@@ -4,51 +4,63 @@ local window = require("symbols.window")
 --- @type LazySpec
 return {
 	"nvim-telescope/telescope.nvim",
+	cmd = { "Telescope" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-ui-select.nvim",
+		{
+			"nvim-telescope/telescope-ui-select.nvim",
+			config = function()
+				require("telescope").load_extension("ui-select")
+			end,
+		},
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 			cond = function()
 				return vim.fn.executable("make") == 1
 			end,
+			config = function()
+				require("telescope").load_extension("fzf")
+			end,
 		},
 	},
-	opts = {
-		pickers = {
-			find_files = {
-				hidden = true,
-			},
-		},
-		defaults = {
-			file_ignore_patterns = {
-				".git/",
-			},
-			mappings = {
-				n = {
-					["<Tab>"] = "move_selection_worse",
-					["<S-Tab>"] = "move_selection_better",
-				},
-				i = {
-					["<Tab>"] = "move_selection_worse",
-					["<S-Tab>"] = "move_selection_better",
+	opts = function()
+		return {
+			pickers = {
+				find_files = {
+					hidden = true,
 				},
 			},
-			borderchars = window.borderchars,
-		},
-		extensions = {
-			["ui-select"] = {
-				require("telescope.themes").get_dropdown(),
+			defaults = {
+				file_ignore_patterns = {
+					".git/",
+				},
+				mappings = {
+					n = {
+						["<Tab>"] = "move_selection_worse",
+						["<S-Tab>"] = "move_selection_better",
+					},
+					i = {
+						["<Tab>"] = "move_selection_worse",
+						["<S-Tab>"] = "move_selection_better",
+					},
+				},
+				borderchars = window.borderchars,
 			},
-		},
-	},
+			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown(),
+				},
+			},
+		}
+	end,
 	init = function()
-		require("telescope").load_extension("fzf")
-		require("telescope").load_extension("ui-select")
-
-		vim.keymap.set("n", "<leader>.", require("telescope.builtin").oldfiles, { desc = "Find recently opened files" })
-		vim.keymap.set("n", "<leader>sb", require("telescope.builtin").buffers, { desc = "Buffers" })
+		vim.keymap.set("n", "<leader>.", function()
+			require("telescope.builtin").oldfiles()
+		end, { desc = "Find recently opened files" })
+		vim.keymap.set("n", "<leader>sb", function()
+			require("telescope.builtin").buffers()
+		end, { desc = "Buffers" })
 
 		vim.keymap.set("n", "<leader>/", function()
 			require("telescope.builtin").current_buffer_fuzzy_find({
@@ -63,18 +75,30 @@ return {
 			})
 		end, { desc = "Grep in open files" })
 
-		vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, { desc = "Find files" })
-		vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "Help" })
+		vim.keymap.set("n", "<leader><space>", function()
+			require("telescope.builtin").find_files()
+		end, { desc = "Find files" })
+		vim.keymap.set("n", "<leader>sh", function()
+			require("telescope.builtin").help_tags()
+		end, { desc = "Help" })
 		vim.keymap.set("n", "<leader>sw", function()
 			require("telescope.builtin").grep_string({
 				-- Show matches in the order they appear in the document
 				sorting_strategy = "ascending",
 			})
 		end, { desc = "Current word" })
-		vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "Grep" })
-		vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "Diagnostics" })
-		vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "Resume" })
-		vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = "Keymaps" })
+		vim.keymap.set("n", "<leader>sg", function()
+			require("telescope.builtin").live_grep()
+		end, { desc = "Grep" })
+		vim.keymap.set("n", "<leader>sd", function()
+			require("telescope.builtin").diagnostics()
+		end, { desc = "Diagnostics" })
+		vim.keymap.set("n", "<leader>sr", function()
+			require("telescope.builtin").resume()
+		end, { desc = "Resume" })
+		vim.keymap.set("n", "<leader>sk", function()
+			require("telescope.builtin").keymaps()
+		end, { desc = "Keymaps" })
 		vim.keymap.set("n", "<leader>sn", function()
 			require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
 		end, { desc = "Neovim files" })

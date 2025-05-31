@@ -4,6 +4,7 @@ local window = require("symbols.window")
 --- @type LazySpec
 return {
 	"folke/which-key.nvim",
+	event = "VeryLazy",
 	--- @module "which-key"
 	--- @type wk.Opts
 	opts = {
@@ -48,15 +49,13 @@ return {
 		},
 		expand = 1,
 		sort = { "alphanum" },
-	},
-	init = function()
-		require("which-key").add({
+		spec = {
 			{ "<leader>b", group = "Buffer" },
 			{ "<leader>d", group = "Doument" },
 			{ "<leader>g", group = "Git" },
 			{ "<leader>t", group = "Toggle" },
 			{ "<leader>s", group = "Search" },
 			{ "gr", group = "LSP" },
-		})
-	end,
+		},
+	},
 }

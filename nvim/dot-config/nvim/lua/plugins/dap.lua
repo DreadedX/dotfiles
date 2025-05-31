@@ -3,6 +3,7 @@
 --- @type LazySpec
 return {
 	{
+		enabled = false,
 		"mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
@@ -88,6 +89,7 @@ return {
 		end,
 	},
 	{
+		enabled = false,
 		"theHamsta/nvim-dap-virtual-text",
 		dependencies = {
 			"mfussenegger/nvim-dap",

@@ -3,6 +3,7 @@
 --- @type LazySpec
 return {
 	"mason-org/mason-lspconfig.nvim",
+	cmd = { "LspInstall", "LspUninstall" },
 	event = "VeryLazy",
 	--- @module "mason-lspconfig"
 	--- @type MasonLspconfigSettings
