@@ -2,10 +2,13 @@
 --- @module "lazy"
 --- @type LazySpec
 return {
-	"tadachs/ros-nvim",
+	-- "tadachs/ros-nvim",
+	"DreadedX/ros-nvim",
 	event = { "BufRead", "BufNewFile" },
 	opts = {
-		only_workspace = true,
+		commands = {
+			enabled = false,
+		},
 	},
 	build = ":TSInstall ros",
 	dependencies = {
