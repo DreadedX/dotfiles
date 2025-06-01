@@ -33,6 +33,7 @@
   "ros-nvim": { "branch": "main", "commit": "f0e16eebe68546025784593fa2355ca6749014a0" },
   "schema-companion.nvim": { "branch": "main", "commit": "7d662b6c1497fdd82e3e8836eb122f5c4b0d8277" },
   "schemastore.nvim": { "branch": "main", "commit": "59d6bfa8c109675065f68a81664c17557cc19a9c" },
+  "scrollEOF.nvim": { "branch": "master", "commit": "2575109749b4bf3a0bf979a17947b3c1e8c5137e" },
   "smart-splits.nvim": { "branch": "master", "commit": "5aa2dd82d56cde2f01aef4e902c961e2f7a5453e" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "1f08ed60cafc8f6168b72b80be2b2ea149813e55" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
