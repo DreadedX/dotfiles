@@ -4,7 +4,7 @@
 return {
 	"mason-org/mason-lspconfig.nvim",
 	cmd = { "LspInstall", "LspUninstall" },
-	event = "VeryLazy",
+	event = { "BufNewFile", "BufReadPre" },
 	--- @module "mason-lspconfig"
 	--- @type MasonLspconfigSettings
 	opts = {},
