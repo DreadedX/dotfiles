@@ -9,6 +9,20 @@ return {
 		--- @module "snacks"
 		--- @type snacks.Config
 		opts = {
+			bigfile = {
+				enabled = true,
+				---@param ctx {buf: number, ft:string}
+				setup = function(ctx)
+					-- Disable treesitter
+					vim.treesitter.stop(ctx.buf)
+
+					vim.schedule(function()
+						if vim.api.nvim_buf_is_valid(ctx.buf) then
+							vim.bo[ctx.buf].syntax = ctx.ft
+						end
+					end)
+				end,
+			},
 			indent = {
 				enabled = true,
 				indent = {
