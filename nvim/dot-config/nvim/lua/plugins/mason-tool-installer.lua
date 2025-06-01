@@ -28,13 +28,18 @@ local ensure_installed = {
 --- @type LazySpec
 return {
 	"WhoIsSethDaniel/mason-tool-installer.nvim",
-	event = "VeryLazy",
 	dependencies = {
 		"mason-org/mason.nvim",
 	},
+	event = "VeryLazy",
 	opts = {
 		ensure_installed = ensure_installed,
 		auto_update = true,
-		debounde_hours = 24,
 	},
+	config = function(_, opts)
+		require("mason-tool-installer").setup(opts)
+
+		-- VeryLazy happens _after_ VimEnter, so we have to manually call this
+		require("mason-tool-installer").run_on_start()
+	end,
 }
