@@ -8,7 +8,21 @@ return {
 		lazy = false,
 		--- @module "snacks"
 		--- @type snacks.Config
-		opts = {},
+		opts = {
+			indent = {
+				enabled = true,
+				indent = {
+					char = "¦",
+				},
+				animate = {
+					enabled = false,
+				},
+				scope = {
+					char = "¦",
+					only_current = true,
+				},
+			},
+		},
 		keys = {
 			{
 				"<leader>bd",

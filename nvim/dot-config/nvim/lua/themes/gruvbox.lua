@@ -75,6 +75,7 @@ return {
 				DiagnosticNumWarn = { fg = palette.dark0, bg = palette.bright_yellow, bold = true },
 				DiagnosticNumHint = { fg = palette.dark0, bg = palette.bright_aqua, bold = true },
 				DiagnosticNumInfo = { fg = palette.dark0, bg = palette.bright_blue, bold = true },
+				SnacksIndentScope = { fg = palette.light4 },
 			},
 		})
 
