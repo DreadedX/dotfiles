@@ -114,16 +114,12 @@ return {
 		end,
 	},
 	{
-		"nvim-telescope/telescope-fzf-native.nvim",
+		"nvim-telescope/telescope-fzy-native.nvim",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 		},
-		build = "make",
-		cond = function()
-			return vim.fn.executable("make") == 1
-		end,
 		config = function()
-			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("fzy_native")
 		end,
 	},
 }
