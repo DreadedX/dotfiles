@@ -4,10 +4,16 @@
 return {
 	"ellisonleao/gruvbox.nvim",
 	priority = 1000,
-	config = function()
+	config = function(_, opts)
+		require("gruvbox").setup(opts)
+
+		-- Load the colorscheme
+		vim.cmd.colorscheme("gruvbox")
+	end,
+	opts = function()
 		local palette = require("gruvbox").palette
 
-		require("gruvbox").setup({
+		return {
 			background = "dark",
 			italic = {
 				strings = false,
@@ -77,9 +83,6 @@ return {
 				DiagnosticNumInfo = { fg = palette.dark0, bg = palette.bright_blue, bold = true },
 				SnacksIndentScope = { fg = palette.light4 },
 			},
-		})
-
-		-- Load the colorscheme
-		vim.cmd.colorscheme("gruvbox")
+		}
 	end,
 }
