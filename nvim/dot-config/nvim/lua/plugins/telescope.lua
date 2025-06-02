@@ -62,7 +62,7 @@ return {
 			end, { desc = "Grep in open files" })
 
 			vim.keymap.set("n", "<leader><space>", function()
-				require("telescope.builtin").find_files()
+				require("telescope").extensions.smart_open.smart_open()
 			end, { desc = "Find files" })
 			vim.keymap.set("n", "<leader>sh", function()
 				require("telescope.builtin").help_tags()
@@ -121,5 +121,25 @@ return {
 		config = function()
 			require("telescope").load_extension("fzy_native")
 		end,
+	},
+	{
+		"danielfalk/smart-open.nvim",
+		branch = "0.2.x",
+		config = function()
+			require("telescope").load_extension("smart_open")
+		end,
+		dependencies = {
+			"kkharji/sqlite.lua",
+			"nvim-telescope/telescope.nvim",
+			"nvim-telescope/telescope-fzy-native.nvim",
+			{
+				"ellisonleao/gruvbox.nvim",
+				opts = function(_, opts)
+					local palette = require("gruvbox").palette
+
+					opts.overrides.Directory = { fg = palette.neutral_blue, bold = false }
+				end,
+			},
+		},
 	},
 }
