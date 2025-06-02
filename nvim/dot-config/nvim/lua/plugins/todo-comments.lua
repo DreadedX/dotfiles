@@ -10,6 +10,7 @@ return {
 	},
 	event = "VeryLazy",
 	opts = {
+		signs = false,
 		keywords = {
 			-- FIX: Fix
 			FIX = { icon = diagnostic.bug },
