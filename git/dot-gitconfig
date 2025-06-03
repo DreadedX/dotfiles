@@ -1,11 +1,8 @@
 [include]
-	path = ~/.dotfiles/git/profiles/common
-	path = ~/.dotfiles/git/profiles/Dreaded_X
+	path = ~/.dotfiles/git/configs/common.gitconfig
+	path = ~/.dotfiles/git/configs/lfs.gitconfig
+
+	path = ~/.dotfiles/git/profiles/Dreaded_X.gitconfig
 
 [includeIf "gitdir:~/Projects/ALTEN/"]
-	path = ~/.dotfiles/git/profiles/ALTEN
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+	path = ~/.dotfiles/git/profiles/ALTEN.gitconfig
