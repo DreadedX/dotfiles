@@ -1,6 +1,7 @@
 [include]
 	path = ~/.dotfiles/git/configs/common.gitconfig
 	path = ~/.dotfiles/git/configs/lfs.gitconfig
+	path = ~/.dotfiles/git/configs/delta.gitconfig
 
 	path = ~/.dotfiles/git/profiles/Dreaded_X.gitconfig
 
