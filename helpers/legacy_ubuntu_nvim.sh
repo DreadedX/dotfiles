@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-sudo apt-get install fuse libfuse2 unzip ripgrep python3-venv -y --no-install-recommends
+sudo apt-get install fuse libfuse2 unzip ripgrep python3-venv xclip -y --no-install-recommends
 sudo rm -rf /usr/local/bin/nvim
 sudo wget https://github.com/neovim/neovim-releases/releases/download/v0.11.1/nvim-linux-x86_64.appimage -O /usr/local/bin/nvim
 sudo chmod +x /usr/local/bin/nvim
