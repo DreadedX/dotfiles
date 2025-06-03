@@ -68,7 +68,13 @@ if hash devcontainer 2>/dev/null; then
 		if find "$PWD"/ -maxdepth 1 -type d -name ".devcontainer" | grep -q ".devcontainer"; then
 		  WORKSPACE_FOLDER="$PWD"
 		  builtin cd "$ORIG_DIR"
+
+		  if [[ "$1" == "nvim" ]]; then
+			  tmux set-option -pt 0 @pane-is-vim 1
+		  fi
+
 		  devcontainer exec --workspace-folder "$WORKSPACE_FOLDER" $@
+		  tmux set-option -pt 0 @pane-is-vim 0
 		  return 0
 		else
 		  builtin cd ..
