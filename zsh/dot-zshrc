@@ -55,6 +55,11 @@ export EDITOR=nvim
 
 alias cl="clear"
 
+if hash bat 2>/dev/null; then
+	export BAT_THEME="gruvbox-dark"
+	alias cat=bat
+fi
+
 if hash devcontainer 2>/dev/null; then
 	dc() {
 	  ORIG_DIR="$PWD"
