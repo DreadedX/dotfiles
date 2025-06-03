@@ -48,6 +48,7 @@ ZSH_TMUX_FIXTERM=true
 source $ZSH/oh-my-zsh.sh
 
 less_termcap[so]="${fg_bold[black]}${bg[white]}"
+export LESS="-F -R -i --incsearch -M"
 
 export PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:$PATH"
 export EDITOR=nvim
