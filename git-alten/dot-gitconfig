@@ -1,3 +1,4 @@
 [include]
-	path = ~/.dotfiles/git/profiles/common
-	path = ~/.dotfiles/git/profiles/ALTEN
+	path = ~/.dotfiles/git/configs/common.gitconfig
+
+	path = ~/.dotfiles/git/profiles/ALTEN.gitconfig
