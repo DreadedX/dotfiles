@@ -17,7 +17,12 @@ local ensure_installed = {
 	"neocmake",
 	-- Formatter
 	"clang-format",
-	"goimports",
+	{
+		"goimports",
+		condition = function()
+			return vim.fn.executable("go") > 0
+		end,
+	},
 	"ruff",
 	"prettierd",
 	"stylua",
