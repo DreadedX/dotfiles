@@ -148,5 +148,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Manually enable rust analyzer
-vim.lsp.enable("rust_analyzer")
+-- Manually enable rust analyzer, if installed
+if vim.fn.executable("rust_analyzer") then
+	vim.lsp.enable("rust_analyzer")
+end
