@@ -6,7 +6,7 @@ local file = require("symbols.file")
 --- @type LazySpec
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	version = "v3.x",
+	branch = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
