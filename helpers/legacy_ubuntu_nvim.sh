@@ -10,3 +10,5 @@ rm -rf ~/.dotfiles
 git clone https://git.huizinga.dev/Dreaded_X/dotfiles ~/.dotfiles
 mkdir -p ~/.config
 ln -s ~/.dotfiles/nvim/dot-config/nvim ~/.config/nvim
+
+sed -i '/path = /d' ~/.gitconfig
