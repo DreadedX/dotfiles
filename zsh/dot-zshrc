@@ -71,10 +71,12 @@ if hash devcontainer 2>/dev/null; then
 
 		  if [[ "$1" == "nvim" ]]; then
 			  tmux set-option -pt 0 @pane-is-vim 1
+			  devcontainer exec --workspace-folder "$WORKSPACE_FOLDER" bash -c "$@"
+			  tmux set-option -pt 0 @pane-is-vim 0
+		  else
+			  devcontainer exec --workspace-folder "$WORKSPACE_FOLDER" $@
 		  fi
 
-		  devcontainer exec --workspace-folder "$WORKSPACE_FOLDER" $@
-		  tmux set-option -pt 0 @pane-is-vim 0
 		  return 0
 		else
 		  builtin cd ..
