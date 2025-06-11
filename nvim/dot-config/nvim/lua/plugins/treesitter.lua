@@ -34,7 +34,12 @@ return {
 				"markdown_inline",
 				"bash",
 				"sql",
+				"xml",
+				"cmake",
+				"json",
+				"yaml",
 			},
+			auto_install = true,
 
 			highlight = { enable = true },
 			indent = { enable = true },
