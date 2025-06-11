@@ -26,7 +26,6 @@ local ensure_installed = {
 	"ruff",
 	"prettierd",
 	"stylua",
-	"jq",
 }
 
 --- @module "lazy"
