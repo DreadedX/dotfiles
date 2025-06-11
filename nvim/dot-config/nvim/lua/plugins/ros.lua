@@ -2,8 +2,7 @@
 --- @module "lazy"
 --- @type LazySpec
 return {
-	-- "tadachs/ros-nvim",
-	"DreadedX/ros-nvim",
+	"tadachs/ros-nvim",
 	event = { "BufRead", "BufNewFile" },
 	opts = {
 		commands = {

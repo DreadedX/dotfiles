@@ -30,7 +30,7 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "a1d526af391f6aebb25a8795cbc05351ed3620b5" },
   "peek.nvim": { "branch": "master", "commit": "5820d937d5414baea5f586dc2a3d912a74636e5b" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
-  "ros-nvim": { "branch": "main", "commit": "f0e16eebe68546025784593fa2355ca6749014a0" },
+  "ros-nvim": { "branch": "main", "commit": "1ad64cd3a1e144dfea67890845f9da2e82d96900" },
   "schema-companion.nvim": { "branch": "main", "commit": "7d662b6c1497fdd82e3e8836eb122f5c4b0d8277" },
   "schemastore.nvim": { "branch": "main", "commit": "59d6bfa8c109675065f68a81664c17557cc19a9c" },
   "scrollEOF.nvim": { "branch": "master", "commit": "2575109749b4bf3a0bf979a17947b3c1e8c5137e" },
