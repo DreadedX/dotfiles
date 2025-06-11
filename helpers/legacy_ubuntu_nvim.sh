@@ -4,6 +4,11 @@ set -e
 # Install additional dependencies
 sudo apt-get install fuse libfuse2 unzip ripgrep python3-venv xclip -y --no-install-recommends
 
+# Install new version of node
+curl -fsSL https://deb.nodesource.com/setup_23.x -o /tmp/nodesource_setup.sh
+sudo -E bash /tmp/nodesource_setup.sh
+sudo apt-get install -y nodejs
+
 # Install new version of neovim
 sudo rm -rf /usr/local/bin/nvim
 sudo wget https://github.com/neovim/neovim-releases/releases/download/v0.11.1/nvim-linux-x86_64.appimage -O /usr/local/bin/nvim
