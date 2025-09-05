@@ -26,3 +26,7 @@
 
 [init]
 	defaultBranch = master
+
+[rebase]
+  autosquash = true
+  autostash = true
