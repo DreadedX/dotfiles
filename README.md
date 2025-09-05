@@ -7,6 +7,7 @@ bat
 git-delta
 fd
 rg
+fzf
 ```
 
 ### Useful

@@ -1,0 +1,2 @@
+[alias]
+  fixup = "!f() { TARGET=$(git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 ); git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
