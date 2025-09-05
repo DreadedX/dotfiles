@@ -30,3 +30,4 @@
 [rebase]
   autosquash = true
   autostash = true
+  updateRefs = true
