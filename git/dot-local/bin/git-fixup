@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+TARGET=$1
+
+
+if [ -z "$TARGET" ]; then
+	if hash fzf 2>/dev/null; then
+		TARGET=$(git log -n 50 --pretty=format:'%h %s' --no-merges | fzf --border-label='Select commit' | cut -c -7 )
+	else
+		echo "Not installed: fzf"
+		exit -1
+	fi
+fi
+
+if [ -z "$TARGET" ]; then
+	echo "No target specified"
+	exit -1
+fi
+
+git commit --fixup=$TARGET ${@:2} && GIT_SEQUENCE_EDITOR=true git rebase -i --autostash --autosquash $TARGET^
