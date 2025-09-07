@@ -4,10 +4,12 @@
 
 ```
 bat
-git-delta
 fd
-rg
 fzf
+git-delta
+paru
+rg
+zoxide
 ```
 
 ### Useful
