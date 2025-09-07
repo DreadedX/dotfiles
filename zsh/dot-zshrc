@@ -97,6 +97,31 @@ if hash pnpm 2>/dev/null; then
 	esac
 fi
 
+export FZF_DEFAULT_OPTS='--tmux'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:-1,fg+:#83a598,bg:-1,bg+:#262626
+  --color=hl:bold:#8ec07c,hl+:#8ec07c,marker:#cc241d
+  --color=prompt:#fb4934,spinner:#af5fff,pointer:#83a598,header:#87afaf
+  --color=border:#7c6f64,label:#7c6f64
+  --border="sharp" --border-label-pos="0" --preview-window="border-sharp"
+  --prompt="> " --marker="◆" --pointer=">" --separator="─"
+  --scrollbar="│" --info="right"'
+
+if hash fd 2>/dev/null; then
+	export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+if hash fzf 2>/dev/null; then
+	source <(fzf --zsh)
+
+	if hash paru 2>/dev/null; then
+		function pi {
+			paru -Slq | fzf -q "$1" --border-label="Packages" --multi --preview 'paru -Si {1} --color=always' | xargs -ro paru -S
+		}
+	fi
+fi
+
+export _ZO_FZF_OPTS="--tmux"
 if hash zoxide 2>/dev/null; then
 	eval "$(zoxide init zsh --cmd cd)"
 fi
