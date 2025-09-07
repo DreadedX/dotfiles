@@ -27,6 +27,7 @@ plugins=(
 	command-not-found
 	dirhistory
 	zsh-autopair
+	fast-syntax-highlighting
 )
 
 bindkey -M vicmd "k" up-line-or-beginning-search
