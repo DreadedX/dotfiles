@@ -45,7 +45,9 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 ZSH_TMUX_FIXTERM=true
 
-source $ZSH/oh-my-zsh.sh
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+source "$ZSH/oh-my-zsh.sh"
 
 less_termcap[so]="${fg_bold[black]}${bg[white]}"
 export LESS="-F -R -i --incsearch -M"
