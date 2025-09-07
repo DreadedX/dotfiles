@@ -25,7 +25,6 @@ plugins=(
 	tmux
 	colored-man-pages
 	command-not-found
-	dirhistory
 	zsh-autopair
 	fast-syntax-highlighting
 )
