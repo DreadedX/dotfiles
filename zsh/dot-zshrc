@@ -119,7 +119,7 @@ if (( $+commands[fzf] )); then
 
 	if (( $+commands[paru] )); then
 		function pi {
-			paru -Slq | fzf -q "$1" --border-label="Packages" --multi --preview 'paru -Si {1} --color=always' | xargs -ro paru -S
+			paru -Slq | fzf -q "$1" --border-label=" Install package " --multi --preview 'paru -Si {1} --color=always' | xargs -ro paru -S
 		}
 	fi
 fi
