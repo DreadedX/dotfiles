@@ -60,12 +60,12 @@ export EDITOR=nvim
 
 alias cl="clear"
 
-if hash bat 2>/dev/null; then
+if (( $+commands[hash] )); then
 	export BAT_THEME="gruvbox-dark"
 	alias cat=bat
 fi
 
-if hash devcontainer 2>/dev/null; then
+if (( $+commands[devcontainer] )); then
 	dc() {
 	  ORIG_DIR="$PWD"
 	  while [[ "$PWD" != / ]] ; do
@@ -92,7 +92,7 @@ if hash devcontainer 2>/dev/null; then
 	}
 fi
 
-if hash pnpm 2>/dev/null; then
+if (( $+commands[pnpm] )); then
 	export PNPM_HOME="/home/tim/.local/share/pnpm"
 	case ":$PATH:" in
 	  *":$PNPM_HOME:"*) ;;
@@ -110,14 +110,14 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --prompt="> " --marker="◆" --pointer=">" --separator="─"
   --scrollbar="│" --info="right"'
 
-if hash fd 2>/dev/null; then
+if (( $+commands[fd] )); then
 	export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
-if hash fzf 2>/dev/null; then
+if (( $+commands[fzf] )); then
 	source <(fzf --zsh)
 
-	if hash paru 2>/dev/null; then
+	if (( $+commands[paru] )); then
 		function pi {
 			paru -Slq | fzf -q "$1" --border-label="Packages" --multi --preview 'paru -Si {1} --color=always' | xargs -ro paru -S
 		}
@@ -125,7 +125,7 @@ if hash fzf 2>/dev/null; then
 fi
 
 export _ZO_FZF_OPTS="--tmux"
-if hash zoxide 2>/dev/null; then
+if (( $+commands[zoxide] )); then
 	eval "$(zoxide init zsh --cmd cd)"
 fi
 
