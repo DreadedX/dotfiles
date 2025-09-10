@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+exec </dev/tty
+exec <&1
+local session
+session=$(sesh list -i | fzf-tmux -p 70%,60% \
+--no-sort --ansi --border-label ' Select session ' --prompt '⚡  ' \
+--header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+--bind 'btab:down,tab:up' \
+--bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list -i)' \
+--bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t -i)' \
+--bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c -i)' \
+--bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z -i)' \
+--bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+--bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list -i)')
+[[ -z "$session" ]] && return
+sesh connect $session

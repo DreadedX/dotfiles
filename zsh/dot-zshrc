@@ -22,7 +22,6 @@ plugins=(
 	# Disabled because the highlighting conflicts with autosuggestions
 	# history-substring-search
 	vi-mode
-	tmux
 	colored-man-pages
 	command-not-found
 	zsh-autopair
@@ -42,10 +41,6 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 # Might cause issues?
 KEYTIMEOUT=1
-
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-ZSH_TMUX_FIXTERM=true
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
@@ -142,3 +137,15 @@ for km in viopp visual; do
     bindkey -M $km $c select-bracketed
   done
 done
+
+ZSH_TMUX_AUTOSTART=true
+if (( $+commands[tmux] )); then
+	if [[ -z "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" && -z "$INTELLIJ_ENVIRONMENT_READER" && -z "$ZED_TERM" ]]; then
+		if (( $+commands[sesh] )); then
+			sesh-select
+		else
+			tmux new-session
+		fi
+		exit
+	fi
+fi
