@@ -1,0 +1,25 @@
+# Hide all scratch sessions
+blacklist = ["scratch-*"]
+
+# Scratch sessions rename themselves to something unique and are hidden from the overview
+[[session]]
+name = "scratch"
+startup_command = "tmux rename-session scratch-$(echo -n $(date) | sha256sum | cut -c1-4) && clear"
+
+[[session]]
+name = "automation_rs"
+path = "~/Projects/rust/automation_rs/"
+startup_command = "nvim"
+windows = ["shell"]
+
+[[session]]
+name = "olympus"
+startup_command = "ssh olympus && exit"
+
+[[session]]
+name = "niestern_sander"
+path = "~/Projects/ALTEN/niestern_sander/"
+startup_command = "$DOTFILES/sesh/setup/niestern_sander.sh"
+
+[[window]]
+name = "shell"
