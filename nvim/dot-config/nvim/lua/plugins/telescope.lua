@@ -37,6 +37,9 @@ return {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
 					},
+					smart_open = {
+						match_algorithm = "fzf",
+					},
 				},
 			}
 		end,
@@ -114,12 +117,13 @@ return {
 		end,
 	},
 	{
-		"nvim-telescope/telescope-fzy-native.nvim",
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
-			require("telescope").load_extension("fzy_native")
+			require("telescope").load_extension("fzf")
 		end,
 	},
 	{
@@ -131,7 +135,7 @@ return {
 		dependencies = {
 			"kkharji/sqlite.lua",
 			"nvim-telescope/telescope.nvim",
-			"nvim-telescope/telescope-fzy-native.nvim",
+			"nvim-telescope/telescope-fzf-native.nvim",
 			{
 				"ellisonleao/gruvbox.nvim",
 				opts = function(_, opts)
