@@ -35,7 +35,7 @@
   "schema-companion.nvim": { "branch": "main", "commit": "b22243d3ca71be08d06a4b9bf200c1d677c41d45" },
   "schemastore.nvim": { "branch": "main", "commit": "2ae6d27897c60265d4ad3f33e286528d519098fd" },
   "scrollEOF.nvim": { "branch": "master", "commit": "aeedfad14e4a0cfa31b44b531c1ad8fd4696b551" },
-  "smart-open.nvim": { "branch": "0.2.x", "commit": "560d8f16e17977c8303db6f9660db58a4415ca41" },
+  "smart-open.nvim": { "branch": "0.3.x", "commit": "e7f27218bd43de5262d3e8e3e84a135737ca6942" },
   "smart-splits.nvim": { "branch": "master", "commit": "1ac316e6ea719843fd80716d1105613c98632af1" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "sqlite.lua": { "branch": "master", "commit": "50092d60feb242602d7578398c6eb53b4a8ffe7b" },

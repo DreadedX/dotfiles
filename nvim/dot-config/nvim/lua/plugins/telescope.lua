@@ -124,7 +124,7 @@ return {
 	},
 	{
 		"danielfalk/smart-open.nvim",
-		branch = "0.2.x",
+		branch = "0.3.x",
 		config = function()
 			require("telescope").load_extension("smart_open")
 		end,
