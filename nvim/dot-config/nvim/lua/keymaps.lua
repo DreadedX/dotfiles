@@ -15,3 +15,16 @@ vim.keymap.set("n", "N", "Nzz")
 
 -- Clear search highlight by pressing esc
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "rust" },
+	callback = function(args)
+		local command = {
+			rust = "cargo run",
+		}
+		vim.keymap.set("n", "<F5>", function()
+			vim.system({ "tmux", "send-keys", "-t", ":shell", "c-u", command[args.match], "Enter" })
+			vim.system({ "tmux", "select-window", "-t", ":shell" })
+		end, { buffer = true })
+	end,
+})
