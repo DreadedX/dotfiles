@@ -32,7 +32,7 @@
   "peek.nvim": { "branch": "master", "commit": "5820d937d5414baea5f586dc2a3d912a74636e5b" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "ros-nvim": { "branch": "main", "commit": "1ad64cd3a1e144dfea67890845f9da2e82d96900" },
-  "schema-companion.nvim": { "branch": "main", "commit": "b22243d3ca71be08d06a4b9bf200c1d677c41d45" },
+  "schema-companion.nvim": { "branch": "main", "commit": "e94f5f8439705d772363817c9d2c6c9fc7562bd0" },
   "schemastore.nvim": { "branch": "main", "commit": "2ae6d27897c60265d4ad3f33e286528d519098fd" },
   "scrollEOF.nvim": { "branch": "master", "commit": "aeedfad14e4a0cfa31b44b531c1ad8fd4696b551" },
   "smart-open.nvim": { "branch": "0.3.x", "commit": "e7f27218bd43de5262d3e8e3e84a135737ca6942" },

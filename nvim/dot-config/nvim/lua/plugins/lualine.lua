@@ -1,15 +1,15 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
 local function get_schema()
-	if vim.bo.filetype ~= "yaml" then
+	if not (vim.bo.filetype == "yaml" or vim.bo.filetype == "json" or vim.bo.filetype == "toml") then
 		return ""
 	end
 
-	local schema = require("schema-companion.context").get_buffer_schema()
-	if schema.name == "none" then
+	local schema = (require("schema-companion").get_current_schemas() or "none")
+	if schema == "none" then
 		return ""
 	end
-	return schema.name
+	return schema
 end
 
 --- @module "lazy"
@@ -43,7 +43,9 @@ return {
 				"encoding",
 				{ "fileformat", icons_enabled = false },
 				"filetype",
-				get_schema,
+				{
+					get_schema,
+				},
 			},
 		},
 		inactive_sections = {
