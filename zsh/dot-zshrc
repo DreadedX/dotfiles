@@ -55,7 +55,7 @@ export EDITOR=nvim
 
 alias cl="clear"
 
-if (( $+commands[hash] )); then
+if (( $+commands[bat] )); then
 	export BAT_THEME="gruvbox-dark"
 	alias cat=bat
 fi
