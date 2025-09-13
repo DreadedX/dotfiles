@@ -3,7 +3,9 @@ local window = require("symbols.window")
 --- @module "lazy"
 --- @type LazySpec
 return {
-	"folke/which-key.nvim",
+	-- "folke/which-key.nvim",
+	"cameronr/which-key.nvim",
+	branch = "winborder-support",
 	event = "VeryLazy",
 	--- @module "which-key"
 	--- @type wk.Opts

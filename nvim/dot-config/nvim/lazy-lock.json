@@ -47,5 +47,5 @@
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "ultimate-autopair.nvim": { "branch": "v0.6", "commit": "74163ac321c7d208a5bb9cdf8964114c7064d6c7" },
   "undotree": { "branch": "master", "commit": "fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869" },
-  "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
+  "which-key.nvim": { "branch": "winborder-support", "commit": "ab1a3b0d3005a95507ba6c18b96531d430370885" }
 }
