@@ -141,7 +141,7 @@ done
 ZSH_TMUX_AUTOSTART=true
 if (( $+commands[tmux] )); then
 	if [[ -z "$TMUX" && "$ZSH_TMUX_AUTOSTART" == "true" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" && -z "$INTELLIJ_ENVIRONMENT_READER" && -z "$ZED_TERM" ]]; then
-		if (( $+commands[sesh] )); then
+		if (( $+commands[sesh] )) && (( $+commands[sesh-select] )); then
 			sesh-select
 		else
 			tmux new-session
