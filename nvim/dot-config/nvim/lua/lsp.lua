@@ -148,7 +148,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- Manually enable rust analyzer, if installed
+-- Manually enable lsps, if installed
 if vim.fn.executable("rust_analyzer") then
 	vim.lsp.enable("rust_analyzer")
+end
+if vim.fn.executable("vtsls") then
+	vim.lsp.enable("vtsls")
 end
