@@ -24,7 +24,7 @@
 	tool = nvimdiff
 
 [init]
-	defaultBranch = master
+	defaultBranch = main
 
 [rebase]
   autosquash = true
