@@ -26,6 +26,7 @@ local ensure_installed = {
 	"ruff",
 	"prettierd",
 	"stylua",
+	"eslint",
 }
 
 --- @module "lazy"
