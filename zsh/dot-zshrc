@@ -87,12 +87,14 @@ if (( $+commands[devcontainer] )); then
 	}
 fi
 
-if (( $+commands[pnpm] )); then
-	export PNPM_HOME="/home/tim/.local/share/pnpm"
+export PNPM_HOME="/home/tim/.local/share/pnpm"
+if [ -d "$PNPM_HOME" ]; then
 	case ":$PATH:" in
 	  *":$PNPM_HOME:"*) ;;
 	  *) export PATH="$PNPM_HOME:$PATH" ;;
 	esac
+else
+	unset PNPM_HOME
 fi
 
 export FZF_DEFAULT_OPTS='--tmux'
