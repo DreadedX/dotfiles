@@ -24,7 +24,7 @@ local ensure_installed = {
 		end,
 	},
 	"ruff",
-	"prettierd",
+	"prettier",
 	"stylua",
 	"eslint",
 }
