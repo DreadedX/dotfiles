@@ -5,11 +5,20 @@ local function get_schema()
 		return ""
 	end
 
-	local schema = (require("schema-companion").get_current_schemas() or "none")
-	if schema == "none" then
+	-- The provided get_current_schema function returns nonenil when no schema is known.
+	-- Instead we use a custom implemention that does not do that.
+	-- Also has the added benefit of giving more control over formatting
+	local schemas = require("schema-companion").get_matching_schemas()
+	if schemas == nil or #schemas == 0 then
 		return ""
 	end
-	return schema
+
+	schema = schemas[1]
+	if schema.name == "none" then
+		return ""
+	end
+
+	return ("%s%s"):format(schema.name, #schemas > 1 and (" (+%d)"):format(#schemas - 1) or "")
 end
 
 --- @module "lazy"
