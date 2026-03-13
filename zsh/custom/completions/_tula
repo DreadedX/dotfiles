@@ -1,0 +1,7 @@
+#compdef tula
+
+_tula_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _TULA_COMPLETE=complete_zsh tula)
+}
+
+compdef _tula_completion tula
