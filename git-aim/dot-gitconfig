@@ -1,0 +1,4 @@
+[include]
+	path = ~/.dotfiles/git/configs/common.gitconfig
+
+	path = ~/.dotfiles/git/profiles/aim-robotics.gitconfig

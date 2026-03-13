@@ -5,3 +5,6 @@
 
 [includeIf "gitdir:~/Projects/ALTEN/"]
 	path = ~/.dotfiles/git/profiles/ALTEN.gitconfig
+
+[includeIf "gitdir:~/Projects/aim-robotics/"]
+	path = ~/.dotfiles/git/profiles/aim-robotics.gitconfig

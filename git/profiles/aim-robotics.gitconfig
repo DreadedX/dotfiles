@@ -1,0 +1,6 @@
+[user]
+	name = Tim Huizinga
+	email = th@aimrobotics.nl
+
+[commit]
+	gpgsign = false
