@@ -15,6 +15,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 ZSH_DISABLE_COMPFIX="true"
+ZOXIDE_CMD_OVERRIDE="cd"
 
 plugins=(
 	git
@@ -26,6 +27,7 @@ plugins=(
 	command-not-found
 	zsh-autopair
 	fast-syntax-highlighting
+	zoxide
 )
 
 bindkey -M vicmd "k" up-line-or-beginning-search
@@ -126,8 +128,9 @@ if (( $+commands[fd] )); then
 	export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
 	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
+
 if (( $+commands[fzf] )); then
-	source <(fzf --zsh)
+	# Fix fzf keybind after zsh-vi-mode has loaded
 	zvm_after_init_commands+=('source <(fzf --zsh)')
 
 	if (( $+commands[paru] )); then
