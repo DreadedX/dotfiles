@@ -75,20 +75,20 @@ local function on_attach(client, bufnr)
 	end
 
 	-- Highlight references under cursor
-	if client:supports_method(methods.textDocument_documentHighlight) then
-		local lsp_hover_hl = vim.api.nvim_create_augroup("LspHoverHighlight", { clear = false })
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			buffer = bufnr,
-			group = lsp_hover_hl,
-			callback = vim.lsp.buf.document_highlight,
-		})
-
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-			buffer = bufnr,
-			group = lsp_hover_hl,
-			callback = vim.lsp.buf.clear_references,
-		})
-	end
+	-- if client:supports_method(methods.textDocument_documentHighlight) then
+	-- 	local lsp_hover_hl = vim.api.nvim_create_augroup("LspHoverHighlight", { clear = false })
+	-- 	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	-- 		buffer = bufnr,
+	-- 		group = lsp_hover_hl,
+	-- 		callback = vim.lsp.buf.document_highlight,
+	-- 	})
+	--
+	-- 	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+	-- 		buffer = bufnr,
+	-- 		group = lsp_hover_hl,
+	-- 		callback = vim.lsp.buf.clear_references,
+	-- 	})
+	-- end
 end
 
 vim.diagnostic.config({
