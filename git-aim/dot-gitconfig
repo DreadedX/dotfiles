@@ -2,3 +2,10 @@
 	path = ~/.dotfiles/git/configs/common.gitconfig
 
 	path = ~/.dotfiles/git/profiles/aim-robotics.gitconfig
+
+[includeIf "gitdir:~/.dotfiles/"]
+	path = ~/.dotfiles/git/profiles/Dreaded_X.gitconfig
+
+; I don't have my private key on work machines
+[commit]
+	gpgsign = false
