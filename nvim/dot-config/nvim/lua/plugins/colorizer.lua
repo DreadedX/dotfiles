@@ -15,8 +15,12 @@ return {
 			"!popup",
 		},
 		always_update = true,
-		user_default_options = {
-			names = false,
+		options = {
+			parsers = {
+				names = {
+					enabled = false,
+				},
+			},
 		},
 	},
 }
