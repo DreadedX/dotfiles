@@ -114,6 +114,9 @@ if [ -d "$PNPM_HOME" ]; then
 else
 	unset PNPM_HOME
 fi
+if (( $+commands[pnpm] )); then
+	source <(pnpm completion zsh)
+fi
 
 export FZF_DEFAULT_OPTS='--tmux'
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
