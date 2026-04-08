@@ -5,7 +5,3 @@
 
 [includeIf "gitdir:~/.dotfiles"]
 	path = ~/.dotfiles/git/profiles/Dreaded_X.gitconfig
-
-; I don't have my private key on work machines
-[commit]
-	gpgsign = false
