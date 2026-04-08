@@ -29,6 +29,7 @@ plugins=(
 	fast-syntax-highlighting
 	zoxide
 	mise
+	gpg-agent
 )
 
 bindkey -M vicmd "k" up-line-or-beginning-search
