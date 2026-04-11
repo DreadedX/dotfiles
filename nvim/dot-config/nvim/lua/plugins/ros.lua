@@ -2,6 +2,8 @@
 --- @module "lazy"
 --- @type LazySpec
 return {
+	-- Issues with nvim 0.12
+	enabled = false,
 	"tadachs/ros-nvim",
 	event = { "BufRead", "BufNewFile" },
 	opts = {
