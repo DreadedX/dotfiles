@@ -30,6 +30,7 @@ plugins=(
 	zoxide
 	mise
 	gpg-agent
+	vagrant
 )
 
 bindkey -M vicmd "k" up-line-or-beginning-search
