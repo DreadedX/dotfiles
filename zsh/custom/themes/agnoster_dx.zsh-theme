@@ -156,69 +156,6 @@ prompt_git() {
   fi
 }
 
-prompt_bzr() {
-  (( $+commands[bzr] )) || return
-
-  # Test if bzr repository in directory hierarchy
-  local dir="$PWD"
-  while [[ ! -d "$dir/.bzr" ]]; do
-    [[ "$dir" = "/" ]] && return
-    dir="${dir:h}"
-  done
-
-  local bzr_status status_mod status_all revision
-  if bzr_status=$(bzr status 2>&1); then
-    status_mod=$(echo -n "$bzr_status" | head -n1 | grep "modified" | wc -m)
-    status_all=$(echo -n "$bzr_status" | head -n1 | wc -m)
-    revision=${$(bzr log -r-1 --log-format line | cut -d: -f1):gs/%/%%}
-    if [[ $status_mod -gt 0 ]] ; then
-      prompt_segment yellow black "bzr@$revision ✚"
-    else
-      if [[ $status_all -gt 0 ]] ; then
-        prompt_segment yellow black "bzr@$revision"
-      else
-        prompt_segment 10 black "bzr@$revision"
-      fi
-    fi
-  fi
-}
-
-prompt_hg() {
-  (( $+commands[hg] )) || return
-  local rev st branch
-  if $(hg id >/dev/null 2>&1); then
-    if $(hg prompt >/dev/null 2>&1); then
-      if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
-        # if files are not added
-        prompt_segment red white
-        st='±'
-      elif [[ -n $(hg prompt "{status|modified}") ]]; then
-        # if any modification
-        prompt_segment yellow black
-        st='±'
-      else
-        # if working copy is clean
-        prompt_segment 10 $CURRENT_FG
-      fi
-      echo -n ${$(hg prompt "☿ {rev}@{branch}"):gs/%/%%} $st
-    else
-      st=""
-      rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
-      branch=$(hg id -b 2>/dev/null)
-      if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
-        st='±'
-      elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
-        st='±'
-      else
-        prompt_segment 10 $CURRENT_FG
-      fi
-      echo -n "☿ ${rev:gs/%/%%}@${branch:gs/%/%%}" $st
-    fi
-  fi
-}
-
 # Dir: current working directory
 prompt_dir() {
   prompt_segment 12 $CURRENT_FG '%~'
@@ -229,27 +166,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
     prompt_segment magenta black "${VIRTUAL_ENV:t:gs/%/%%}"
-  fi
-}
-
-# nix-shell: currently running nix-shell
-prompt_nix_shell() {
-  if [[ -n "$IN_NIX_SHELL" ]]; then
-    if [[ -n $NIX_SHELL_PACKAGES ]]; then
-      local package_names=""
-      local packages=($NIX_SHELL_PACKAGES)
-      for package in $packages; do
-        package_names+=" ${package##*.}"
-      done
-      prompt_segment magenta black "$package_names"
-    elif [[ -n $name ]]; then
-      local cleanName=${name#interactive-}
-      cleanName=${cleanName#lorri-keep-env-hack-}
-      cleanName=${cleanName%-environment}
-      prompt_segment magenta black "$cleanName"
-    else # This case is only reached if the nix-shell plugin isn't installed or failed in some way
-      prompt_segment magenta black "nix-shell"
-    fi
   fi
 }
 
@@ -264,31 +180,14 @@ prompt_status() {
   [[ $UID -eq 0 ]] && prompt_segment 11 black "󱐋"
 }
 
-#AWS Profile:
-# - display current AWS_PROFILE name
-# - displays yellow on red if profile name contains 'production' or
-#   ends in '-prod'
-# - displays black on green otherwise
-prompt_aws() {
-  [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
-  case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment red 11  "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-    *) prompt_segment cyan black "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-  esac
-}
-
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_context
   prompt_virtualenv
-	prompt_nix_shell
-  prompt_aws
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
   prompt_end
 }
 
