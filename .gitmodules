@@ -19,3 +19,9 @@
 [submodule "zsh/custom/plugins/zsh-vi-mode"]
 	path = zsh/custom/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode
+[submodule "zsh/custom/plugins/evalcache"]
+	path = zsh/custom/plugins/evalcache
+	url = https://github.com/mroth/evalcache/
+[submodule "zsh/custom/plugins/zsh-defer"]
+	path = zsh/custom/plugins/zsh-defer
+	url = https://github.com/romkatv/zsh-defer
