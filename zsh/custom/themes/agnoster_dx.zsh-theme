@@ -156,9 +156,32 @@ prompt_git() {
   fi
 }
 
+git_toplevel() {
+	local repo_root=$(git rev-parse --show-toplevel)
+	if [[ $repo_root = '' ]]; then
+		# We are in a bare repo. Use git dir as root
+		repo_root=$(git rev-parse --git-dir)
+		if [[ $repo_root = '.' ]]; then
+			repo_root=$PWD
+		fi
+	fi
+	echo -n $repo_root
+}
+
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment 12 $CURRENT_FG '%~'
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    # Git repo and inline path enabled, hence only show the git root
+		local repo_root=$(git_toplevel)
+		local path_in_repo=$(pwd | sed "s/^$(echo "$repo_root" | sed 's:/:\\/:g;s/\$/\\$/g')//;s:^/::;s:/$::;")
+		if [[ -z "$path_in_repo" ]]; then
+			prompt_segment 12 $CURRENT_FG "$(git_toplevel | sed "s:^$HOME:~:")"
+		else
+			prompt_segment 12 $CURRENT_FG "$(git_toplevel | sed "s:^$HOME:~:")/%B$path_in_repo%b"
+		fi
+  else
+    prompt_segment 12 $CURRENT_FG '%~'
+  fi
 }
 
 # Virtualenv: current working virtualenv
